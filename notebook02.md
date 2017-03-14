@@ -612,5 +612,3 @@ RGB 和 HSL 都支持 Alpha 通道，用于设置颜色的不透明度（能够�
 
 - [Colrd](http://colrd.com/),一个 Pinterest 风格的站点，其中有很多能启发人创造力的图片和照片，以及相应的调色板。
 - [Adobe Kuler](http://kuler.com),Adobe Kuler 的官方站点提供了数千种色样、调色板创建工具，以及其他人正在选用的时尚颜色。
-
-a
