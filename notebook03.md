@@ -733,6 +733,168 @@ div {
 
 **背景尺寸**
 
+background-size 是 CSS3 规定的属性，这个属性用来控制背景图片的尺寸，可以给它设定的值及含义如下。
+
+- **50%**：缩放图片，使其填充背景区的一半。
+- **100px 50px**：把图片调整到 100 像素宽，50 像素高。
+- **cover**：拉大图片，使其完全填满背景区；保持宽高比。
+- **contain**：缩放图片，使其恰好适合背景区；保持宽高比。
+
+**背景粘附**
+
+background-attachment 属性控制滚动元素内的背景图片是否随元素滚动而移动。
+属性的默认值是 scroll，即背景图片随元素移动。
+如果改为 fixed，那么背景图片不会随元素滚动而移动。
+
+该属性常用于给 body 元素中心位置添加淡色水印，让水印不随页面滚动而移动。规则:
+
+```CSS
+body {
+ background-image:url(images/watermark.png);
+ background-position:center;
+ background-color:#fff;
+ background-repeat:no-repeat;
+ background-size:contain;
+ background-attachment:fixed;
+}
+```
+
+**简写背景属性**
+
+background 属性可以用来设定所有背景相关的值。
+
+比如，上面的例子可以写成：
+
+`body {background:url(images/watermark.png) center #fff no-repeat contain fixed;}`
+
+声明中少写了哪个属性的值（比如没写 no-repeat），就会使用相应属性的默认值（repeat）
+
+**其他CSS3 背景属性**
+
+- background-clip。控制背景绘制区域的范围，比如可以让背景颜色和背景图片只出现在内容区，而不出现在内边距区域。默认情况下，背景绘制区域是扩展到边框外边界的。
+- background-origin。控制背景定位区域的原点，可以设定为元素盒子左上角以外的位置。比如，可以设定以内容区左上角作为原点。
+- background-break。 控制分离元素（比如跨越多行的行内盒子）的显示效果。
+
+[Modernizr](https://modernizr.com/)是一个 JavaScript 库,用于检测用户浏览器支持哪些 HTML5 和 CSS3 功能.
+
+**多背景图片**
+
+```css
+p {
+ height:150px;
+ width:348px;
+ border:2px solid #aaa;
+ margin:20px auto;
+ font:24px/150px helvetica, arial, sansserif;
+ text-align:center;
+ background:
+ url(images/turq_spiral.png) 30px -10px no-repeat,
+ url(images/pink_spiral.png) 145px 0px no-repeat,
+ url(images/gray_spiral.png) 140px -30px no-repeat, #ffbd75;
+}
+/* 多张图片可以在背景中叠加起来，CSS 规则中先列出的图片在上层  */
+```
+
+查看CSS3最新信息，参考[can i use](http://caniuse.com)
+
+**背景渐变**
+
+渐变就是在一定长度内两种或多种颜色之间自然的过渡。
+
+渐变分两种，一种线性渐变，一种放射性渐变。
+
+线性渐变从元素的一端延伸到另一端，
+放射性渐变则从元素内一点向四周发散。
+
+事例HTML：
+
+```HTML
+<div class='gradient1'></div>
+<div class='gradient2'></div>
+<div class='gradient3'></div>
+
+<style>
+/*为元素盒子添加样式*/
+div {
+ height:150px;
+ width:200px;
+ border:1px solid #ccc;
+ float:left;
+ margin:16px;
+}
+/*例 1：定义一种开始颜色，一种结束颜色，默认的方向（从下到下） */
+.gradient1 {
+ background:linear-gradient(#e86a43, #fff);
+}
+/*例 2：从左到右，left，渐变方向变成了从左到另一端 */
+.gradient2 {
+ background:linear-gradient(left, #64d1dd, #fff);
+}
+/*例 3：左上到右下, deg 是“度”, 等于把起点从默认的中上设定到了左上。*/
+.gradient3 {
+ background:linear-gradient(-45deg, #e86a43, #fff);
+}
+</style>
+```
+
+**1. 渐变点**
+
+渐变点就是渐变方向上的点，可以在这些点上设定颜色和不透明度。
+
+通过设定下一个渐变点的颜色值，就可以控制渐变的效果。
+
+可以添加任意多个渐变点。
+
+渐变点的位置一般使用整个渐变宽度的百分比来表示。
+
+事例：
+
+```css
+/*例 1：50%处有一个渐变点*/
+.gradient1 {
+  background:linear-gradient(#64d1dd, #fff 50%, #64d1dd);
+}
+/*例 2：20%和 80%处有两个渐变点*/
+.gradient2 {
+   background:linear-gradient(#e86a43 20%, #fff 50%, #e86a43 80%);
+}
+/*例 3：25%、50%、75%处有三个渐变点*/
+.gradient3 {
+  background:linear-gradient(#64d1dd, #fff 25%, #64d1dd 50%, #fff 75%, #64d1dd);
+}
+/*例 4：为同一个渐变点设定两种颜色可以得到突变效果*/
+.gradient4 {
+  background:linear-gradient(#e86a43, #fff 25%, #64d1dd 25%, #64d1dd 75%, #fff 75%, #e86a43);
+}
+```
+
+**2. 放射性渐变**
+
+放射性渐变比线性渐变复杂那么一点点，因为可用的控制点多一些。
+
+创建放射性渐变时，可以使用参数指定形状、位置、尺寸、颜色和不透明度。
+
+事例HTML:
+
+```HTML
+<div class="gradient1"><h1>1</h1></div>
+<div class="gradient2"><h1>2</h1></div>
+<div class="gradient3"><h1>3</h1></div>
+
+<style>
+* {margin:0; padding:0;}
+div {height:150px; width:200px; float:left; margin:16px;} /* styles the element box */
+h1 {text-align:left; font:25px Helvetica, Arial, sans-serif; margin:120px 5px;} /* centers the headline vertically and horizontally */
+.gradient1 {background: -webkit-radial-gradient(#fff, #64d1dd, #70aa25);}       /* 默认的填满图形渐变 */
+.gradient2 {background: -webkit-radial-gradient(circle, #fff, #64d1dd, #e86a43);}   /* 圆形渐变 */
+.gradient3 {background: -webkit-radial-gradient(50px 30px, circle, #fff, #64d1dd, #4947ba);}  /* 指定位置的圆形渐变 */
+</style>
+```
+
+例 2 设定了形状关键字 circle，于是渐变的形状变得均匀，并在元素最近的边达到了终点，形成了圆形渐变。而长边剩下的区域则填充了终点的颜色。
+
+例 3 中的位置参数 50px 30px 把渐变的圆心放到了靠近左上角的位置。
+
 
 
 
