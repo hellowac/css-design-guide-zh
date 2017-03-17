@@ -363,6 +363,477 @@ p.customsmall {font-size:.8em; vertical-align:1em;}
 
 ### Web 字体大揭秘
 
+使用@font-face 规则在网页中可嵌入下载字体。
+
+\@font-face 规则为设计师提供了系统自带字体以外的广泛选择。
+
+设定 Web 字体的方式有以下三种
+
+- 使用 Google Web Fonts 或 Adobe 的 Typekit 等公共字体库。
+- 使用事先打好包的@font-face 包。
+- 使用 Font Squirrel 用你自己的字体生成@font-face 包
+
+#### 公共字体库
+
+- Google [Web Fonts](https://fonts.google.com/)
+  - 引用方式,如：`<link href='http://fonts.googleapis.com/css?family=Anton|Niconne|Prata' rel='stylesheet' type='text/css'> `
+  - 应用方式:如：`h3 {font: 20px "Prata", serif;}`
+- Adobe [Typekit](https://typekit.com/)
+
+#### 打包的@font-face包
+
+可以自己的网站或第三方 Web 服务器下载到相应的字体。
+
+[Font Squirrel](http://www.fontsquirrel.com)提供了很多现成的字体包,
+每个字体包中都包含所有必要格式的字体和为每款浏览器提供正确格式的 CSS 代码.
+
+用法事例：
+
+```CSS
+@font-face {
+ /*这就是将来在字体栈中引用的字体族的名字*/
+ font-family:'UbuntuTitlingBold';
+ src: url('UbuntuTitling-Bold-webfont.eot');
+ src: url('UbuntuTitling-Bold-webfont.eot?#iefix')
+ format('embedded-opentype'),
+ url('UbuntuTitling-Bold-webfont.woff')
+ format('woff'),
+ url('UbuntuTitling-Bold-webfont.ttf')
+ format('truetype'),
+ url('UbuntuTitling-Bold-webfont.svg#UbuntuTitlingBold') format('svg');
+ font-weight: normal;
+ font-style: normal;
+}
+```
+
+Web 专家 Paul Irish 写过一个跨浏览器@font-face 的“笑脸版”，
+可以保证用户机器中万一安装了同名字体时也不会混淆，详细内容参考这篇文章：[font-face](http://paulirish.com/2009/bulletproof-font-face-implementation-syntax/)
+
+#### 生成@font-face包
+
+希望在自己的网页中使用一种特殊字体，比如客户自己公司指定了一种字体，必须用在网站和设计中。
+今天，只要你获得了把该字体转换为 Web 字体使用的授权（请查看许可协议或联系字体设计商），
+就可以使用 Font Squirrel 的[转换程序](http://www.fontsquirrel.com/fontface/generator)把它转换成@font-face 字体包。
+
+如果想深入理解@font-face 规则，参考 Tim Brown 的博客文章“[How to use
+@font-face](http://nicewebtype.com/notes/2009/10/30/how-to-use-css-font-face/)”。
+
+### 文字版式
+
+文字排版讲求匀称，一般是由看不见的网格，框定页面文字的走向和布局。
+匀称的版式可以增强页面的可读性。
+
+#### 简单的文本布局
+
+比如：
+
+```HTML
+<article>
+ <h1>CSS</h1>
+ <p>CSS stands for Cascading Style Sheets. CSS controls the presentational
+ aspects of your Web pages.</p>
+ <h2>Block-Level Elements</h2>
+ <p>Block-level elements stack down the page. They include:</p>
+ <ul>
+   <li><code>header</code></li>
+   <li><code>section</code></li>
+   <li><code>h1, h2, etc.</code></li>
+ </ul>
+ <h2>Inline Elements</h2>
+ <p>Inline elements sit next to each other, if there is room. They include:</p>
+ <ul>
+   <li><code>img</code></li>
+   <li><code>a</code></li>
+   <li><code>em</code></li>
+ </ul>
+ <blockquote>
+    <q>Typography maketh the Web site.</q><cite>CWS</cite>
+ </blockquote>
+</article>
+```
+
+设定样式,首先，去掉元素的外边距，设定主字体大小，为包含所有文本元素的 article 应用样式，从视觉上突出它作为容器的角色，然后将它在页面上居中。
+
+```CSS
+/*删除所有元素的外边距*/
+* {margin:0; padding:0;}
+/*设定主字体族和字体大小*/
+body {font:1.0em helvetica, arial, sans-serif;}
+/*居中显示盒子*/
+article {width:500px; margin:20px auto; padding:20px; border:2px solid #999;}
+/* 删除默认的外边距显著减少了内容的高度 */
+```
+
+接下来，需要巧妙地安排一下元素间的垂直距离。
+另外，去掉默认外边距后列表项目的符号也跑到了外面，这里一块儿修复。
+
+```css
+/*标题周围的空白*/
+h1, h2, h3, h4, h5, h6 {line-height:1.15em; margin-bottom:.1em;}
+/*文本元素周围的空白*/
+p, ul, blockquote {line-height:1.15em; margin-bottom:.75em;}
+/*缩进列表*/
+ul {margin-left:32px;}
+```
+以上样式把所有元素的行高都缩小,
+因为 line-height 会平均分布在文本上下，并且只想通过下外边距在每个元素下方添加空白。
+同时，还留出少量行高，以防段落（和跨行的标题）中相邻的行紧挨上。
+
+最后，让各级标题也更均衡一些，保证较大的标题突出，最小的标题也不至于不明显，同时也增大 code 元素的字体。
+
+```css
+/*调整标题文本*/
+h1 {font-size:1.9em;}
+h2 {font-size:1.6em;}
+h3 {font-size:1.4em;}
+h4 {font-size:1.2em;}
+h5 {font-size:1em;}
+h6 {font-size:.9em;}
+/*调整段落文本*/
+p {font-size:.9em;}
+/*调整代码文本（默认值太小了）*/
+code {font-size:1.3em;}
+```
+
+标题和代码都加大了，而且页面也更有层次感
+
+#### 基于网格排版
+
+借助网格可以保证布局匀称，同时让页面看起来也很流畅
+
+下面的例子中，基于垂直的 18 像素网格来规划布局，并让页面中的每一个元素都按网格线对齐。
+可以临时在 body元素的背景上添加一张图片，让它为整个页面生成辅助线。
+
+```css
+/*添加网格线*/
+body {background-image:url(images/grid_18px.png);padding-top:22px; }
+```
+
+CSS规则
+
+```css
+/*去掉所有元素的内边距和外边距*/
+* {margin:0; padding:0;}
+body {
+ /*添加网格背景*/
+ background-image:url(images/grid_18px.png);
+ /*设定字体*/
+ font:100% helvetica, arial, sans-serif;
+ /*加宽左右外边距，得到一栏的雏形*/
+ margin:0 40px 0;
+}
+p {
+ /*设定字体大小*/
+ font-size:13px;
+ /*将行高设定为等于网格高*/
+ line-height:18px;
+}
+```
+
+这里把文本的 line-height 设定为网格间的距离——18 像素。
+在去掉默认外边距和内边距的情况下，这样就可以确保每一行都相距 18 像素.
+
+再给容器 body 元素添加 4 像素的内边距，以便把元素向下推到文本基线与网格对齐的位置。
+只要让第一个元素与网格对齐，其他元素就都能对齐了。
+实际上，给 body上方添加了 22 像素（4+18）的内边距，
+
+```css
+body {
+  background-image: url(images/grid_18px.png);
+  padding-top:22px;
+}
+
+p {
+ /*设定字体大小*/
+ font-size:13px;
+ /*把行高设定为等于网格高度*/
+ line-height:18px;
+ margin-bottom:18px;
+}
+/*这条声明恰好能在每个段落之间加上一个空行。
+再加上一段文本，就能更清楚地看这两处修改的效果了*/
+```
+
+现在，文本与网格对齐了，段落之间的间距也合适了。
+
+接着要设定其他文本元素的字体大小。
+首先把 h3 设定为 18 像素，而为了让它恰好在网站中占一行，
+必须得把它的 line-height 也设定为 18 像素。
+
+```css
+h3 {font-size:18px; line-height:18px;}
+```
+
+纠正h3字体过大的问题.
+
+```CSS
+h3 {
+ font-size:18px;
+ line-height:18px;
+ margin-top:-2px;
+ margin-bottom:2px;
+}
+```
+
+上方的负外边距把文本向上拉，下方同样数量的正外边距用来抵消它，保证后面元素的位置不受影响
+
+还需要一种类似技巧来对齐比网格高的元素（通常是标题）。
+为此，要添加一个24 像素的 h1 元素。
+显然，24 像素的文本占据的空间比一行网格要高，
+因此给它设定的 line-height 是 36 像素，也就是两行网格的高度。
+然后，就是把 h1 元素放到它应该出现的地方——页面的开头。
+
+```css
+h1 {font-size:24px; line-height:36px;}
+```
+
+占两行网格的大标题看起来不太舒服。
+如果把它移动到下方最近的线上，那么其字母下伸部分就会接触到段落文本，所以我要把它向上移动。
+经过一番试错，把它向上移动 13 像素.
+
+```css
+h1 {
+ margin-top:-13px;
+ margin-bottom:13px;
+}
+```
+再加几个不同字体大小的标题、一个无序列表和一个blockquote 元素。看一看把网格去掉之后页面是什么样子。
+
+```HTML
+<style>
+h2 {font-size: 18px;line-height: 18px;margin-top: -2px;margin-bottom: 2px;}
+h3 {font-size: 16px;line-height: 18px;margin-top: -2px;margin-bottom: 2px;}
+ul {margin-bottom: 18px;}
+li {font-size: 13px;list-style-type: none;padding: 0 20px;line-height: 18px;}
+a {color: #777;text-decoration: none;}
+blockquote {font-size: 12px;line-height: 18px;padding-top: 2px;margin-bottom: 16px;}
+</style>
+<h2>Typography is Everywhere</h2>
+<ul>
+  <li><a href="#">Books and Magazines</a></li>
+  <li><a href="#">Posters</a></li>
+  <li><a href="#">Apparel</a></li>
+  <li><a href="#">Graffiti</a></li>
+  <li><a href="#">&#8230;everywhere you look!</a></li>
+</ul>
+<blockquote>
+  <q>Typography is what language looks like.</q> <cite>Ellen Lupton</cite>
+</blockquote>
+
+<h3>Type for Every Use</h3>
+<p>Prose fiction, non-fiction, editorial, educational, religious, scientific, spiritual and commercial writing all have differing characteristics and requirements of appropriate typefaces and fonts.</p>
+<h3>Type over Time</h3>
+<p>For historic material established text typefaces are frequently chosen according to a scheme of historical genre acquired by a long process of accretion, with considerable overlap between historical periods.</p>
+
+```
+
+。从技术角度讲，如果你
+基于网格为一个网站设计了版式，而后将其交给了其他人维护，那这个网站的版式
+就能始终保持一致，无论页面中包含什么元素，以及以什么顺序包含这些元素。
+
+#### 经典的排版练习
+
+节选 The Hound of the Baskervilles（《巴斯克维尔庄园的猎犬 》）
+中的部分文本（为了示例需要进行了删减）来做一个排版练习.
+
+这个练习将会用到讲过的很多字体和文本属性。
+完成这个练习后，就能掌握实现专业排版的很多技术，
+包括使用 `HTML 实体`、`调整字母和单词间距`、`首字下沉`、`垂直网格`（这一次是 24 像素）以及`可下载字体`。
+
+```HTML
+<!-- 只有两个标题、几个段落和一个块引用 -->
+
+<h2>an excerpt from</h2>
+<h1>The Hound of the Baskervilles</h1>
+<p>Holmes stretched out his hand for the manuscript and flattened it upon his knee. &ldquo;You will observe, Watson, the alternative use of the long s and the short. It is one of several indications which enabled me to fix the date.&rdquo; At the head was written: &ldquo;Baskerville Hall,&rdquo; and below in large, scrawling figures: &ldquo;1742.&rdquo;</p>
+
+<p>&ldquo;It appears to be a statement of some sort.&rdquo;</p>
+
+<p>&ldquo;Yes&mdash;it is a statement of a certain legend which runs in the Baskerville family.&rdquo;</p>
+
+<blockquote>
+    <q>Of the origin of the Hound of the Baskervilles therehave been many statements, yet as I come in a directline from Hugo Baskerville, and as I had the story frommy father&hellip;</q>
+</blockquote>
+
+<p>When Dr. Mortimer had finished reading this singular narrative he pushed his spectacles up on his forehead and stared across at Mr. Sherlock Holmes.</p>
+```
+
+这段标记包含了几个 HTML 实体，它们代表的是几种标点符号。
+其中，有表示 对话开始的左双引号（`&ldquo;`） 、表示对话结束的右双引号（`&rdquo;`）、表示省略的省略号（`&hellip;`）和表示暂停或代替括号的破折号（`&mdash;`）。
+
+HTML实体
+
+以下网站中列出了 HTML 实体：
+- [htmlhelp](http://htmlhelp.com/reference/html40/entities/special.html)
+  - 既包含 HTML 实体值，也包含实体需要作为::before 和::after 伪元素内容时的十六进制值。
+  - 举个例子，如果你想在伪元素中添加十六进制值`&#x201C;`（左双引号），
+  - 则需要改写成如下形式：e::before {content:"`\201C`";}就是在数字前面加了一个反斜杠。
+  - 相应地，右双引号的十六进制值改写后是`\201D`。
+- [stephenmorley](http://code.stephenmorley.org/html-and-css/character-entity-references-cheat-sheet/)
+
+**第一步：设定字体和底层网格**
+
+```CSS
+/* 字体 */
+@font-face {
+ font-family:'CrimsonRoman';
+ src: url('fonts/Crimson-fontfacekit/Crimson-Roman-webfont.eot');
+ src: url('fonts/Crimson-fontfacekit/Crimson-Roman-webfont.eot?#iefix') format('embedded-opentype'),
+ url('fonts/Crimson-fontfacekit/Crimson-Roman-webfont.woff') format('woff'),
+ url('fonts/Crimson-fontfacekit/Crimson-Roman-webfont.ttf') format('truetype'),
+ url('fonts/Crimson-fontfacekit/Crimson-Roman-webfont.svg#CrimsonRoman') format('svg');
+ font-weight: normal;
+ font-style: normal;
+}
+/* 去掉所有外边距和内边距 */
+* {margin:0; padding:0;}
+/* 设定了主字体，又添加了左、右外边距，还为对齐文本临时添加了网格 */
+body {
+ font-family:"CrimsonRoman", georgia, times, serif;
+ background-color:#fff;
+ margin:0 10% 0;
+ background-image:url(images/grid_24px.png);
+}
+```
+
+**第二步：设计标题**
+
+从上到下，对齐页面中的每一个元素。
+第一行的副标题应该与第二行的主标题形成对比，因为主标题要使用手写字体，
+所以副标题就设定成间距较宽的小型大写字母。
+
+```css
+/* 上边距调整为19px */
+body{margin:19px 10% 0;}
+/* 调整栏高，粗细，对齐方式，大小写，字间隔，单词间隔 */
+h2 {font-size:18px;
+   line-height:24px;
+   font-weight:bold;
+   text-align:center;
+   font-variant:small-caps;
+   word-spacing:.5em;
+   letter-spacing:.6em;
+}
+```
+
+排版资源：
+
+- [ilovetypography](http://ilovetypography.com/) 可以跟着设计师 John Boardley 一起深思，欣赏每一页中别具一格的排版。
+- [Thinking with Type](http://www.thinkingwithtype.com/) 是 Thinking with Type 一书的网站，作者 Ellen Lupton。网站中展示了很多漂亮又经典的版式，还包含一些字体及字体族的信息。
+- [webtypography](http://webtypography.net/)这个站点自称为 The Elements of Typographic Style Applied to the Web—A practical guide to web typography。跟随网站的目录，可以找到各种常用的排版知识和技巧。
+
+接下来，找到一种名为 Pinyon 的手写体，这种字体与主标题挺配的.
+
+`<link href='http://fonts.googleapis.com/css?family=Pinyon+Script' rel='stylesheet' type='text/css'> `
+
+```css
+h1 {
+ font-size:60px;
+ line-height:96px;
+ font-family:"Pinyon Script", cursive;
+ margin:4px 0 -4px;
+ text-align:center;
+ font-weight:normal;
+ position:relative;
+}
+```
+
+**第三步：设计段落和引用**
+
+```css
+/* 设定它的字体大小,以及行高 */
+p {font-size:18px; line-height:24px;}
+```
+
+blockquote 中的文本包含在一个行内元素 q（quote）中，这个元素的默认样式是在文本开头和末尾加上引号。
+
+在此，缩进 blockquote，但在其 q子元素上设定字体大小和行高，因为它才是包含文本的元素：
+
+```css
+blockquote {margin:0px 20%;}
+q {font-size:18px; font-style:italic; line-height:24px;}
+```
+
+缩进引用并将文本变成斜体为页面增加了变化。另外，在 blockquote就位后，它后面的段落自然也就与网格对齐了。
+
+**第四步：首字下沉效果**
+
+第一段添加一个独特的首字下沉效果。
+所谓首字下沉，就是将段落开头的第一个字母变大，
+然后根据该字母与段落首行的位置关系，又可以分几种不同的风格。
+
+让字母的顶部与段落首行顶部对齐，让字母的底部与段落第三行的基线对齐。
+
+选择 h1 标题后面第一个段落的第一个字母，
+而组合使用紧邻同胞选择符+和::first-letter 伪元素可以做到。
+
+选择了第一个字母后，再增大字体并浮动它：
+
+```css
+h1 + p::first-letter {
+ font-family:times, serif;
+ font-size: 90px;
+ float:left;
+ border:1px solid;
+}
+```
+
+首字母增大了，但位置不对。设定这个伪元素的line-height，让它的盒子能包含首字母。并添加一点内边距，包括3px的右边距。
+
+*把 line-height 设定为小于 1 的值，以便元素盒子紧紧包住首字母，而不会强迫段落第四行也绕排。*
+
+```css
+h1 + p::first-letter {
+ font-family:times, serif;
+ font-size:90px;
+ float:left;
+ line-height:.65;
+ border:1px solid;
+ padding:.085em 3px 0 0;
+}
+```
+
+**第五步：设计第一行**
+
+首字母下沉效果做完了。可是希望大号首字母到小号正文之间有一个过渡，所以需要把段落第一行的文本变成小型大写字母。
+
+```css
+/* 紧邻同胞选择符，组合::first-line 伪元素，实现了第一行字形的转换 */
+h1 + p::first-line {
+ font-variant:small-caps;
+ letter-spacing:.15em;
+}
+```
+
+使用伪元素而不是额外加标签的好处在于，当行的长度改变时，大写字母的效果会随之扩展。
+
+**第六步：最后的修饰**
+
+段落之间没有足够的间距，让人很难看出它们的开头在哪里。
+
+为了与这本书的版式保持一致，我们不给段落之间加空白，而是缩进跟在其他段落后面的每一段，作为一组段落起头的一段不缩进。
+
+此外，引用内容两端的引号也太难看，所以要在<q>标签上应用::before 和::after 伪元素，插入 Crimson 字体的引号。
+最后，再从 body元素中去掉网格背景
+
+```css
+/*只缩进跟在段落后面的段落*/
+p + p {text-indent:14px;}
+/*引用内容前面的引号*/
+q::before {content:"\201C"}
+/*引用内容后面的引号*/
+q::after {content:"\201D"}
+```
+
+使用::before 和::after 伪元素给引用内容添加引号时使用的是十六进制值。
+不能给 content 属性设定常规的 HTML 实体，只能使用十六进制实体值，而且只能是改写后的形式。
+
+最终样式:
+
+![fontgraph](fontgraph.png)
+
+
+
 
 
 
