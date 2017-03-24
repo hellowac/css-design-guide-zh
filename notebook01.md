@@ -13,6 +13,7 @@ HTML5中的新标准参考[syntactic](http://dev.w3.org/html5/html-author/#synta
 ### 属性
 
 src属性(source)：来源
+
 alt属性(alternative)：替代内容
 
 每个 HTML 标签都可以添加属性，class 和 id 等属性，几乎可以适用于任何标签。另一些属性，比如 src，则只适用于类似<img>这样的
