@@ -1,0 +1,1065 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="zh">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="../notebook02/" rel="prev"/>
+<link href="../notebook04/" rel="next"/>
+<link href="../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.4.2, mkdocs-material-9.0.13" name="generator"/>
+<title>定位元素 - CSS设计指南</title>
+<link href="../assets/stylesheets/main.ffa9267a.min.css" rel="stylesheet"/>
+<link href="../assets/stylesheets/palette.a0c5b2b5.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            
+                .gscrollbar-fixer { padding-right: 15px; }
+                .gdesc-inner { font-size: 0.75rem; }
+                body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+                body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+                body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+                </style><script src="../assets/javascripts/glightbox.min.js"></script></head>
+<body data-md-color-accent="red" data-md-color-primary="default" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#_1">
+          跳转至
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="页眉" class="md-header__inner md-grid">
+<a aria-label="CSS设计指南" class="md-header__button md-logo" data-md-component="logo" href=".." title="CSS设计指南">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            CSS设计指南
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              定位元素
+            
+          </span>
+</div>
+</div>
+</div>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="搜索" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="搜索" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</label>
+<nav aria-label="查找" class="md-search__options">
+<button aria-label="清空当前内容" class="md-search__icon md-icon" tabindex="-1" title="清空当前内容" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="导航栏" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="CSS设计指南" class="md-nav__button md-logo" data-md-component="logo" href=".." title="CSS设计指南">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+    CSS设计指南
+  </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../notebook01/">
+        HTML基础
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../notebook02/">
+        CSS工作原理
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          定位元素
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        定位元素
+      </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+    理解盒模型
+  </a>
+<nav aria-label="理解盒模型" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_3">
+    盒子边框
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_4">
+    盒子内边距
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_5">
+    盒子外边距
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_6">
+    叠加外边距
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_7">
+    外边距的单位
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_8">
+    盒子有多大
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_9">
+    浮动与清除
+  </a>
+<nav aria-label="浮动与清除" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_10">
+    浮动
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_11">
+    围住浮动元素的三种方法
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_12">
+    定位
+  </a>
+<nav aria-label="定位" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_13">
+    静态定位
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_14">
+    相对定位
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_15">
+    绝对定位
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_16">
+    固定定位
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_17">
+    定位上下文
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_18">
+    显示属性
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_19">
+    背景
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../notebook04/">
+        字体和文本
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../notebook05/">
+        页面布局
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../notebook06/">
+        界面组建
+      </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+    理解盒模型
+  </a>
+<nav aria-label="理解盒模型" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_3">
+    盒子边框
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_4">
+    盒子内边距
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_5">
+    盒子外边距
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_6">
+    叠加外边距
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_7">
+    外边距的单位
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_8">
+    盒子有多大
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_9">
+    浮动与清除
+  </a>
+<nav aria-label="浮动与清除" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_10">
+    浮动
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_11">
+    围住浮动元素的三种方法
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_12">
+    定位
+  </a>
+<nav aria-label="定位" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_13">
+    静态定位
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_14">
+    相对定位
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_15">
+    绝对定位
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_16">
+    固定定位
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_17">
+    定位上下文
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_18">
+    显示属性
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_19">
+    背景
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="_1">定位元素</h1>
+<p>盒模型: 浏览器为页面中的每个 HTML 元素生成的矩形盒子.</p>
+<p>这些盒子们都要按照<code>可见版式模型</code>（visual formatting model）在页面上排布。</p>
+<p>可见的页面版式主要由三个属性控制：position 属性、display 属性和 float 属性。</p>
+<p>position 属性控制页面上元素间的 位置关系.
+display 属性控制元素是 堆叠、并排，还是根本不在页面上出现.
+float 属性提供 控制的方式，以便把元素组成成多栏布局.</p>
+<h2 id="_2">理解盒模型</h2>
+<p>每一个元素都会在页面上生成一个盒子,因此，HTML页面实际上就是由一堆盒子组成的。</p>
+<p>默认情况下，每个盒子的边框不可见，背景也是透明的，所以我们不能直接看到页面中盒子的结构。 (使用 Web Developer 工具条,可以方便的看见盒子的边框和背景)</p>
+<p>每个元素盒子的属性可以分成三组：</p>
+<ol>
+<li><strong>边框</strong>（border）。可以设置边框的宽窄、样式和颜色。</li>
+<li><strong>内边距</strong>（padding）。可以设置盒子内容区与边框的间距。</li>
+<li><strong>外边距</strong>（margin）。可以设置盒子与相邻元素的间距。</li>
+</ol>
+<p>一个盒子有 4 条边，因此与边框、内边距和外边距相关的属性也各有 4 个，分别是上（top）、右（right）、下（bottom）、左（left）。</p>
+<p>官网文档：<a href="https://www.w3.org/TR/REC-CSS2/box.html">box</a></p>
+<p>可以用总共 12 个属性分别为 4 条边的边框、外边距和内边距指定宽度，但 CSS也提供了简写属性。</p>
+<div class="admonition info">
+<p>CSS 为边框、内边距和外边距分别规定了简写属性,通过一条声明就可以完成设定.
+在每个简写声明中，属性值的顺序都是上、右、下、左。想象一下顺时针旋转就记住了。</p>
+<p>如: {margin-top:5px; margin-right:10px; margin-bottom:12px; margin-left:8px;}
+简写成:{margin:5px 10px 12px 8px;}
+注意，4 个值之间有空格，但不能是其他分隔符（比如逗号之类的）。</p>
+<p>{margin:12px 10px 6px;}
+不用把 4 值全都写出来——如果哪个值没有写，那就使用对边的值，由于没有写最后一个值（左边的值），所以左边就会使用右边的值，即 10px</p>
+<p>{margin:12px 10px;}
+只写了两个值，上和右，因此缺少的下和左就会被设定为 12px 和 10px。</p>
+<p>{margin:12px;}
+如果只写一个值，那么 4 个边都取这个值。</p>
+<p>{margin:0 0 2px 4px;}
+绕开上和右，只给下和左设定值，</p>
+<p>每个盒子的属性也分三种粒度(宽度，样式，颜色)。</p>
+<ol>
+<li>
+<p border:2px="border:2px" dashed="dashed" red_="red;">全部 3 个属性，全部 4 条边</p>
+</li>
+<li>
+<p border-style:dashed_="border-style:dashed;">1 个属性，全部 4 条边</p>
+</li>
+<li>
+<p border-left-style:dashed_="border-left-style:dashed;">1 个属性，1 条边</p>
+</li>
+</ol>
+<p>{border:4px solid red;} /<em> 先给 4 条边设置相同的样式 </em>/
+{border-left-width:1px;} /<em> 修改左边框宽度 </em>/
+{border-right:none;} /<em> 移除右边框 </em>/
+其他属性也都有这三级粒度，例如 padding 和 border-radius 等</p>
+</div>
+<h3 id="_3">盒子边框</h3>
+<p>边框（border）有 3 个相关属性。</p>
+<ul>
+<li>宽度（border-width）。可以使用 thin、medium 和 thick 等文本值，也可以使用除百分比和负值之外的任何绝对值。</li>
+<li>样式（border-style）。有 none、hidden、dotted、dashed、solid、double、groove、ridge、inset 和 outset 等文本值。</li>
+<li>颜色（border-color）。可以使用任意颜色值，包括 RGB、HSL、十六进制颜色值和颜色关键字。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nt">p</span><span class="p">.</span><span class="nc">warning</span><span class="w"> </span><span class="p">{</span><span class="k">border</span><span class="p">:</span><span class="kc">solid</span><span class="w"> </span><span class="mh">#F33</span><span class="p">;}</span>
+<span class="c">/* 任何带有 warning 类的段落都会带上一个吸引眼球的、4 像素宽的红色实心边框 */</span>
+<span class="nt">p</span><span class="p">.</span><span class="nc">warning</span><span class="w"> </span><span class="p">{</span><span class="k">border-width</span><span class="p">:</span><span class="mi">4</span><span class="kt">px</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="p">;}</span>
+<span class="c">/* 把右边框和下边框变窄一些 */</span>
+</code></pre></div>
+<p>默认情况下，边框的三个相关属性的值分别为 border-width:medium;、border-style:none;、border-color:black;。</p>
+<p>由于 border-style 的默认值是 none，所以不会显示盒子的边框.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">p</span><span class="w"> </span><span class="p">{</span><span class="k">border</span><span class="p">:</span><span class="kc">solid</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="p">;}</span>
+<span class="c">/* 这样设定就边框出现了.这里把边框宽度由默认的 3像素变窄为 1像素，从而把边框对布局宽度和高度的影响降到最低。 */</span>
+</code></pre></div>
+<h3 id="_4">盒子内边距</h3>
+<p>内边距是盒子内容区与盒子边框之间的距离。</p>
+<div class="highlight"><pre><span></span><code><span class="nt">p</span><span class="w"> </span><span class="p">{</span><span class="k">font</span><span class="p">:</span><span class="mi">16</span><span class="kt">px</span><span class="w"> </span><span class="n">helvetica</span><span class="p">,</span><span class="w"> </span><span class="kc">sans-serif</span><span class="p">;</span><span class="w"> </span><span class="k">width</span><span class="p">:</span><span class="mi">220</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="k">border</span><span class="p">:</span><span class="mi">2</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="kc">red</span><span class="p">;</span><span class="w"> </span><span class="k">background-color</span><span class="p">:</span><span class="mh">#caebff</span><span class="p">;}</span>
+<span class="c">/* 在没有设定内边距的情况下，内容紧挨着边框 */</span>
+
+<span class="nt">p</span><span class="w"> </span><span class="p">{</span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="p">;}</span>
+<span class="c">/* 给元素添加一点内边距,看着会舒服点。 */</span>
+</code></pre></div>
+<p>由于内边距在盒子的内部，所以它也会取得盒子的背景。</p>
+<p>内边距实际加在了声明的盒子宽度之上。</p>
+<h3 id="_5">盒子外边距</h3>
+<p>与边框和内边距相比，盒子的外边距要复杂一些。</p>
+<p>学会控制元素周围的外边距是布局的重要技能</p>
+<p><strong>中和外边距和内边距</strong></p>
+<div class="admonition info">
+<p>推荐大家把下面这条规则作为样式表的第一条规则：</p>
+<p><code>* {margin:0; padding:0;}</code></p>
+<p>这条规则把所有元素默认的外边距和内边距都设定为零。
+把这条规则放到样式表里后，所有默认的外边距和内边距都会消失。</p>
+<p>然后，你可以为那些真正需要外边距的元素再添加外边距。</p>
+<p>不同浏览器默认的内边距和外边距也不一样，特别是对表单和列表等复合元素。
+在这种情况下，用前面那条规则“中和”默认值，然后再根据需要添加，则会在各浏览器上获得一致的效果。</p>
+<p>我在自己的项目中使用了 Eric Meyer 写的重置样式表 reset.css。
+这个样式表不仅重置了外边距和内边距，还对很多元素在跨浏览器显示时的外观进行了标准化。
+至于 Eric 为什么要写一个涉及面如此之广的重置样式表，
+可以参考他的文章 http://meyerweb.com/eric/thoughts/2007/04/18/reset-reasoning，reset.css 的下载地址是 http://meyerweb.com/eric/tools/css/reset。</p>
+</div>
+<h3 id="_6">叠加外边距</h3>
+<p>垂直方向上的外边距会叠加。</p>
+<p>上下外边距相遇时，它们就会相互重叠，直至一个外边距碰到另一个元素的边框,较宽的外边距决定两个元素最终离多远.这个过程就叫外边距叠加。</p>
+<h3 id="_7">外边距的单位</h3>
+<p>根据经验，为文本元素设置外边距时通常需要混合使用不同的单位。</p>
+<p>比如说，一个段落的左、右外边距可以使用像素，以便该段文本始终与包含元素边界保持固定间距，不受字号变大或变小的影响。</p>
+<p>而对于上、下外边距，以 em 为单位则可以让段间距随字号变化而相应增大或缩小，比如：</p>
+<div class="highlight"><pre><span></span><code><span class="c">/*这里使用了简写属性把上、下外边距设置为.75em，把左、右外边距设置为 30 像素*/</span>
+<span class="nt">p</span><span class="w"> </span><span class="p">{</span><span class="k">font-size</span><span class="p">:</span><span class="mi">1</span><span class="kt">em</span><span class="p">;</span><span class="w"> </span><span class="k">margin</span><span class="p">:</span><span class="mf">.75</span><span class="kt">em</span><span class="w"> </span><span class="mi">30</span><span class="kt">px</span><span class="p">;}</span>
+</code></pre></div>
+<p>这样，段落的垂直间距始终会保持为字体高度的四分之三（上下外边距都是.75em，叠加后还是.75em）。</p>
+<p>如果用户增大了字号，那么不仅段落中的文本会变大，段间距也会成比例变大。</p>
+<p>这样，页面的整体布局就会比较协调一致。与此同时，使用像素单位的左、右外边距不会改变。</p>
+<h2 id="_8">盒子有多大</h2>
+<p><strong>没有宽度的盒子</strong></p>
+<p>所谓“没有宽度”就是指没有显式地设置元素的 width 属性.</p>
+<p>如果不设置块级元素的 width 属性，那么这个属性的默认值是 auto，结果会让元素的宽度扩展到与父元素同宽。</p>
+<p><strong>盒模型结论一</strong>：没有（就是没有设置 width 的）宽度的元素始终会扩展到填满其父元素的宽度为止。添加水平边框、内边距和外边距，会导致内容宽度减少，减少量等于水平边框、内边距和外边距的和。</p>
+<p><strong>有宽度的盒子</strong></p>
+<p><strong>盒模型结论二</strong>：为设定了宽度的盒子添加边框、内边距和外边距，会导致盒子扩展得更宽。实际上，盒子的 width 属性设定的只是盒子内容区的宽度，而非盒子要占据的水平宽度。</p>
+<p>这两种盒子所表现出来的完全不同的行为，对将来构建多栏布局具有重要的启示.</p>
+<p>因为在多栏布局中，每一栏都必须时刻维护自己的宽度。</p>
+<p>“浮动布局”，在列宽由于边框、内边距和边距被修改而意外加宽的情况下，会出现显示错误。</p>
+<p><em>CSS3 新增了一个 box-sizing 属性，通过它可以将有宽度的盒子也设定成具有默认的auto 状态下的行为。但只有最新版本的浏览器才支持该属性.</em></p>
+<p>设定了元素的 width 属性后，再给元素添加边框、内边距和外边距，元素的行为与默认的 auto 状态下会有截然不同的表现。</p>
+<h2 id="_9">浮动与清除</h2>
+<p>浮动和清除是用来组织页面布局的又一柄利剑，这柄剑的剑刃就是 float 和 clear属性。</p>
+<p>浮动，意思就是把元素从 常规文档流(从上到下，但不从左至右。块元素依次展开) 中拿出来。脱离了常规文档流之后，原来紧跟其后的元素就会在空间允许的情况下，向上提升到与浮动元素平起平坐。</p>
+<p>一是可以实现传统出版物上那种文字绕排图片的效果，</p>
+<p>二是可以让原来上下堆叠的块级元素，变成左右并列，从而实现布局中的分栏。</p>
+<p>如果浮动元素后面有两个段落，而你只想让第一段与浮动元素并列（就算旁边还能放下第二段，也不想让它上来），怎么办？用 clear 属性来“清除”第二段，然后它就乖乖地呆在浮动元素下面了。</p>
+<div class="admonition info"></div>
+<p>影响浮动的因素还有很多，推荐读者看一看Eric Meyer的那本 Cascading Style Sheets2.0 Programmer’s Reference（2006，McGraw-Hill Osborne Media）。
+  这里摘录 Eric在那本书里写的一句话：“当你浮动一个元素的时候……这些（浮动）规则就好像在说：‘尽量把这个元素往上放，能放多高放多高，直到碰到某个元素的边界为止。’”
+  即使这本书的出版年份是 2006 年，但它仍然是任何 CSS 高手必备的一本参考书。
+  这本书涵盖了 CSS 运行机制的方方面面，其中很多在别的书里是找不到的。</p>
+<h3 id="_10">浮动</h3>
+<p>CSS 设计 float 属性的主要目的，是为了实现文本绕排图片的效果。然而，这个属性居然也成了创建多栏布局最简单的方式</p>
+<p><em>CSS3 Multi-column Layout Module 规定了如何用 CSS 定义多栏布局。</em></p>
+<p><strong>文本绕排图片</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="c">/*外边距防止图片紧挨文本*/</span>
+<span class="nt">img</span><span class="w"> </span><span class="p">{</span><span class="k">float</span><span class="p">:</span><span class="kc">left</span><span class="p">;</span><span class="w"> </span><span class="k">margin</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="w"> </span><span class="mi">0</span><span class="p">;}</span>
+<span class="c">/*为简明起见，省略了字体声明*/</span>
+<span class="nt">p</span><span class="w"> </span><span class="p">{</span><span class="k">margin</span><span class="p">:</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="k">border</span><span class="p">:</span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="kc">red</span><span class="p">;}</span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">img</span> <span class="err">……</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>…the paragraph text…<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>在浮动一张图片或者其他元素时，是在要求浏览器把它往上方推，直到它碰到父元素（也就是 body 元素）的内边界。</p>
+<p>后面的段落（带灰色边框）不再认为浮动元素在文档流中位于它的前面了，因而它会占据父元素左上角的位置。</p>
+<p>不过，它的内容（文本）会绕开浮动的图片。</p>
+<p><em>浮动非图片元素时，必须给它设定宽度，否则后果难以预料。图片无所谓，因为它本身有默认的宽度。</em></p>
+<p><strong>创建分栏</strong></p>
+<p>在此基础上创建多栏，只要再用一次 float 属性</p>
+<div class="highlight"><pre><span></span><code><span class="nt">p</span><span class="w"> </span><span class="p">{</span><span class="k">float</span><span class="p">:</span><span class="w"> </span><span class="kc">left</span><span class="p">;</span><span class="w"> </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="kt">px</span><span class="p">;}</span>
+</code></pre></div>
+<p>同时浮动图片和“有宽度的”段落，会导致段落的文本绕排效果消失，而浮动的段落也会尽可能向左向上移动。</p>
+<p>这样，这个段落就构成了紧挨着图片的一栏。</p>
+<p>这就是使用 float 属性创建多栏布局的原理。</p>
+<p>换句话说，如果几个相邻的元素都具有设定的宽度，都是浮动的，而且水平空间也足以容纳它们，它们就会并列排在一行。</p>
+<p>浮动元素位于“文档流外部”，因而它已经不被包含在标记中的父元素之内了。</p>
+<p>正因为如此，它对布局可能产生破坏性影响。</p>
+<h3 id="_11">围住浮动元素的三种方法</h3>
+<p>事例HTML：</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">section</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">"images/rubber_duck2.jpg"</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>It's fun to float.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">footer</span><span class="p">&gt;</span> Here is the footer element that runs across the bottom of the page.<span class="p">&lt;/</span><span class="nt">footer</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="nt">section</span><span class="w"> </span><span class="p">{</span><span class="k">border</span><span class="p">:</span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="kc">blue</span><span class="p">;</span><span class="w"> </span><span class="k">margin</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="w"> </span><span class="mi">0</span><span class="p">;}</span>
+<span class="c">/*删除默认的上下外边距*/</span>
+<span class="nt">p</span><span class="w"> </span><span class="p">{</span><span class="err">margin</span><span class="w"> </span><span class="err">0</span><span class="p">;}</span>
+<span class="c">/*为简明起见，省略了字体声明*/</span>
+<span class="nt">footer</span><span class="w"> </span><span class="p">{</span><span class="k">border</span><span class="p">:</span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="kc">red</span><span class="p">;}</span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>应用 <code>img {float:left;}</code> 样式,</p>
+<p>标题倒是跑到右边了，可 section 也不再包围浮动元素了，它只包围非浮动的元素。于是，footer 被提了上来，紧挨着前一个块级元素——section。这样是没错儿，可结果呢，不是我们想要的。</p>
+<p><strong>方法一：为父元素添加 overflow:hidden</strong></p>
+<p>为父元素应用 overflow:hidden，以强制它包围浮动元素。</p>
+<p><code>section{ overflow:hidden;}</code></p>
+<div class="highlight"><pre><span></span><code>overflow:hidden 声明的真正用途是防止包含元素被超大内容撑大。
+应用 overflow:hidden 之后，包含元素依然保持其设定的宽度，而超大的子内容则会被容器剪切掉。
+
+除此之外，overflow:hidden 还有另一个作用，即它能可靠地迫使父元素包含其浮动的子元素。
+</code></pre></div>
+<p><strong>方法二：同时浮动父元素</strong></p>
+<p>应用:<code>section{float:left; width:100%;} footer{clear:left;}</code></p>
+<p>浮动 上级元素 以后，不管其子元素是否浮动，它都会紧紧地包围（也称<code>收缩包裹</code>）住它的子元素。因此，需要用 width:100%再让 section 与浏览器容器同宽。</p>
+<p>为了强制 footer 依然呆在 section 下方，要给它应用 clear:left。被清除的元素不会被提升到浮动元素的旁边。</p>
+<p><strong>方法三：添加非浮动的清除元素</strong></p>
+<p>给父元素的最后添加一个非浮动的子元素，然后清除该子元素的浮动。</p>
+<p>由于包含元素(section)一定会包围非浮动的子元素，而且清除浮动会让这个子元素位于浮动元素的下方，因此包含元素一定会包含这个子元素—-以及前面的浮动元素。</p>
+<p>在包含元素最后添加子元素作为清除元素的方式有两种。</p>
+<p>第一种方式不太理想，也就是简单地在 HTML 标记中添加一个子元素，并给它应用clear 属性。</p>
+<p>由于没有默认的样式，不会引入多余空间，div 元素很适合这个目的。</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">section</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">"images/rubber_duck.jpg"</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>It's fun to float.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"clear_me"</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>     <span class="cm">&lt;!-- 清除浮动 --&gt;</span>
+<span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">footer</span><span class="p">&gt;</span> Here is the footer element…<span class="p">&lt;/</span><span class="nt">footer</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">.</span><span class="nc">clear_me</span><span class="w"> </span><span class="p">{</span><span class="k">clear</span><span class="p">:</span><span class="kc">left</span><span class="p">;}</span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>应用样式 ``</p>
+<p>第二种方式由程序员 Tony Aslett 发明，给 上级元素 添加类并应用如下样式：</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">section</span> <span class="na">class</span><span class="o">=</span><span class="s">"clearfix"</span><span class="p">&gt;</span>    <span class="cm">&lt;!--上级元素添加类--&gt;</span>
+ <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">"images/rubber_duck.jpg"</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>It's fun to float.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">footer</span><span class="p">&gt;</span> Here is the footer element…<span class="p">&lt;/</span><span class="nt">footer</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">.</span><span class="nc">clearfix</span><span class="p">:</span><span class="nd">after</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">content</span><span class="p">:</span><span class="s2">"."</span><span class="p">;</span>
+<span class="w"> </span><span class="k">display</span><span class="p">:</span><span class="kc">block</span><span class="p">;</span>
+<span class="w"> </span><span class="k">height</span><span class="p">:</span><span class="mi">0</span><span class="p">;</span>
+<span class="w"> </span><span class="k">visibility</span><span class="p">:</span><span class="kc">hidden</span><span class="p">;</span>
+<span class="w"> </span><span class="k">clear</span><span class="p">:</span><span class="kc">both</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c">/*</span>
+<span class="c">添加了一个清除的包含句点作为非浮动元素（必须得有内容，而句点是最小的内容）。</span>
+<span class="c">规则中的其他声明是为了确保这个伪元素没有高度，而且在页面上不可见。</span>
+
+<span class="c">clear:both 意味着 section 中新增的子元素会清除左、右浮动元素（位于左、右浮动元素下方）。</span>
+<span class="c">这里当然可以只用 left，但 both 也适用于将来图片 float:right 的情况。</span>
+<span class="c">*/</span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>围住浮动的三种方式:</p>
+<ul>
+<li>为父元素应用 overflow:hidden</li>
+<li>浮动父元素</li>
+<li>在父元素内容的末尾添加非浮动元素，可以直接在标记中加，也可以通过给父元素添加 clearfix 类来加（当然，样式表中得需要相应的 clearfix 规则）</li>
+</ul>
+<p>这三种方法的使用要因地制宜。</p>
+<p>比如，不能在下拉菜单的顶级元素上应用overflow:hidden，否则作为其子元素的下拉菜单就不会显示了。</p>
+<p>因为下拉菜单会显示在其父元素区域的外部，而这恰恰是 overflow:hidden 所要阻止的。</p>
+<p>再比如，不能对已经靠自动外边距居中的元素使用“浮动父元素”技术，否则它就不会再居中，而是根据浮动值浮动到左边或右边了。</p>
+<p><strong>没有父元素时如何清除</strong></p>
+<p>有时候，在清除某些浮动元素时，不一定正好有那么个父元素可以作为容器来强行包围它们。</p>
+<p>此时，最简单的办法就是给一个浮动元素应用 clear:both，强迫它定位在前一个浮动元素下方。</p>
+<p>然而，在空间足以容纳多个元素向上浮动时，这个简单的办法未必奏效，我们还得另辟蹊径。</p>
+<p>事例HTML：</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">section</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">"images/rubber_duck3.jpg"</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>This text sits next to the image and because the…<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">"images/beach_ball.jpg"</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>This text is short, so the next image can float up…<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">"images/yellow_float.jpg"</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Because the previous image’s text does not…<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="nt">section</span><span class="w"> </span><span class="p">{</span><span class="k">width</span><span class="p">:</span><span class="mi">300</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="k">border</span><span class="p">:</span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="kc">red</span><span class="p">;}</span>
+<span class="nt">img</span><span class="w"> </span><span class="p">{</span><span class="k">float</span><span class="p">:</span><span class="kc">left</span><span class="p">;</span><span class="w"> </span><span class="k">margin</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="w"> </span><span class="mi">0</span><span class="p">;}</span>
+<span class="c">/*为简明起见，省略了字体声明*/</span>
+<span class="nt">p</span><span class="w"> </span><span class="p">{</span><span class="k">margin</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">5</span><span class="kt">px</span><span class="w"> </span><span class="mi">0</span><span class="p">;}</span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>由于每一对儿图片/段落都没有包含元素，在此就无法使用前面讨论的“强制父元素包围”的战术。不过，照样可以使用 clearfix 规则呀！</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">section</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">"images/rubber_duck3.jpg"</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">"clearfix"</span><span class="p">&gt;</span>This text sits next to the image and because the…<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">"images/beach_ball.jpg"</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">"clearfix"</span><span class="p">&gt;</span>This text is short, so the next image can float up…<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">"images/yellow_float.jpg"</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">"clearfix"</span><span class="p">&gt;</span>Because the previous image’s text does not…<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="nt">section</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">  </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="kc">red</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">img</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">float</span><span class="p">:</span><span class="w"> </span><span class="kc">left</span><span class="p">;</span>
+<span class="w">  </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">p</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">font-family</span><span class="p">:</span><span class="w"> </span><span class="n">helvetica</span><span class="p">,</span><span class="w"> </span><span class="n">arial</span><span class="p">,</span><span class="w"> </span><span class="kc">sans-serif</span><span class="p">;</span>
+<span class="w">  </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">5</span><span class="kt">px</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">clearfix</span><span class="p">::</span><span class="nd">after</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">content</span><span class="p">:</span><span class="w"> </span><span class="s2">"."</span><span class="p">;</span>
+<span class="w">  </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">block</span><span class="p">;</span>
+<span class="w">  </span><span class="k">height</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">visibility</span><span class="p">:</span><span class="w"> </span><span class="kc">hidden</span><span class="p">;</span>
+<span class="w">  </span><span class="k">clear</span><span class="p">:</span><span class="w"> </span><span class="kc">both</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</code></pre></div>
+<h2 id="_12">定位</h2>
+<p>CSS 布局的核心是 position 属性，对元素盒子应用这个属性，可以相对于它在常规文档流中的位置重新定位。</p>
+<p>position 属性有 4 个值：static、relative、absolute、fixed，默认值为 static。</p>
+<p>事例html：</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="nt">body</span><span class="w"> </span><span class="p">{</span><span class="k">background-color</span><span class="p">:</span><span class="mh">#caebff</span><span class="p">;}</span>
+<span class="nt">p</span><span class="w"> </span><span class="p">{</span><span class="k">font-size</span><span class="p">:</span><span class="mi">24</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="k">color</span><span class="p">:</span><span class="mh">#555</span><span class="p">;</span><span class="w"> </span><span class="k">font-family</span><span class="p">:</span><span class="n">Helvetica</span><span class="p">,</span><span class="w"> </span><span class="n">Arial</span><span class="p">,</span><span class="w"> </span><span class="kc">sans-serif</span><span class="p">;</span><span class="w"> </span><span class="k">background-color</span><span class="p">:</span><span class="mh">#ccc</span><span class="p">;</span><span class="w"> </span><span class="k">margin</span><span class="p">:</span><span class="mi">10</span><span class="kt">px</span><span class="w"> </span><span class="mi">0</span><span class="p">;}</span>
+<span class="nt">p</span><span class="p">#</span><span class="nn">specialpara</span><span class="w"> </span><span class="p">{</span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">red</span><span class="p">;</span><span class="w"> </span><span class="k">background</span><span class="p">:</span><span class="mh">#fff</span><span class="p">;}</span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>First Paragraph<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Second Paragraph<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">"specialpara"</span><span class="p">&gt;</span>Third Paragraph (with ID)<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Fourth Paragraph<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</code></pre></div>
+<h3 id="_13">静态定位</h3>
+<p>静态定位下的块级元素会在默认文档流中上下堆叠</p>
+<p>在静态定位的情况下，每个元素在处在常规文档流中。
+它们都是块级元素，所以就会在页面中自上而下地堆叠起来。</p>
+<p>要突破 static 定位提供的这种按顺序布局元素的方式，
+必须把盒子的 position 属性改为其他三个值。</p>
+<h3 id="_14">相对定位</h3>
+<p>把第三段的 position 属性设置为 relative。
+即只设置了它的定位方式是“相对定位”。
+相对的是它原来在文档流中的位置（或者默认位置）。
+可以使用 top、right、bottom 和 left 属性来改变它的位置。
+但多数情况下，只用 top 和 left 就可以实现想要的效果。</p>
+<div class="highlight"><pre><span></span><code><span class="nt">p</span><span class="p">#</span><span class="nn">specialpara</span><span class="w"> </span><span class="p">{</span><span class="k">position</span><span class="p">:</span><span class="kc">relative</span><span class="p">;</span><span class="w"> </span><span class="k">top</span><span class="p">:</span><span class="mi">25</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="k">left</span><span class="p">:</span><span class="mi">30</span><span class="kt">px</span><span class="p">;}</span>
+<span class="c">/*可以给 top 和 left 属性设定负值，把元素向上、向左移动。*/</span>
+</code></pre></div>
+<p>第三段与它在文档流中的默认位置相比，向下移动了 25 像素，向右移动了30 像素。
+相当于它把自己从原来的包含元素（body）中挣脱出来了，而且有一部分还跑到了屏幕之外。
+要注意，除了这个元素自己相对于原始位置挪动了一下之外，页面没有发生任何变化。
+换句话说，这个元素原来占据的空间没有动，其他元素也没动。</p>
+<h3 id="_15">绝对定位</h3>
+<p>绝对定位跟静态定位和相对定位比，绝对不一样。
+因为绝对定位会把元素彻底从文档流中拿出来。</p>
+<div class="highlight"><pre><span></span><code><span class="nt">p</span><span class="p">#</span><span class="nn">specialpara</span><span class="w"> </span><span class="p">{</span><span class="k">position</span><span class="p">:</span><span class="kc">absolute</span><span class="p">;</span><span class="w"> </span><span class="k">top</span><span class="p">:</span><span class="mi">25</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="k">left</span><span class="p">:</span><span class="mi">30</span><span class="kt">px</span><span class="p">;}</span>
+</code></pre></div>
+<p>绝对定位下，元素从文档流中被“连根拔起”，然后再相对于其他元素（在这里，是默认的定位上下文 body）定位</p>
+<p>元素之前占据的空间被“回收了”。
+这说明，绝对定位的元素完全脱离了常规文档流，它现在是相对于顶级元素 body 在定位。
+而这自然而然就引出了一个关于定位的重要概念：<code>定位上下文</code>。</p>
+<p>关于定位上下文，首先要知道绝对定位元素默认的定位上下文是 body 元素。
+通过 top 和 left 设定的偏移值，决定了元素相对于 body 元素（标记层次中的祖先容器），
+而不是相对于它在文档流中的位置偏移多远[这一点与相对定位的元素不同]。</p>
+<p>由于绝对定位元素的定位上下文是 body，所以在页面滚动的时候，
+为了维护与 body元素的相对位置关系，它也会相应地移动。</p>
+<h3 id="_16">固定定位</h3>
+<p>从完全移出文档流的角度说，固定定位与绝对定位类似。</p>
+<div class="highlight"><pre><span></span><code><span class="nt">p</span><span class="p">#</span><span class="nn">specialpara</span><span class="w"> </span><span class="p">{</span><span class="k">position</span><span class="p">:</span><span class="kc">fixed</span><span class="p">;</span><span class="w"> </span><span class="k">top</span><span class="p">:</span><span class="mi">30</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="k">left</span><span class="p">:</span><span class="mi">20</span><span class="kt">px</span><span class="p">;}</span>
+</code></pre></div>
+<p>不同之处在于，固定定位元素的定位上下文是视口（浏览器窗口或手持设备的屏幕），
+因此它不会随页面滚动而移动。</p>
+<p>固定定位并不常用，最常见的情况是用它创建不随页面滚动而移动的导航元素。</p>
+<h3 id="_17">定位上下文</h3>
+<p>把元素的 position 属性设定为 relative、absolute 或 fixed 后，
+继而可以使用 top、right、bottom 和 left 属性，相对于 另一个元素 移动该元素的位置。
+这里的“另一个元素”，就是该元素的定位上下文。</p>
+<p>绝对定位元素默认的定位上下文是 body。是因为body 是标记中所有元素唯一的祖先元素。</p>
+<p>而实际上，绝对定位元素的任何祖先元素都可以成为它的定位上下文，
+只要你把相应祖先元素的 position 设定为 relative 即可。</p>
+<p>事例HTML：</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">"outer"</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">"inner"</span><span class="p">&gt;</span>This is text…<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+ <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="nt">div</span><span class="p">#</span><span class="nn">outer</span><span class="w"> </span><span class="p">{</span><span class="k">position</span><span class="p">:</span><span class="kc">relative</span><span class="p">;</span><span class="w"> </span><span class="k">width</span><span class="p">:</span><span class="mi">250</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="k">margin</span><span class="p">:</span><span class="mi">50</span><span class="kt">px</span><span class="w"> </span><span class="mi">40</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="k">border-top</span><span class="p">:</span><span class="mi">3</span><span class="kt">px</span>
+<span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="kc">red</span><span class="p">;}</span>
+<span class="nt">div</span><span class="p">#</span><span class="nn">inner</span><span class="w"> </span><span class="p">{</span><span class="k">position</span><span class="p">:</span><span class="kc">absolute</span><span class="p">;</span><span class="w"> </span><span class="k">top</span><span class="p">:</span><span class="mi">10</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="k">left</span><span class="p">:</span><span class="mi">20</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="k">background</span><span class="p">:</span><span class="mh">#ccc</span><span class="p">;}</span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>内外部 div 默认都是静态定位，它们之间不存在谁是谁的定位上下文这个问题。
+在常规文档流中，由于外部div 没有内容，内部 div 就会跟它共享相同的起点。
+只有将元素的 position 属性设定为 relative、absolute 或 fixed，
+这个元素的 top、right、bottom 和 left 属性才会起作用。</p>
+<div class="admonition info">
+<p>事实上,只要把元素的外边距和内边距设定好，多数情况下只用静态定位就足以实现页面布局了。
+很多刚开始接触 CSS 的初学者都会错误地设定 position 属性，
+最终才发现从文档流中挪出来的这些元素一点也不好控制。
+因此，除非真需要那么做，否则不要轻易修改元素默认的 position 属性。</p>
+</div>
+<h3 id="_18">显示属性</h3>
+<p>正如所有元素都有 position 属性，所有元素也都有 display 属性。
+尽管 display 属性的值有很多，但大多数元素 display 属性的默认值不是 block，就是 inline。</p>
+<p>再讲一讲块级元素与行内元素的区别：</p>
+<ul>
+<li><strong>块级元素</strong>：比如段落、标题、列表等，在浏览器中上下堆叠显示。</li>
+<li><strong>行内元素</strong>：比如 a、span 和 img，在浏览器中左右并排显示，只有前一行没有空间时才会显示到下一行。</li>
+</ul>
+<p>转换块级元素和行级元素:</p>
+<div class="highlight"><pre><span></span><code><span class="c">/*默认为 block*/</span>
+<span class="nt">p</span><span class="w"> </span><span class="p">{</span><span class="k">display</span><span class="p">:</span><span class="kc">inline</span><span class="p">;}</span>
+<span class="c">/*默认为 inline*/</span>
+<span class="nt">a</span><span class="w"> </span><span class="p">{</span><span class="k">display</span><span class="p">:</span><span class="kc">block</span><span class="p">;}</span>
+</code></pre></div>
+<p>做CSS 下拉菜单的时候，就会用到这个技巧。</p>
+<p>display 属性还有一个值 none。设置该元素及所有包含在其中的元素，都不会在页面中显示。
+原先占据的所有空间也都会被“回收”，就好像相关的标记根本不存在一样。</p>
+<p>与此相对的visibility属性，这个属性最常用的两个相对的值是 visible（默认值）和 hidden。
+把值设定为 hidden时，元素会隐藏，但占据的页面空间仍然“虚位以待”。</p>
+<p>总结:</p>
+<p>display属性：常用的block、inline、none属性
+visibility属性：常用的visible、hidden属性.</p>
+<h3 id="_19">背景</h3>
+<p>CSS 里，每个元素盒子都可以想象成由两个图层组成。
+元素的前景层包含内容（如文本或图片）和边框，
+元素的背景层可以用实色填充（使用 background-color 属性），
+也可以包含任意多个背景图片（使用background-image 属性），
+背景图片叠加在背景颜色之上。</p>
+<p><strong>CSS背景属性</strong></p>
+<ul>
+<li>background-color</li>
+<li>background-image</li>
+<li>background-repeat</li>
+<li>background-position</li>
+<li>background-size</li>
+<li>background-attachment</li>
+<li>background（简写属性）</li>
+<li>background-clip、background-origin、background-break（目前尚未得到广泛支持）</li>
+</ul>
+<p><strong>背景颜色</strong></p>
+<p>通过 background-color 可以设定元素的颜色。</p>
+<p>例如:</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="nt">body</span><span class="w"> </span><span class="p">{</span><span class="k">background-color</span><span class="p">:</span><span class="mh">#caebff</span><span class="p">;}</span>
+<span class="nt">p</span><span class="w"> </span><span class="p">{</span><span class="c">/*盒子布局样式*/</span>
+<span class="w"> </span><span class="k">font-family</span><span class="p">:</span><span class="n">helvetica</span><span class="p">,</span><span class="w"> </span><span class="n">arial</span><span class="p">,</span><span class="w"> </span><span class="kc">sans-serif</span><span class="p">;</span><span class="w"> </span><span class="k">font-size</span><span class="p">:</span><span class="mi">18</span><span class="kt">px</span><span class="p">;</span>
+<span class="w"> </span><span class="k">width</span><span class="p">:</span><span class="mi">350</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="k">margin</span><span class="p">:</span><span class="mi">20</span><span class="kt">px</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span><span class="w"> </span><span class="k">padding</span><span class="p">:</span><span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+<span class="w"> </span><span class="c">/*这个例子中讨论背景和前景样式*/</span>
+<span class="w"> </span><span class="k">background-color</span><span class="p">:</span><span class="mh">#fff</span><span class="p">;</span><span class="w"> </span><span class="k">color</span><span class="p">:</span><span class="mh">#666</span><span class="p">;</span><span class="w"> </span><span class="k">border</span><span class="p">:</span><span class="mi">4</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>This text and t...<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>作用范围，前景色会影响元素的内容和边框。
+当然，有一个前提条件，就是在使用 border 设定边框的样式和宽度，而没有设定边框颜色（或者没有使用 border-color 单独设定边框颜色）的情况下，
+边框会使用 color 属性设定的字体颜色。
+默认颜色是黑色。
+如果想让边框的颜色有别于文本，就需要单独设定。</p>
+<p><strong>背景图片</strong></p>
+<p>例如:</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="w">  </span><span class="nt">body</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#43f3f3</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="nt">p</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#FFF</span><span class="p">;</span>
+<span class="w">    </span><span class="k">background-image</span><span class="p">:</span><span class="w"> </span><span class="nb">url</span><span class="p">(</span><span class="sx">images/blue_circle.png</span><span class="p">)</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>This text and t...<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>默认情况下背景图片会以元素左上角为起点，沿水平和垂直方向重复出现，最终填满整个背景区域。</p>
+<p>注意，指定背景图片来源的方式要这样：</p>
+<p><code>background-image:url(图片路径/图片文件名)</code> 图片地址两边不用加引号，当然加了也没问题。</p>
+<p>要改变默认的 水平和垂直重复 效果，可以修改 background-repeat 属性；</p>
+<p>要改变背景图片的 起点，可以修改 background-position 属性。</p>
+<p><strong>背景重复</strong></p>
+<p>控制背景重复方式的 background-repeat 属性有 4 个值:repeat、repeat-x、repeat-y、no-repeat。</p>
+<ul>
+<li>repeat: 水平和垂直方向都重复.</li>
+<li>repeat-x: 水平方向重复.</li>
+<li>repeat-y: 垂直方向上重复.</li>
+<li>no-repeat: 任何方向上都不重复.</li>
+</ul>
+<p>CSS3 还规定另外两个值（但尚未得到浏览器支持），以控制背景图片重复确切的次数，即所有图片都是完整的，不会出现半张图片的现象。</p>
+<ul>
+<li>background-repeat:round：为确保图片不被剪切，通过调整图片大小来适应背景区域。</li>
+<li>background-repeat:space: 为确保图片不被剪切，通过在图片间添加空白来适应背景区域。</li>
+</ul>
+<p><strong>背景位置</strong></p>
+<p>background-position 属性，是所有背景属性中最复杂的.
+属性有5个关键字值，分别是top、left、bottom、right和center，</p>
+<p>关键字中的任意两个组合起来都可以作为该属性的值。</p>
+<p>比如，top right 表示把图片放在元素的右上角位置，center center 把图片放在元素的中心位置。</p>
+<div class="highlight"><pre><span></span><code>/*center center 的简化写法*/
+p#center {background-position:center;}
+/* 相当于 background-position:center cetner */
+</code></pre></div>
+<p>用百分比来设定位置，并且不重复。</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+A centered background image!
+<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="nt">div</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">height</span><span class="p">:</span><span class="mi">150</span><span class="kt">px</span><span class="p">;</span>
+<span class="w"> </span><span class="k">width</span><span class="p">:</span><span class="mi">250</span><span class="kt">px</span><span class="p">;</span>
+<span class="w"> </span><span class="k">border</span><span class="p">:</span><span class="mi">2</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="mh">#aaa</span><span class="p">;</span>
+<span class="w"> </span><span class="k">margin</span><span class="p">:</span><span class="mi">20</span><span class="kt">px</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span>
+<span class="w"> </span><span class="k">background-image</span><span class="p">:</span><span class="nb">url</span><span class="p">(</span><span class="sx">images/turq_spiral_150.png</span><span class="p">);</span>
+<span class="w"> </span><span class="k">background-repeat</span><span class="p">:</span><span class="kc">no-repeat</span><span class="p">;</span>
+<span class="w"> </span><span class="k">background-position</span><span class="p">:</span><span class="mi">50</span><span class="kt">%</span><span class="w"> </span><span class="mi">50</span><span class="kt">%</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>文本也居中的办法:</p>
+<ol>
+<li>line-height 设定成了元素的高度</li>
+<li>text-align 设定为 center</li>
+</ol>
+<p><strong>背景位置的值</strong></p>
+<div class="admonition info">
+<p>设定背景位置时可以使用三种值：关键字、百分比、绝对或相对单位的数值。
+可以使用两个值分别设定水平和垂直位置。</p>
+<p>关键字指的顺序不重要，left bottom 和 bottom left 意思相同。
+为了设定的值在所有浏览器中都有效，最好不要混用关键字值与数字值。</p>
+<p>使用数值（比如 40% 30%）时，
+第一个值表示水平位置，
+第二个值表示垂直位置。
+要是只设定一个值，则将其用来设定水平位置，而垂直位置会被设为 center。</p>
+<p>在使用 关键字 和 百分比值 的情况下，设定的值同时应用于元素和图片。
+换句话说，如果设定了33% 33%，则图片水平 33%的位置与元素水平 33%的位置对齐。
+垂直方面也一样。</p>
+<p>像素之类的绝对单位数值就不一样了。要是用像素单位来设定位置，
+那么图片的左上角会被放在距离元素左上角指定位置的地方。</p>
+<p>还可以使用负值。这样就可以把图片的左上角定位到元素外部，从而在元素中只能看到部分图片。
+当然，给图片设定足够大的正值，也可以把图片的右下角推到元素外部，从而在元素中也只能看到部分图片。
+位于元素外部的那部分图片不会显示。</p>
+</div>
+<p><strong>背景尺寸</strong></p>
+<p>background-size 是 CSS3 规定的属性，这个属性用来控制背景图片的尺寸，可以给它设定的值及含义如下。</p>
+<ul>
+<li><strong>50%</strong>：缩放图片，使其填充背景区的一半。</li>
+<li><strong>100px 50px</strong>：把图片调整到 100 像素宽，50 像素高。</li>
+<li><strong>cover</strong>：拉大图片，使其完全填满背景区；保持宽高比。</li>
+<li><strong>contain</strong>：缩放图片，使其恰好适合背景区；保持宽高比。</li>
+</ul>
+<p><strong>背景粘附</strong></p>
+<p>background-attachment 属性控制滚动元素内的背景图片是否随元素滚动而移动。
+属性的默认值是 scroll，即背景图片随元素移动。
+如果改为 fixed，那么背景图片不会随元素滚动而移动。</p>
+<p>该属性常用于给 body 元素中心位置添加淡色水印，让水印不随页面滚动而移动。规则:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">body</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">background-image</span><span class="p">:</span><span class="nb">url</span><span class="p">(</span><span class="sx">images/watermark.png</span><span class="p">);</span>
+<span class="w"> </span><span class="k">background-position</span><span class="p">:</span><span class="kc">center</span><span class="p">;</span>
+<span class="w"> </span><span class="k">background-color</span><span class="p">:</span><span class="mh">#fff</span><span class="p">;</span>
+<span class="w"> </span><span class="k">background-repeat</span><span class="p">:</span><span class="kc">no-repeat</span><span class="p">;</span>
+<span class="w"> </span><span class="k">background-size</span><span class="p">:</span><span class="kc">contain</span><span class="p">;</span>
+<span class="w"> </span><span class="k">background-attachment</span><span class="p">:</span><span class="kc">fixed</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>简写背景属性</strong></p>
+<p>background 属性可以用来设定所有背景相关的值。</p>
+<p>比如，上面的例子可以写成：</p>
+<p><code>body {background:url(images/watermark.png) center #fff no-repeat contain fixed;}</code></p>
+<p>声明中少写了哪个属性的值（比如没写 no-repeat），就会使用相应属性的默认值（repeat）</p>
+<p><strong>其他CSS3 背景属性</strong></p>
+<ul>
+<li>background-clip。控制背景绘制区域的范围，比如可以让背景颜色和背景图片只出现在内容区，而不出现在内边距区域。默认情况下，背景绘制区域是扩展到边框外边界的。</li>
+<li>background-origin。控制背景定位区域的原点，可以设定为元素盒子左上角以外的位置。比如，可以设定以内容区左上角作为原点。</li>
+<li>background-break。 控制分离元素（比如跨越多行的行内盒子）的显示效果。</li>
+</ul>
+<p><a href="https://modernizr.com/">Modernizr</a>是一个 JavaScript 库,用于检测用户浏览器支持哪些 HTML5 和 CSS3 功能.</p>
+<p><strong>多背景图片</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nt">p</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">height</span><span class="p">:</span><span class="mi">150</span><span class="kt">px</span><span class="p">;</span>
+<span class="w"> </span><span class="k">width</span><span class="p">:</span><span class="mi">348</span><span class="kt">px</span><span class="p">;</span>
+<span class="w"> </span><span class="k">border</span><span class="p">:</span><span class="mi">2</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="mh">#aaa</span><span class="p">;</span>
+<span class="w"> </span><span class="k">margin</span><span class="p">:</span><span class="mi">20</span><span class="kt">px</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span>
+<span class="w"> </span><span class="k">font</span><span class="p">:</span><span class="mi">24</span><span class="kt">px</span><span class="o">/</span><span class="mi">150</span><span class="kt">px</span><span class="w"> </span><span class="n">helvetica</span><span class="p">,</span><span class="w"> </span><span class="n">arial</span><span class="p">,</span><span class="w"> </span><span class="n">sansserif</span><span class="p">;</span>
+<span class="w"> </span><span class="k">text-align</span><span class="p">:</span><span class="kc">center</span><span class="p">;</span>
+<span class="w"> </span><span class="k">background</span><span class="p">:</span>
+<span class="w"> </span><span class="nb">url</span><span class="p">(</span><span class="sx">images/turq_spiral.png</span><span class="p">)</span><span class="w"> </span><span class="mi">30</span><span class="kt">px</span><span class="w"> </span><span class="mi">-10</span><span class="kt">px</span><span class="w"> </span><span class="kc">no-repeat</span><span class="p">,</span>
+<span class="w"> </span><span class="nb">url</span><span class="p">(</span><span class="sx">images/pink_spiral.png</span><span class="p">)</span><span class="w"> </span><span class="mi">145</span><span class="kt">px</span><span class="w"> </span><span class="mi">0</span><span class="kt">px</span><span class="w"> </span><span class="kc">no-repeat</span><span class="p">,</span>
+<span class="w"> </span><span class="nb">url</span><span class="p">(</span><span class="sx">images/gray_spiral.png</span><span class="p">)</span><span class="w"> </span><span class="mi">140</span><span class="kt">px</span><span class="w"> </span><span class="mi">-30</span><span class="kt">px</span><span class="w"> </span><span class="kc">no-repeat</span><span class="p">,</span><span class="w"> </span><span class="mh">#ffbd75</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c">/* 多张图片可以在背景中叠加起来，CSS 规则中先列出的图片在上层  */</span>
+</code></pre></div>
+<p>查看CSS3最新信息，参考<a href="http://caniuse.com">can i use</a></p>
+<p><strong>背景渐变</strong></p>
+<p>渐变就是在一定长度内两种或多种颜色之间自然的过渡。</p>
+<p>渐变分两种，一种线性渐变，一种放射性渐变。</p>
+<p>线性渐变从元素的一端延伸到另一端，
+放射性渐变则从元素内一点向四周发散。</p>
+<p>事例HTML：</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">'gradient1'</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">'gradient2'</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">'gradient3'</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="c">/*为元素盒子添加样式*/</span>
+<span class="nt">div</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">height</span><span class="p">:</span><span class="mi">150</span><span class="kt">px</span><span class="p">;</span>
+<span class="w"> </span><span class="k">width</span><span class="p">:</span><span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
+<span class="w"> </span><span class="k">border</span><span class="p">:</span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="mh">#ccc</span><span class="p">;</span>
+<span class="w"> </span><span class="k">float</span><span class="p">:</span><span class="kc">left</span><span class="p">;</span>
+<span class="w"> </span><span class="k">margin</span><span class="p">:</span><span class="mi">16</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c">/*例 1：定义一种开始颜色，一种结束颜色，默认的方向（从下到下） */</span>
+<span class="p">.</span><span class="nc">gradient1</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">background</span><span class="p">:</span><span class="nb">linear-gradient</span><span class="p">(</span><span class="mh">#e86a43</span><span class="p">,</span><span class="w"> </span><span class="mh">#fff</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c">/*例 2：从左到右，left，渐变方向变成了从左到另一端 */</span>
+<span class="p">.</span><span class="nc">gradient2</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">background</span><span class="p">:</span><span class="nb">linear-gradient</span><span class="p">(</span><span class="kc">left</span><span class="p">,</span><span class="w"> </span><span class="mh">#64d1dd</span><span class="p">,</span><span class="w"> </span><span class="mh">#fff</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c">/*例 3：左上到右下, deg 是“度”, 等于把起点从默认的中上设定到了左上。*/</span>
+<span class="p">.</span><span class="nc">gradient3</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">background</span><span class="p">:</span><span class="nb">linear-gradient</span><span class="p">(</span><span class="nv">-45deg</span><span class="p">,</span><span class="w"> </span><span class="mh">#e86a43</span><span class="p">,</span><span class="w"> </span><span class="mh">#fff</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</code></pre></div>
+<p><strong>1. 渐变点</strong></p>
+<p>渐变点就是渐变方向上的点，可以在这些点上设定颜色和不透明度。</p>
+<p>通过设定下一个渐变点的颜色值，就可以控制渐变的效果。</p>
+<p>可以添加任意多个渐变点。</p>
+<p>渐变点的位置一般使用整个渐变宽度的百分比来表示。</p>
+<p>事例：</p>
+<div class="highlight"><pre><span></span><code><span class="c">/*例 1：50%处有一个渐变点*/</span>
+<span class="p">.</span><span class="nc">gradient1</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="nb">linear-gradient</span><span class="p">(</span><span class="mh">#64d1dd</span><span class="p">,</span><span class="w"> </span><span class="mh">#fff</span><span class="w"> </span><span class="mi">50</span><span class="kt">%</span><span class="p">,</span><span class="w"> </span><span class="mh">#64d1dd</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c">/*例 2：20%和 80%处有两个渐变点*/</span>
+<span class="p">.</span><span class="nc">gradient2</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="k">background</span><span class="p">:</span><span class="nb">linear-gradient</span><span class="p">(</span><span class="mh">#e86a43</span><span class="w"> </span><span class="mi">20</span><span class="kt">%</span><span class="p">,</span><span class="w"> </span><span class="mh">#fff</span><span class="w"> </span><span class="mi">50</span><span class="kt">%</span><span class="p">,</span><span class="w"> </span><span class="mh">#e86a43</span><span class="w"> </span><span class="mi">80</span><span class="kt">%</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c">/*例 3：25%、50%、75%处有三个渐变点*/</span>
+<span class="p">.</span><span class="nc">gradient3</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="nb">linear-gradient</span><span class="p">(</span><span class="mh">#64d1dd</span><span class="p">,</span><span class="w"> </span><span class="mh">#fff</span><span class="w"> </span><span class="mi">25</span><span class="kt">%</span><span class="p">,</span><span class="w"> </span><span class="mh">#64d1dd</span><span class="w"> </span><span class="mi">50</span><span class="kt">%</span><span class="p">,</span><span class="w"> </span><span class="mh">#fff</span><span class="w"> </span><span class="mi">75</span><span class="kt">%</span><span class="p">,</span><span class="w"> </span><span class="mh">#64d1dd</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c">/*例 4：为同一个渐变点设定两种颜色可以得到突变效果*/</span>
+<span class="p">.</span><span class="nc">gradient4</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="nb">linear-gradient</span><span class="p">(</span><span class="mh">#e86a43</span><span class="p">,</span><span class="w"> </span><span class="mh">#fff</span><span class="w"> </span><span class="mi">25</span><span class="kt">%</span><span class="p">,</span><span class="w"> </span><span class="mh">#64d1dd</span><span class="w"> </span><span class="mi">25</span><span class="kt">%</span><span class="p">,</span><span class="w"> </span><span class="mh">#64d1dd</span><span class="w"> </span><span class="mi">75</span><span class="kt">%</span><span class="p">,</span><span class="w"> </span><span class="mh">#fff</span><span class="w"> </span><span class="mi">75</span><span class="kt">%</span><span class="p">,</span><span class="w"> </span><span class="mh">#e86a43</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>2. 放射性渐变</strong></p>
+<p>放射性渐变比线性渐变复杂那么一点点，因为可用的控制点多一些。</p>
+<p>创建放射性渐变时，可以使用参数指定形状、位置、尺寸、颜色和不透明度。</p>
+<p>事例HTML:</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"gradient1"</span><span class="p">&gt;&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>1<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"gradient2"</span><span class="p">&gt;&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>2<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"gradient3"</span><span class="p">&gt;&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>3<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="o">*</span><span class="w"> </span><span class="p">{</span><span class="k">margin</span><span class="p">:</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="k">padding</span><span class="p">:</span><span class="mi">0</span><span class="p">;}</span>
+<span class="nt">div</span><span class="w"> </span><span class="p">{</span><span class="k">height</span><span class="p">:</span><span class="mi">150</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="k">width</span><span class="p">:</span><span class="mi">200</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="k">float</span><span class="p">:</span><span class="kc">left</span><span class="p">;</span><span class="w"> </span><span class="k">margin</span><span class="p">:</span><span class="mi">16</span><span class="kt">px</span><span class="p">;}</span><span class="w"> </span><span class="c">/* styles the element box */</span>
+<span class="nt">h1</span><span class="w"> </span><span class="p">{</span><span class="k">text-align</span><span class="p">:</span><span class="kc">left</span><span class="p">;</span><span class="w"> </span><span class="k">font</span><span class="p">:</span><span class="mi">25</span><span class="kt">px</span><span class="w"> </span><span class="n">Helvetica</span><span class="p">,</span><span class="w"> </span><span class="n">Arial</span><span class="p">,</span><span class="w"> </span><span class="kc">sans-serif</span><span class="p">;</span><span class="w"> </span><span class="k">margin</span><span class="p">:</span><span class="mi">120</span><span class="kt">px</span><span class="w"> </span><span class="mi">5</span><span class="kt">px</span><span class="p">;}</span><span class="w"> </span><span class="c">/* centers the headline vertically and horizontally */</span>
+<span class="p">.</span><span class="nc">gradient1</span><span class="w"> </span><span class="p">{</span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="bp">-webkit-</span><span class="nb">radial-gradient</span><span class="p">(</span><span class="mh">#fff</span><span class="p">,</span><span class="w"> </span><span class="mh">#64d1dd</span><span class="p">,</span><span class="w"> </span><span class="mh">#70aa25</span><span class="p">);}</span><span class="w">       </span><span class="c">/* 默认的填满图形渐变 */</span>
+<span class="p">.</span><span class="nc">gradient2</span><span class="w"> </span><span class="p">{</span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="bp">-webkit-</span><span class="nb">radial-gradient</span><span class="p">(</span><span class="kc">circle</span><span class="p">,</span><span class="w"> </span><span class="mh">#fff</span><span class="p">,</span><span class="w"> </span><span class="mh">#64d1dd</span><span class="p">,</span><span class="w"> </span><span class="mh">#e86a43</span><span class="p">);}</span><span class="w">   </span><span class="c">/* 圆形渐变 */</span>
+<span class="p">.</span><span class="nc">gradient3</span><span class="w"> </span><span class="p">{</span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="bp">-webkit-</span><span class="nb">radial-gradient</span><span class="p">(</span><span class="mi">50</span><span class="kt">px</span><span class="w"> </span><span class="mi">30</span><span class="kt">px</span><span class="p">,</span><span class="w"> </span><span class="kc">circle</span><span class="p">,</span><span class="w"> </span><span class="mh">#fff</span><span class="p">,</span><span class="w"> </span><span class="mh">#64d1dd</span><span class="p">,</span><span class="w"> </span><span class="mh">#4947ba</span><span class="p">);}</span><span class="w">  </span><span class="c">/* 指定位置的圆形渐变 */</span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>例 2 设定了形状关键字 circle，于是渐变的形状变得均匀，并在元素最近的边达到了终点，形成了圆形渐变。而长边剩下的区域则填充了终点的颜色。</p>
+<p>例 3 中的位置参数 50px 30px 把渐变的圆心放到了靠近左上角的位置。</p>
+<hr/>
+<div class="md-source-file">
+<small>
+    
+      最后更新:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2023年2月27日</span>
+<br/>
+        创建日期:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2023年2月27日</span>
+</small>
+</div>
+</article>
+</div>
+</div>
+<a class="md-top md-icon" data-md-component="top" hidden="" href="#">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
+            回到页面顶部
+          </a>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "..", "features": ["navigation.top", "toc.follow"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+<script src="../assets/javascripts/bundle.2a6f1dda.min.js"></script>
+<script src="../javascripts/mathjax.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>

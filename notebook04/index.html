@@ -1,0 +1,1131 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="zh">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="../notebook03/" rel="prev"/>
+<link href="../notebook05/" rel="next"/>
+<link href="../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.4.2, mkdocs-material-9.0.13" name="generator"/>
+<title>字体和文本 - CSS设计指南</title>
+<link href="../assets/stylesheets/main.ffa9267a.min.css" rel="stylesheet"/>
+<link href="../assets/stylesheets/palette.a0c5b2b5.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            
+                .gscrollbar-fixer { padding-right: 15px; }
+                .gdesc-inner { font-size: 0.75rem; }
+                body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+                body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+                body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+                </style><script src="../assets/javascripts/glightbox.min.js"></script></head>
+<body data-md-color-accent="red" data-md-color-primary="default" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#_1">
+          跳转至
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="页眉" class="md-header__inner md-grid">
+<a aria-label="CSS设计指南" class="md-header__button md-logo" data-md-component="logo" href=".." title="CSS设计指南">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            CSS设计指南
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              字体和文本
+            
+          </span>
+</div>
+</div>
+</div>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="搜索" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="搜索" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</label>
+<nav aria-label="查找" class="md-search__options">
+<button aria-label="清空当前内容" class="md-search__icon md-icon" tabindex="-1" title="清空当前内容" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="导航栏" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="CSS设计指南" class="md-nav__button md-logo" data-md-component="logo" href=".." title="CSS设计指南">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+    CSS设计指南
+  </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../notebook01/">
+        HTML基础
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../notebook02/">
+        CSS工作原理
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../notebook03/">
+        定位元素
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          字体和文本
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        字体和文本
+      </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+    字体
+  </a>
+<nav aria-label="字体" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_3">
+    字体相关属性
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_4">
+    字体和文本的区别
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_5">
+    字体族
+  </a>
+<nav aria-label="字体族" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_6">
+    字体大小
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_7">
+    字体样式
+  </a>
+<nav aria-label="字体样式" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_8">
+    字体粗细
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_9">
+    字体变化
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_10">
+    简写字体属性
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_11">
+    文本属性
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_12">
+    文本缩进
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_13">
+    字符间距
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_14">
+    单词间距
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_15">
+    文本装饰
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_16">
+    文本对齐
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_17">
+    行高
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_18">
+    文本转换
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_19">
+    垂直对齐
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#web">
+    Web 字体大揭秘
+  </a>
+<nav aria-label="Web 字体大揭秘" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_20">
+    公共字体库
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#font-face">
+    打包的@font-face包
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#font-face_1">
+    生成@font-face包
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_21">
+    文字版式
+  </a>
+<nav aria-label="文字版式" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_22">
+    简单的文本布局
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_23">
+    基于网格排版
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_24">
+    经典的排版练习
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../notebook05/">
+        页面布局
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../notebook06/">
+        界面组建
+      </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+    字体
+  </a>
+<nav aria-label="字体" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_3">
+    字体相关属性
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_4">
+    字体和文本的区别
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_5">
+    字体族
+  </a>
+<nav aria-label="字体族" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_6">
+    字体大小
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_7">
+    字体样式
+  </a>
+<nav aria-label="字体样式" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_8">
+    字体粗细
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_9">
+    字体变化
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_10">
+    简写字体属性
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_11">
+    文本属性
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_12">
+    文本缩进
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_13">
+    字符间距
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_14">
+    单词间距
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_15">
+    文本装饰
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_16">
+    文本对齐
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_17">
+    行高
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_18">
+    文本转换
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_19">
+    垂直对齐
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#web">
+    Web 字体大揭秘
+  </a>
+<nav aria-label="Web 字体大揭秘" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_20">
+    公共字体库
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#font-face">
+    打包的@font-face包
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#font-face_1">
+    生成@font-face包
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_21">
+    文字版式
+  </a>
+<nav aria-label="文字版式" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_22">
+    简单的文本布局
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_23">
+    基于网格排版
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_24">
+    经典的排版练习
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="_1">字体和文本</h1>
+<h2 id="_2">字体</h2>
+<p>网页中的字体有三个来源:</p>
+<ul>
+<li>用户机器中安装的字体。（直到最近，这些字体还是能在网页中放心使用的唯一一批字体。）</li>
+<li>保存在第三方网站上的字体。最常见的是 Typekit 和 Google，可以使用 link 标签把它们链接到你的页面上。</li>
+<li>保存在你的 Web 服务器上的字体。这些字体可以使用@font-face 规则随网页一起发送给浏览器。</li>
+</ul>
+<h3 id="_3">字体相关属性</h3>
+<ul>
+<li>font-family</li>
+<li>font-size</li>
+<li>font-style</li>
+<li>font-weight</li>
+<li>font-variant</li>
+<li>font（简写属性）</li>
+</ul>
+<h3 id="_4">字体和文本的区别</h3>
+<div class="highlight"><pre><span></span><code>字体是“文字的不同体式”或者“字的形体结构”。
+对于英文而言，每种字体都是由一组具有独特样式的字母、数字和符号组成的。
+根据外观，字体可以分为不同的类别（fontcollection），包括衬线字体（serif）、无衬线字体（sans-serif）和等宽字体（monospace）。
+每一类字体可以分成不同的字体族（font family），比如 Times 和 Helvetica。
+而字体族中又可以包含不同的字型（font face），反映了相应字体族基本设计的不同变化，
+例如 TimesRoman、Times Bold、Helvetica Condensed 和 Bodoni italic。
+
+文本就是一组字或字符，比如章标题、段落正文等等，跟使用什么字体无关。
+CSS 为字体和文本分别定义了属性。字体属性主要描述一类字体的大小和外观。
+比如，使用什么字体族（是 Times，还是 Helvitica），多大字号，粗体还是斜体。
+文本属性描述对文本的处理方式。
+比如，行高或者字符间距多大，有没有下划线和缩进。
+
+这就是字体和文本之间的区别。
+如果想让文字加粗，或者变斜体，可以设定字体属性。
+而行高和缩进这种只有对文本块（比如标题和段落）才有意义的样式，则要使用文本属性设定。
+</code></pre></div>
+<h2 id="_5">字体族</h2>
+<p>font-family 用于设定元素中的文本使用什么字体。</p>
+<p>一般来说，应该给整个页面设定一种主字体，然后只对那些需要使用不同字体的元素再应用 font-family。</p>
+<p>为整个页面指定字体，可以设定 body 元素的 font-family 属性：<code>body {font-family:verdana, sans-serif;}</code></p>
+<p>font-family 是可以继承的属性，因此它的值会遗传给所有后代元素。</p>
+<p><strong>用字体栈指定本地字体</strong></p>
+<p>在指定文本的字体时，需要多列出几种后备字体，以防第一种字体无效。这个字体的列表就叫叫字体栈。
+比如：<code>body {font-family:"trebuchet ms", tahoma, sans-serif;}</code>
+如果字体名多于一个单词（有空格），应该加上引号。该设定会依次尝试使用字体，直到最后的通用字体。</p>
+<p>通用的字体类：</p>
+<ul>
+<li>serif，也就是衬线字体，在每个字符笔画的末端会有一些装饰线；</li>
+<li>sans-serif，也就是无衬线字体，字符笔画的末端没有装饰线；</li>
+<li>monospace，也就是等宽字体，顾名思义，就是每个字符的宽度相等（也称代码体）；</li>
+<li>cursive，也就是草书体或手写体（在本章后面排版 The Hound of the Baskervilles，即《巴斯克维尔庄园的猎犬》的示例中可以看到）；</li>
+<li>fantasy，不能归入其他类别的字体（一般都是奇形怪状的字体）。</li>
+</ul>
+<p>这些通用字体类的目的，就是确保在最坏的情况下，文档可以通过正确的字形来显示。</p>
+<h3 id="_6">字体大小</h3>
+<p>浏览器样式表默认为每个标签都设定了 font-size，在设定 font-size的时候，其实是在修改默认值。</p>
+<p>font-size 在标签中是可以继承的，设定字体大小的单位有两种，一种是绝对单位，比如像素或点，另一种是相对单位，比如百分比或 em。</p>
+<p><strong>1. 绝对字体大小</strong></p>
+<p>像素、派卡（pica）或英寸</p>
+<p>设定绝对字体大小时，也可以使用关键字值，比如 x-small、medium、x-large，等等</p>
+<p>medium 等于基准大小(16px)，参考：<a href="http://css-discuss.incutio.com/wiki/Using_Keywords">wiki</a></p>
+<p><strong>2. 相对字体大小</strong></p>
+<p>使用百分比、em 或 rem（根元素的字体大小）设定字体大小，</p>
+<p>给某个元素设定了相对字体大小，则该元素的字体大小要相对于最近的“被设定过字体大小的”祖先元素来确定。</p>
+<p>事例HTML:</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="nt">p</span><span class="w"> </span><span class="p">{</span><span class="k">font-size</span><span class="p">:</span><span class="mf">.75</span><span class="kt">em</span><span class="p">;}</span>
+<span class="nt">strong</span><span class="w"> </span><span class="p">{</span><span class="k">font-size</span><span class="p">:</span><span class="mf">.75</span><span class="kt">em</span><span class="p">;}</span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>This is <span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>very important!<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="cm">&lt;!--</span>
+<span class="cm">p 元素的文本为 12 像素（body 的 16 像素基准大小×.75＝12），折合成点单位是 9 点。</span>
+<span class="cm">strong 是 p 的子元素，它的文本是多大呢？相对大小会逐层复合，</span>
+<span class="cm">strong 的大小应该是 16 像素×.75×.75＝9 像素。</span>
+<span class="cm">要熟悉相对单位的这种计算方式，需要多实践。</span>
+<span class="cm">最终，改变一个元素的相对字体大小，其子元素的字体大小也会同比例变化。</span>
+<span class="cm">--&gt;</span>
+</code></pre></div>
+<div class="admonition info"></div>
+<p>如果想使用 em，但又需要设定具体的像素大小，可以把 body 的 font-size 设定为62.5%。
+  这样，就等于把基准大小从 16 像素改为 10 像素（16×62.5%=10）。
+  然后，em 与像素的对应关系就十分明确了，</p>
+<p>比如:</p>
+<p>1em = 10 像素，<br/>
+  1.5em = 15 像素，<br/>
+  2em = 20 像素，等等。  </p>
+<p>好处：使用相对字体大小，自动调整各层元素。反复修改布局设计的时候，这样显然能节省时间。</p>
+<p>坏处：毕竟是“牵一发而动全身”的事，所以使用相对字体大小时，必须事先规划好。</p>
+<p><strong>3. 关于 rem 单位</strong></p>
+<p>CSS3 新增了一个相对单位 rem（root em，根 em）</p>
+<p>与 em 有什么区别：使用 rem 为元素设定字体大小时，仍然是相对大小，但相对的只是 HTML 根元素。
+这个单位可谓集相对大小和绝对大小的优点于一身，通过它既可以做到只修改根元素就成比例地调整所有字体大小，
+又可以避免字体大小逐层复合的连锁反应。</p>
+<p>目前，除了 IE8 及更早版本外，所有浏览器均已支持rem。
+对于不支持它的浏览器，可以多写一个绝对单位的声明。
+这些浏览器会忽略用 rem 设定的字体大小。</p>
+<p>下面就是一个例子：
+/<em>IE8 及之前版本的 IE 浏览器使用 14 像素</em>/
+p {font-size:14px; font-size:.875rem;}</p>
+<h2 id="_7">字体样式</h2>
+<p>值：italic、oblique、normal。</p>
+<p>示例：<code>h2 {font-style:italic;}</code></p>
+<p>italic:斜体
+normal:正体</p>
+<p><strong>所谓“常规”值</strong></p>
+<div class="admonition info">
+<p>font-style 有一个 normal 值，中文就是“常规”的意思。
+这个值其实不仅 font-style 有，很多其他属性也有，它的作用就是取消所有的特殊样式。
+什么情况下才会用它呢？</p>
+<p>这个值是用来有选择地覆盖某个默认或你设定的全局属性的。
+比如，h1 到 h6 默认为粗体，如果你想让 h3 以常规字体显示，就需要设定 h3 {font-weight:normal;}。
+如果你的样式表里声明了 a {font-variant:small-caps;}，那网页中的英文链接都会变成小型大写字母。
+要是你想让某一组链接仍然以常规的大小写形式显示，
+可能得另写一个类似这样的声明：a.speciallink {font-variant:normal;}。</p>
+</div>
+<h3 id="_8">字体粗细</h3>
+<p>可能的值：100、200……900，或者 lighter、normal、bold 和 bolder。</p>
+<p>示例：<code>a {font-weight:bold;}</code></p>
+<p>粗体的主要作用是表示重要。strong 也表示重要，而它的默认样式就是粗体。</p>
+<h3 id="_9">字体变化</h3>
+<p>值：small-caps、normal。</p>
+<p>示例：<code>blockquote {font-variant:small-caps;}</code></p>
+<p>font-variant 属性除了 normal，就只有一个值，即 small-caps。</p>
+<p>这个值会导致所有小写英文字母变成小型大写字母.</p>
+<h3 id="_10">简写字体属性</h3>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="w">  </span><span class="nt">p</span><span class="w"> </span><span class="p">{</span><span class="k">font</span><span class="p">:</span><span class="w"> </span><span class="kc">bold</span><span class="w"> </span><span class="kc">italic</span><span class="w"> </span><span class="kc">small-caps</span><span class="w"> </span><span class="mf">.9</span><span class="kt">em</span><span class="w"> </span><span class="n">helvetica</span><span class="p">,</span><span class="w"> </span><span class="n">arial</span><span class="p">,</span><span class="w"> </span><span class="kc">sans-serif</span><span class="p">;}</span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+  Here's a piece of text loaded up with every possible font property.
+<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>font 属性是一个简写形式，通过它只要一条 CSS 声明就可以设定所有字体属性。
+不过，使用时要遵守两条规则：</p>
+<p>规则一：必须声明 font-size 和 font-family 的值。</p>
+<p>规则二：所有值必须按如下顺序声明。</p>
+<ol>
+<li>font-weight、font-style、font-variant 不分先后；</li>
+<li>然后是 font-size；</li>
+<li>最后是 font-family。</li>
+</ol>
+<h3 id="_11">文本属性</h3>
+<ul>
+<li>text-indent</li>
+<li>letter-spacing</li>
+<li>word-spacing</li>
+<li>text-decoration</li>
+<li>text-align</li>
+<li>line-height</li>
+<li>text-transform</li>
+<li>vertical-align</li>
+</ul>
+<h3 id="_12">文本缩进</h3>
+<p>值：长度值（正、负均可）。</p>
+<p>示例：<code>p {text-indent:3em;}</code></p>
+<p>text-indent 属性设定行内盒子相对于包含元素的起点。默认情况下，这个起点就是包含元素的左上角。</p>
+<p>text-indent 设定正值，文本向右移，设定负值，文本向左移。</p>
+<div class="admonition info">
+<p class="admonition-title">继承的值与计算的值</p>
+<p>text-indent 是可以被子元素继承的。
+如果你在一个 div 上设定了 text-indent 属性，
+那么 div 中的所有段落都会继承该缩进值。
+然而，与所有继承的 CSS 值一样，这个缩进值并不是祖先元素中设定的值，而是计算的值。</p>
+<p>假设有一个 400 像素宽的 div，包含的文本缩进 5%，则缩进的距离是 20 像素（400 的 5%）。
+在这个 div 中有一个 200 像素宽的段落。
+作为子元素，它继承父元素的 text-indent 值，所以它包含的文本也缩进。
+但继承的缩进值是多少呢？不是 5%，而是 20 像素。
+也就是说，子元素继承的是根据父元素宽度计算得到的缩进值。
+结果，虽然段落只有父元素一半宽，但其中的文本也会缩进 20 像素。
+这样可以确保无论段落多宽，它们的缩进距离都一样。
+当然，在子元素上重新设定 text-indent 属性，可以覆盖继承的值。</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">文本之“蛇”</p>
+<p>在 CSS 中控制文本要理解一个重要概念。
+CSS 会把元素中的文本放在一个不可见的盒子里，(文本被包含在一个细长的盒子中，这个盒子往往因为折行而断开，分布在多行中)
+比如对 p 元素中的一段文本，CSS 将其视为很长的一行，只不过在遇到容器边界时会折行。
+所有文本属性都会应用给这个细边框的文本盒子。</p>
+<p>使用文本属性 text-indent,实际上你缩进的是这个文本盒子的起点位置。
+后续的行是不会缩进的，因为在 CSS 看来，它们就是一个整体。</p>
+<p>如果想缩进整个段落，可以使用段落的 margin-left 属性。(你得把整个包含盒子向右移动才行.)
+而永远要记住，文本属性只应用于这个长长的、细细的、内部的文本盒子，而不是包含元素的盒子。</p>
+</div>
+<p>缩进给人一种专业版式的感觉，也能提示读者每段文本在哪儿开头。
+注意，在设定缩进和外边距时要像这里一样使用 em，
+以便在用户（或你自己）改变字体大小时，它们的长度能够按比例变化。</p>
+<h3 id="_13">字符间距</h3>
+<p>值：任何长度值（正、负值均可）。</p>
+<p>示例：<code>p {letter-spacing:.2em;}</code>。</p>
+<p>letter-spacing 为正值时增大字符间距，为负值时缩小间距。</p>
+<p>无论设定字体大小时使用的是什么单位，设定字符间距一定要用相对单位，
+以便字间距能随字体大小同比例变化。</p>
+<p>letter-spacing 控制字距（tracking），也就是文本块中所有字符之间的间距。
+与字距相对的一个排版术语叫字紧排（kerning），紧排只调整两个字符的间距。</p>
+<p>letter-spacing 对英文字母、汉字及其他字符都起作用，另，letter-spacing 的值是在浏览器默认值基础上增加或减少的值。</p>
+<h3 id="_14">单词间距</h3>
+<p>值：任何长度值（正、负值均可）</p>
+<p>示例：p {word-spacing:.2em;}</p>
+<p>单词间距与字符间距非常相似，区别在于它只调整单词间距，而不影响字符间距。</p>
+<p>CSS 把任何两边有空白的字符和字符串都视作“单词”。</p>
+<p><em>纯汉字文本一段之中没有空格，因此 word-spacing 对中文网页几乎没有用，但对中英混排段落可能有用。</em></p>
+<h3 id="_15">文本装饰</h3>
+<p>值：underline、overline、line-through、blink、none</p>
+<p>示例：<code>.retailprice {text-decoration:line-through;}</code></p>
+<p>除了 blink(为文本添加闪烁效果) 之外，属性其他值 blink 实际上很讨厌，应该少用，最好不用。</p>
+<div class="highlight"><pre><span></span><code><span class="c">/* 去掉导航条中链接的下划线。 */</span>
+<span class="nt">nav</span><span class="w"> </span><span class="nt">a</span><span class="w"> </span><span class="p">{</span><span class="k">text-decoration</span><span class="p">:</span><span class="kc">none</span><span class="p">;}</span>
+<span class="c">/* 鼠标悬停状态下加上下划线，则是一种有效的视觉反馈 */</span>
+<span class="nt">a</span><span class="p">:</span><span class="nd">hover</span><span class="w"> </span><span class="p">{</span><span class="k">text-decoration</span><span class="p">:</span><span class="kc">underline</span><span class="p">;}</span>
+</code></pre></div>
+<h3 id="_16">文本对齐</h3>
+<p>值：left、right、center、justify （左对齐、右对齐、居中对齐和两端对齐）</p>
+<p>示例：<code>p {text-align:right;}</code></p>
+<p>这些值控制着文本在水平方向对齐的方式。</p>
+<h3 id="_17">行高</h3>
+<p>值：任何数字值（不用指定单位）。</p>
+<p>示例：<code>p {line-height:1.5;}</code></p>
+<p>CSS 通过 line-height 属性实现了印刷行业中常说的加铅条（<a href="http://www.ituring.com.cn/article/18076">leading</a>）。铅条在活字排版时代用于在文本行之间增加间距。</p>
+<p>line-height 增加的空白就像外边距一样，较大的标题（如 h1 和 h2）往往有较大的默认行高。</p>
+<p>如果想把标题较大的空白去掉，那就只能把文本的行高设定为比字体高度（就是字体大小）还要小，比如设定为小于 1 的值。</p>
+<p>以复合值的形式把 font-size 和 line-height 值写在一块，比如：<code>div#intro {font:1.2em/1.4 helvetica, arial, sans-serif;}</code> [行高就是字体大小 1.2em 的 1.4 倍]</p>
+<p>在设定行高时如果使用了绝对单位（如像素），那将来增大字体有可能导致行与行之间重叠。</p>
+<h3 id="_18">文本转换</h3>
+<p>值：none、uppercase、lowercase、capitalize。(默认,大写，小写，首字母大写)</p>
+<p>示例：p {text-transform:capitalize;}</p>
+<p>text-transform 属性用于转换元素中文本的大小写，它可以设定英文文本首字母大写、全部字母大写和全部字母小写。</p>
+<p>实现小型大写字母的首字母放大效果，可以再加上 <code>font-variant:small-caps</code></p>
+<h3 id="_19">垂直对齐</h3>
+<p>值：任意长度值以及 sub、super、top、middle、bottom 等。</p>
+<p>示例：<code>span {vertical-align:60%;}</code></p>
+<p>vertical-align 以基线为参照上下移动文本，但这个属性只影响行内元素。</p>
+<p>vertical-align 属性最常用于公式或化学分子式中的上标和下标，比如水的化学表示，或者用于文本中脚注的角标，比如把星号变成上角标。</p>
+<p>事例HTML：</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="nt">p</span><span class="p">.</span><span class="nc">custom</span><span class="w"> </span><span class="nt">sub</span><span class="w"> </span><span class="p">{</span><span class="k">font-size</span><span class="p">:</span><span class="mi">60</span><span class="kt">%</span><span class="p">;</span><span class="w"> </span><span class="k">vertical-align</span><span class="p">:</span><span class="mf">-.4</span><span class="kt">em</span><span class="p">;}</span>
+<span class="nt">p</span><span class="p">.</span><span class="nc">custom</span><span class="w"> </span><span class="nt">sup</span><span class="w"> </span><span class="p">{</span><span class="k">font-size</span><span class="p">:</span><span class="mi">65</span><span class="kt">%</span><span class="p">;</span><span class="w"> </span><span class="k">vertical-align</span><span class="p">:</span><span class="mf">.65</span><span class="kt">em</span><span class="p">;}</span>
+<span class="nt">p</span><span class="p">.</span><span class="nc">customsmall</span><span class="w"> </span><span class="p">{</span><span class="k">font-size</span><span class="p">:</span><span class="mf">.8</span><span class="kt">em</span><span class="p">;</span><span class="w"> </span><span class="k">vertical-align</span><span class="p">:</span><span class="mi">1</span><span class="kt">em</span><span class="p">;}</span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h4</span><span class="p">&gt;</span>Default <span class="p">&lt;</span><span class="nt">code</span><span class="p">&gt;</span>sub<span class="p">&lt;/</span><span class="nt">code</span><span class="p">&gt;</span> and <span class="p">&lt;</span><span class="nt">code</span><span class="p">&gt;</span>sup<span class="p">&lt;/</span><span class="nt">code</span><span class="p">&gt;</span> styles<span class="p">&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Enjoy mountain spring H<span class="p">&lt;</span><span class="nt">sub</span><span class="p">&gt;</span>2<span class="p">&lt;/</span><span class="nt">sub</span><span class="p">&gt;</span>O. It’s 10<span class="p">&lt;</span><span class="nt">sup</span><span class="p">&gt;</span>5<span class="p">&lt;/</span><span class="nt">sup</span><span class="p">&gt;</span> times better than tap<span class="p">&lt;</span><span class="nt">sup</span><span class="p">&gt;</span><span class="ni">&amp;dagger;</span><span class="p">&lt;/</span><span class="nt">sup</span><span class="p">&gt;</span> water!<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">"customsmall"</span><span class="p">&gt;&lt;</span><span class="nt">sup</span><span class="p">&gt;</span><span class="ni">&amp;dagger;</span><span class="p">&lt;/</span><span class="nt">sup</span><span class="p">&gt;&lt;</span><span class="nt">em</span><span class="p">&gt;</span>This means water provided
+  through a municipal distribution system<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h4</span><span class="p">&gt;</span>Custom <span class="p">&lt;</span><span class="nt">code</span><span class="p">&gt;</span>sub<span class="p">&lt;/</span><span class="nt">code</span><span class="p">&gt;</span> and <span class="p">&lt;</span><span class="nt">code</span><span class="p">&gt;</span>sup<span class="p">&lt;/</span><span class="nt">code</span><span class="p">&gt;</span> styles<span class="p">&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">"custom"</span><span class="p">&gt;</span>Enjoy mountain spring H<span class="p">&lt;</span><span class="nt">sub</span><span class="p">&gt;</span>2<span class="p">&lt;/</span><span class="nt">sub</span><span class="p">&gt;</span>O. It’s 10<span class="p">&lt;</span><span class="nt">sup</span><span class="p">&gt;</span>5<span class="p">&lt;/</span><span class="nt">sup</span><span class="p">&gt;</span> times better than tap<span class="p">&lt;</span><span class="nt">sup</span><span class="p">&gt;</span><span class="ni">&amp;dagger;</span><span class="p">&lt;/</span><span class="nt">sup</span><span class="p">&gt;</span> water!<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">"customsmall"</span><span class="p">&gt;&lt;</span><span class="nt">sup</span><span class="p">&gt;</span><span class="ni">&amp;dagger;</span><span class="p">&lt;/</span><span class="nt">sup</span><span class="p">&gt;&lt;</span><span class="nt">em</span><span class="p">&gt;</span>This means water provided
+  through a municipal distribution system<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</code></pre></div>
+<h2 id="web">Web 字体大揭秘</h2>
+<p>使用@font-face 规则在网页中可嵌入下载字体。</p>
+<p>\@font-face 规则为设计师提供了系统自带字体以外的广泛选择。</p>
+<p>设定 Web 字体的方式有以下三种</p>
+<ul>
+<li>使用 Google Web Fonts 或 Adobe 的 Typekit 等公共字体库。</li>
+<li>使用事先打好包的@font-face 包。</li>
+<li>使用 Font Squirrel 用你自己的字体生成@font-face 包</li>
+</ul>
+<h3 id="_20">公共字体库</h3>
+<ul>
+<li>Google <a href="https://fonts.google.com/">Web Fonts</a></li>
+<li>引用方式,如：<code>&lt;link href='http://fonts.googleapis.com/css?family=Anton|Niconne|Prata' rel='stylesheet' type='text/css'&gt;</code></li>
+<li>应用方式:如：<code>h3 {font: 20px "Prata", serif;}</code></li>
+<li>Adobe <a href="https://typekit.com/">Typekit</a></li>
+</ul>
+<h3 id="font-face">打包的@font-face包</h3>
+<p>可以自己的网站或第三方 Web 服务器下载到相应的字体。</p>
+<p><a href="http://www.fontsquirrel.com">Font Squirrel</a>提供了很多现成的字体包,
+每个字体包中都包含所有必要格式的字体和为每款浏览器提供正确格式的 CSS 代码.</p>
+<p>用法事例：</p>
+<div class="highlight"><pre><span></span><code><span class="p">@</span><span class="k">font-face</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="c">/*这就是将来在字体栈中引用的字体族的名字*/</span>
+<span class="w"> </span><span class="nt">font-family</span><span class="o">:</span><span class="s1">'UbuntuTitlingBold'</span><span class="o">;</span>
+<span class="w"> </span><span class="nt">src</span><span class="o">:</span><span class="w"> </span><span class="nt">url</span><span class="o">(</span><span class="s1">'UbuntuTitling-Bold-webfont.eot'</span><span class="o">);</span>
+<span class="w"> </span><span class="nt">src</span><span class="o">:</span><span class="w"> </span><span class="nt">url</span><span class="o">(</span><span class="s1">'UbuntuTitling-Bold-webfont.eot?#iefix'</span><span class="o">)</span>
+<span class="w"> </span><span class="nt">format</span><span class="o">(</span><span class="s1">'embedded-opentype'</span><span class="o">),</span>
+<span class="w"> </span><span class="nt">url</span><span class="o">(</span><span class="s1">'UbuntuTitling-Bold-webfont.woff'</span><span class="o">)</span>
+<span class="w"> </span><span class="nt">format</span><span class="o">(</span><span class="s1">'woff'</span><span class="o">),</span>
+<span class="w"> </span><span class="nt">url</span><span class="o">(</span><span class="s1">'UbuntuTitling-Bold-webfont.ttf'</span><span class="o">)</span>
+<span class="w"> </span><span class="nt">format</span><span class="o">(</span><span class="s1">'truetype'</span><span class="o">),</span>
+<span class="w"> </span><span class="nt">url</span><span class="o">(</span><span class="s1">'UbuntuTitling-Bold-webfont.svg#UbuntuTitlingBold'</span><span class="o">)</span><span class="w"> </span><span class="nt">format</span><span class="o">(</span><span class="s1">'svg'</span><span class="o">);</span>
+<span class="w"> </span><span class="nt">font-weight</span><span class="o">:</span><span class="w"> </span><span class="nt">normal</span><span class="o">;</span>
+<span class="w"> </span><span class="nt">font-style</span><span class="o">:</span><span class="w"> </span><span class="nt">normal</span><span class="o">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Web 专家 Paul Irish 写过一个跨浏览器@font-face 的“笑脸版”，
+可以保证用户机器中万一安装了同名字体时也不会混淆，详细内容参考这篇文章：<a href="http://paulirish.com/2009/bulletproof-font-face-implementation-syntax/">font-face</a></p>
+<h3 id="font-face_1">生成@font-face包</h3>
+<p>希望在自己的网页中使用一种特殊字体，比如客户自己公司指定了一种字体，必须用在网站和设计中。
+今天，只要你获得了把该字体转换为 Web 字体使用的授权（请查看许可协议或联系字体设计商），
+就可以使用 Font Squirrel 的<a href="http://www.fontsquirrel.com/fontface/generator">转换程序</a>把它转换成@font-face 字体包。</p>
+<p>如果想深入理解@font-face 规则，参考 Tim Brown 的博客文章“<a href="http://nicewebtype.com/notes/2009/10/30/how-to-use-css-font-face/">How to use
+@font-face</a>”。</p>
+<h2 id="_21">文字版式</h2>
+<p>文字排版讲求匀称，一般是由看不见的网格，框定页面文字的走向和布局。
+匀称的版式可以增强页面的可读性。</p>
+<h3 id="_22">简单的文本布局</h3>
+<p>比如：</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">article</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>CSS<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>CSS stands for Cascading Style Sheets. CSS controls the presentational
+ aspects of your Web pages.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Block-Level Elements<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Block-level elements stack down the page. They include:<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">code</span><span class="p">&gt;</span>header<span class="p">&lt;/</span><span class="nt">code</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">code</span><span class="p">&gt;</span>section<span class="p">&lt;/</span><span class="nt">code</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">code</span><span class="p">&gt;</span>h1, h2, etc.<span class="p">&lt;/</span><span class="nt">code</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+ <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Inline Elements<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Inline elements sit next to each other, if there is room. They include:<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">code</span><span class="p">&gt;</span>img<span class="p">&lt;/</span><span class="nt">code</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">code</span><span class="p">&gt;</span>a<span class="p">&lt;/</span><span class="nt">code</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">code</span><span class="p">&gt;</span>em<span class="p">&lt;/</span><span class="nt">code</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+ <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">blockquote</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">q</span><span class="p">&gt;</span>Typography maketh the Web site.<span class="p">&lt;/</span><span class="nt">q</span><span class="p">&gt;&lt;</span><span class="nt">cite</span><span class="p">&gt;</span>CWS<span class="p">&lt;/</span><span class="nt">cite</span><span class="p">&gt;</span>
+ <span class="p">&lt;/</span><span class="nt">blockquote</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">article</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>设定样式,首先，去掉元素的外边距，设定主字体大小，为包含所有文本元素的 article 应用样式，从视觉上突出它作为容器的角色，然后将它在页面上居中。</p>
+<div class="highlight"><pre><span></span><code><span class="c">/*删除所有元素的外边距*/</span>
+<span class="o">*</span><span class="w"> </span><span class="p">{</span><span class="k">margin</span><span class="p">:</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="k">padding</span><span class="p">:</span><span class="mi">0</span><span class="p">;}</span>
+<span class="c">/*设定主字体族和字体大小*/</span>
+<span class="nt">body</span><span class="w"> </span><span class="p">{</span><span class="k">font</span><span class="p">:</span><span class="mf">1.0</span><span class="kt">em</span><span class="w"> </span><span class="n">helvetica</span><span class="p">,</span><span class="w"> </span><span class="n">arial</span><span class="p">,</span><span class="w"> </span><span class="kc">sans-serif</span><span class="p">;}</span>
+<span class="c">/*居中显示盒子*/</span>
+<span class="nt">article</span><span class="w"> </span><span class="p">{</span><span class="k">width</span><span class="p">:</span><span class="mi">500</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="k">margin</span><span class="p">:</span><span class="mi">20</span><span class="kt">px</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span><span class="w"> </span><span class="k">padding</span><span class="p">:</span><span class="mi">20</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="k">border</span><span class="p">:</span><span class="mi">2</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="mh">#999</span><span class="p">;}</span>
+<span class="c">/* 删除默认的外边距显著减少了内容的高度 */</span>
+</code></pre></div>
+<p>接下来，需要巧妙地安排一下元素间的垂直距离。
+另外，去掉默认外边距后列表项目的符号也跑到了外面，这里一块儿修复。</p>
+<div class="highlight"><pre><span></span><code><span class="c">/*标题周围的空白*/</span>
+<span class="nt">h1</span><span class="o">,</span><span class="w"> </span><span class="nt">h2</span><span class="o">,</span><span class="w"> </span><span class="nt">h3</span><span class="o">,</span><span class="w"> </span><span class="nt">h4</span><span class="o">,</span><span class="w"> </span><span class="nt">h5</span><span class="o">,</span><span class="w"> </span><span class="nt">h6</span><span class="w"> </span><span class="p">{</span><span class="k">line-height</span><span class="p">:</span><span class="mf">1.15</span><span class="kt">em</span><span class="p">;</span><span class="w"> </span><span class="k">margin-bottom</span><span class="p">:</span><span class="mf">.1</span><span class="kt">em</span><span class="p">;}</span>
+<span class="c">/*文本元素周围的空白*/</span>
+<span class="nt">p</span><span class="o">,</span><span class="w"> </span><span class="nt">ul</span><span class="o">,</span><span class="w"> </span><span class="nt">blockquote</span><span class="w"> </span><span class="p">{</span><span class="k">line-height</span><span class="p">:</span><span class="mf">1.15</span><span class="kt">em</span><span class="p">;</span><span class="w"> </span><span class="k">margin-bottom</span><span class="p">:</span><span class="mf">.75</span><span class="kt">em</span><span class="p">;}</span>
+<span class="c">/*缩进列表*/</span>
+<span class="nt">ul</span><span class="w"> </span><span class="p">{</span><span class="k">margin-left</span><span class="p">:</span><span class="mi">32</span><span class="kt">px</span><span class="p">;}</span>
+</code></pre></div>
+<p>以上样式把所有元素的行高都缩小,
+因为 line-height 会平均分布在文本上下，并且只想通过下外边距在每个元素下方添加空白。
+同时，还留出少量行高，以防段落（和跨行的标题）中相邻的行紧挨上。</p>
+<p>最后，让各级标题也更均衡一些，保证较大的标题突出，最小的标题也不至于不明显，同时也增大 code 元素的字体。</p>
+<div class="highlight"><pre><span></span><code><span class="c">/*调整标题文本*/</span>
+<span class="nt">h1</span><span class="w"> </span><span class="p">{</span><span class="k">font-size</span><span class="p">:</span><span class="mf">1.9</span><span class="kt">em</span><span class="p">;}</span>
+<span class="nt">h2</span><span class="w"> </span><span class="p">{</span><span class="k">font-size</span><span class="p">:</span><span class="mf">1.6</span><span class="kt">em</span><span class="p">;}</span>
+<span class="nt">h3</span><span class="w"> </span><span class="p">{</span><span class="k">font-size</span><span class="p">:</span><span class="mf">1.4</span><span class="kt">em</span><span class="p">;}</span>
+<span class="nt">h4</span><span class="w"> </span><span class="p">{</span><span class="k">font-size</span><span class="p">:</span><span class="mf">1.2</span><span class="kt">em</span><span class="p">;}</span>
+<span class="nt">h5</span><span class="w"> </span><span class="p">{</span><span class="k">font-size</span><span class="p">:</span><span class="mi">1</span><span class="kt">em</span><span class="p">;}</span>
+<span class="nt">h6</span><span class="w"> </span><span class="p">{</span><span class="k">font-size</span><span class="p">:</span><span class="mf">.9</span><span class="kt">em</span><span class="p">;}</span>
+<span class="c">/*调整段落文本*/</span>
+<span class="nt">p</span><span class="w"> </span><span class="p">{</span><span class="k">font-size</span><span class="p">:</span><span class="mf">.9</span><span class="kt">em</span><span class="p">;}</span>
+<span class="c">/*调整代码文本（默认值太小了）*/</span>
+<span class="nt">code</span><span class="w"> </span><span class="p">{</span><span class="k">font-size</span><span class="p">:</span><span class="mf">1.3</span><span class="kt">em</span><span class="p">;}</span>
+</code></pre></div>
+<p>标题和代码都加大了，而且页面也更有层次感</p>
+<h3 id="_23">基于网格排版</h3>
+<p>借助网格可以保证布局匀称，同时让页面看起来也很流畅</p>
+<p>下面的例子中，基于垂直的 18 像素网格来规划布局，并让页面中的每一个元素都按网格线对齐。
+可以临时在 body元素的背景上添加一张图片，让它为整个页面生成辅助线。</p>
+<div class="highlight"><pre><span></span><code><span class="c">/*添加网格线*/</span>
+<span class="nt">body</span><span class="w"> </span><span class="p">{</span><span class="k">background-image</span><span class="p">:</span><span class="nb">url</span><span class="p">(</span><span class="sx">images/grid_18px.png</span><span class="p">);</span><span class="k">padding-top</span><span class="p">:</span><span class="mi">22</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>CSS规则</p>
+<div class="highlight"><pre><span></span><code><span class="c">/*去掉所有元素的内边距和外边距*/</span>
+<span class="o">*</span><span class="w"> </span><span class="p">{</span><span class="k">margin</span><span class="p">:</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="k">padding</span><span class="p">:</span><span class="mi">0</span><span class="p">;}</span>
+<span class="nt">body</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="c">/*添加网格背景*/</span>
+<span class="w"> </span><span class="k">background-image</span><span class="p">:</span><span class="nb">url</span><span class="p">(</span><span class="sx">images/grid_18px.png</span><span class="p">);</span>
+<span class="w"> </span><span class="c">/*设定字体*/</span>
+<span class="w"> </span><span class="k">font</span><span class="p">:</span><span class="mi">100</span><span class="kt">%</span><span class="w"> </span><span class="n">helvetica</span><span class="p">,</span><span class="w"> </span><span class="n">arial</span><span class="p">,</span><span class="w"> </span><span class="kc">sans-serif</span><span class="p">;</span>
+<span class="w"> </span><span class="c">/*加宽左右外边距，得到一栏的雏形*/</span>
+<span class="w"> </span><span class="k">margin</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="mi">40</span><span class="kt">px</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">p</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="c">/*设定字体大小*/</span>
+<span class="w"> </span><span class="k">font-size</span><span class="p">:</span><span class="mi">13</span><span class="kt">px</span><span class="p">;</span>
+<span class="w"> </span><span class="c">/*将行高设定为等于网格高*/</span>
+<span class="w"> </span><span class="k">line-height</span><span class="p">:</span><span class="mi">18</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>这里把文本的 line-height 设定为网格间的距离——18 像素。
+在去掉默认外边距和内边距的情况下，这样就可以确保每一行都相距 18 像素.</p>
+<p>再给容器 body 元素添加 4 像素的内边距，以便把元素向下推到文本基线与网格对齐的位置。
+只要让第一个元素与网格对齐，其他元素就都能对齐了。
+实际上，给 body上方添加了 22 像素（4+18）的内边距，</p>
+<div class="highlight"><pre><span></span><code><span class="nt">body</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">background-image</span><span class="p">:</span><span class="w"> </span><span class="nb">url</span><span class="p">(</span><span class="sx">images/grid_18px.png</span><span class="p">);</span>
+<span class="w">  </span><span class="k">padding-top</span><span class="p">:</span><span class="mi">22</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">p</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="c">/*设定字体大小*/</span>
+<span class="w"> </span><span class="k">font-size</span><span class="p">:</span><span class="mi">13</span><span class="kt">px</span><span class="p">;</span>
+<span class="w"> </span><span class="c">/*把行高设定为等于网格高度*/</span>
+<span class="w"> </span><span class="k">line-height</span><span class="p">:</span><span class="mi">18</span><span class="kt">px</span><span class="p">;</span>
+<span class="w"> </span><span class="k">margin-bottom</span><span class="p">:</span><span class="mi">18</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c">/*这条声明恰好能在每个段落之间加上一个空行。</span>
+<span class="c">再加上一段文本，就能更清楚地看这两处修改的效果了*/</span>
+</code></pre></div>
+<p>现在，文本与网格对齐了，段落之间的间距也合适了。</p>
+<p>接着要设定其他文本元素的字体大小。
+首先把 h3 设定为 18 像素，而为了让它恰好在网站中占一行，
+必须得把它的 line-height 也设定为 18 像素。</p>
+<div class="highlight"><pre><span></span><code><span class="nt">h3</span><span class="w"> </span><span class="p">{</span><span class="k">font-size</span><span class="p">:</span><span class="mi">18</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="k">line-height</span><span class="p">:</span><span class="mi">18</span><span class="kt">px</span><span class="p">;}</span>
+</code></pre></div>
+<p>纠正h3字体过大的问题.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">h3</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">font-size</span><span class="p">:</span><span class="mi">18</span><span class="kt">px</span><span class="p">;</span>
+<span class="w"> </span><span class="k">line-height</span><span class="p">:</span><span class="mi">18</span><span class="kt">px</span><span class="p">;</span>
+<span class="w"> </span><span class="k">margin-top</span><span class="p">:</span><span class="mi">-2</span><span class="kt">px</span><span class="p">;</span>
+<span class="w"> </span><span class="k">margin-bottom</span><span class="p">:</span><span class="mi">2</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>上方的负外边距把文本向上拉，下方同样数量的正外边距用来抵消它，保证后面元素的位置不受影响</p>
+<p>还需要一种类似技巧来对齐比网格高的元素（通常是标题）。
+为此，要添加一个24 像素的 h1 元素。
+显然，24 像素的文本占据的空间比一行网格要高，
+因此给它设定的 line-height 是 36 像素，也就是两行网格的高度。
+然后，就是把 h1 元素放到它应该出现的地方——页面的开头。</p>
+<div class="highlight"><pre><span></span><code><span class="nt">h1</span><span class="w"> </span><span class="p">{</span><span class="k">font-size</span><span class="p">:</span><span class="mi">24</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="k">line-height</span><span class="p">:</span><span class="mi">36</span><span class="kt">px</span><span class="p">;}</span>
+</code></pre></div>
+<p>占两行网格的大标题看起来不太舒服。
+如果把它移动到下方最近的线上，那么其字母下伸部分就会接触到段落文本，所以我要把它向上移动。
+经过一番试错，把它向上移动 13 像素.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">h1</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">margin-top</span><span class="p">:</span><span class="mi">-13</span><span class="kt">px</span><span class="p">;</span>
+<span class="w"> </span><span class="k">margin-bottom</span><span class="p">:</span><span class="mi">13</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>再加几个不同字体大小的标题、一个无序列表和一个blockquote 元素。看一看把网格去掉之后页面是什么样子。</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="nt">h2</span><span class="w"> </span><span class="p">{</span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="kt">px</span><span class="p">;</span><span class="k">line-height</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="kt">px</span><span class="p">;</span><span class="k">margin-top</span><span class="p">:</span><span class="w"> </span><span class="mi">-2</span><span class="kt">px</span><span class="p">;</span><span class="k">margin-bottom</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="kt">px</span><span class="p">;}</span>
+<span class="nt">h3</span><span class="w"> </span><span class="p">{</span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="kt">px</span><span class="p">;</span><span class="k">line-height</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="kt">px</span><span class="p">;</span><span class="k">margin-top</span><span class="p">:</span><span class="w"> </span><span class="mi">-2</span><span class="kt">px</span><span class="p">;</span><span class="k">margin-bottom</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="kt">px</span><span class="p">;}</span>
+<span class="nt">ul</span><span class="w"> </span><span class="p">{</span><span class="k">margin-bottom</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="kt">px</span><span class="p">;}</span>
+<span class="nt">li</span><span class="w"> </span><span class="p">{</span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="kt">px</span><span class="p">;</span><span class="k">list-style-type</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">20</span><span class="kt">px</span><span class="p">;</span><span class="k">line-height</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="kt">px</span><span class="p">;}</span>
+<span class="nt">a</span><span class="w"> </span><span class="p">{</span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#777</span><span class="p">;</span><span class="k">text-decoration</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;}</span>
+<span class="nt">blockquote</span><span class="w"> </span><span class="p">{</span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="kt">px</span><span class="p">;</span><span class="k">line-height</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="kt">px</span><span class="p">;</span><span class="k">padding-top</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="kt">px</span><span class="p">;</span><span class="k">margin-bottom</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="kt">px</span><span class="p">;}</span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Typography is Everywhere<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">"#"</span><span class="p">&gt;</span>Books and Magazines<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">"#"</span><span class="p">&gt;</span>Posters<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">"#"</span><span class="p">&gt;</span>Apparel<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">"#"</span><span class="p">&gt;</span>Graffiti<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">"#"</span><span class="p">&gt;</span><span class="ni">&amp;#8230;</span>everywhere you look!<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">blockquote</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">q</span><span class="p">&gt;</span>Typography is what language looks like.<span class="p">&lt;/</span><span class="nt">q</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nt">cite</span><span class="p">&gt;</span>Ellen Lupton<span class="p">&lt;/</span><span class="nt">cite</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">blockquote</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>Type for Every Use<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Prose fiction, non-fiction, editorial, educational, religious, scientific, spiritual and commercial writing all have differing characteristics and requirements of appropriate typefaces and fonts.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>Type over Time<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>For historic material established text typefaces are frequently chosen according to a scheme of historical genre acquired by a long process of accretion, with considerable overlap between historical periods.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>。从技术角度讲，如果你
+基于网格为一个网站设计了版式，而后将其交给了其他人维护，那这个网站的版式
+就能始终保持一致，无论页面中包含什么元素，以及以什么顺序包含这些元素。</p>
+<h3 id="_24">经典的排版练习</h3>
+<p>节选 The Hound of the Baskervilles（《巴斯克维尔庄园的猎犬 》）
+中的部分文本（为了示例需要进行了删减）来做一个排版练习.</p>
+<p>这个练习将会用到讲过的很多字体和文本属性。
+完成这个练习后，就能掌握实现专业排版的很多技术，
+包括使用 <code>HTML 实体</code>、<code>调整字母和单词间距</code>、<code>首字下沉</code>、<code>垂直网格</code>（这一次是 24 像素）以及<code>可下载字体</code>。</p>
+<div class="highlight"><pre><span></span><code><span class="cm">&lt;!-- 只有两个标题、几个段落和一个块引用 --&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>an excerpt from<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>The Hound of the Baskervilles<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Holmes stretched out his hand for the manuscript and flattened it upon his knee. <span class="ni">&amp;ldquo;</span>You will observe, Watson, the alternative use of the long s and the short. It is one of several indications which enabled me to fix the date.<span class="ni">&amp;rdquo;</span> At the head was written: <span class="ni">&amp;ldquo;</span>Baskerville Hall,<span class="ni">&amp;rdquo;</span> and below in large, scrawling figures: <span class="ni">&amp;ldquo;</span>1742.<span class="ni">&amp;rdquo;</span><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span><span class="ni">&amp;ldquo;</span>It appears to be a statement of some sort.<span class="ni">&amp;rdquo;</span><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span><span class="ni">&amp;ldquo;</span>Yes<span class="ni">&amp;mdash;</span>it is a statement of a certain legend which runs in the Baskerville family.<span class="ni">&amp;rdquo;</span><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">blockquote</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">q</span><span class="p">&gt;</span>Of the origin of the Hound of the Baskervilles therehave been many statements, yet as I come in a directline from Hugo Baskerville, and as I had the story frommy father<span class="ni">&amp;hellip;</span><span class="p">&lt;/</span><span class="nt">q</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">blockquote</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>When Dr. Mortimer had finished reading this singular narrative he pushed his spectacles up on his forehead and stared across at Mr. Sherlock Holmes.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>这段标记包含了几个 HTML 实体，它们代表的是几种标点符号。
+其中，有表示 对话开始的左双引号（<code>&amp;ldquo;</code>） 、表示对话结束的右双引号（<code>&amp;rdquo;</code>）、表示省略的省略号（<code>&amp;hellip;</code>）和表示暂停或代替括号的破折号（<code>&amp;mdash;</code>）。</p>
+<p>HTML实体</p>
+<p>以下网站中列出了 HTML 实体：</p>
+<ul>
+<li><a href="http://htmlhelp.com/reference/html40/entities/special.html">htmlhelp</a></li>
+<li>既包含 HTML 实体值，也包含实体需要作为::before 和::after 伪元素内容时的十六进制值。</li>
+<li>举个例子，如果你想在伪元素中添加十六进制值<code>&amp;#x201C;</code>（左双引号），</li>
+<li>则需要改写成如下形式：e::before {content:"<code>\201C</code>";}就是在数字前面加了一个反斜杠。</li>
+<li>相应地，右双引号的十六进制值改写后是<code>\201D</code>。</li>
+<li><a href="http://code.stephenmorley.org/html-and-css/character-entity-references-cheat-sheet/">stephenmorley</a></li>
+</ul>
+<p><strong>第一步：设定字体和底层网格</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c">/* 字体 */</span>
+<span class="p">@</span><span class="k">font-face</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="nt">font-family</span><span class="o">:</span><span class="s1">'CrimsonRoman'</span><span class="o">;</span>
+<span class="w"> </span><span class="nt">src</span><span class="o">:</span><span class="w"> </span><span class="nt">url</span><span class="o">(</span><span class="s1">'fonts/Crimson-fontfacekit/Crimson-Roman-webfont.eot'</span><span class="o">);</span>
+<span class="w"> </span><span class="nt">src</span><span class="o">:</span><span class="w"> </span><span class="nt">url</span><span class="o">(</span><span class="s1">'fonts/Crimson-fontfacekit/Crimson-Roman-webfont.eot?#iefix'</span><span class="o">)</span><span class="w"> </span><span class="nt">format</span><span class="o">(</span><span class="s1">'embedded-opentype'</span><span class="o">),</span>
+<span class="w"> </span><span class="nt">url</span><span class="o">(</span><span class="s1">'fonts/Crimson-fontfacekit/Crimson-Roman-webfont.woff'</span><span class="o">)</span><span class="w"> </span><span class="nt">format</span><span class="o">(</span><span class="s1">'woff'</span><span class="o">),</span>
+<span class="w"> </span><span class="nt">url</span><span class="o">(</span><span class="s1">'fonts/Crimson-fontfacekit/Crimson-Roman-webfont.ttf'</span><span class="o">)</span><span class="w"> </span><span class="nt">format</span><span class="o">(</span><span class="s1">'truetype'</span><span class="o">),</span>
+<span class="w"> </span><span class="nt">url</span><span class="o">(</span><span class="s1">'fonts/Crimson-fontfacekit/Crimson-Roman-webfont.svg#CrimsonRoman'</span><span class="o">)</span><span class="w"> </span><span class="nt">format</span><span class="o">(</span><span class="s1">'svg'</span><span class="o">);</span>
+<span class="w"> </span><span class="nt">font-weight</span><span class="o">:</span><span class="w"> </span><span class="nt">normal</span><span class="o">;</span>
+<span class="w"> </span><span class="nt">font-style</span><span class="o">:</span><span class="w"> </span><span class="nt">normal</span><span class="o">;</span>
+<span class="p">}</span>
+<span class="c">/* 去掉所有外边距和内边距 */</span>
+<span class="o">*</span><span class="w"> </span><span class="p">{</span><span class="k">margin</span><span class="p">:</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="k">padding</span><span class="p">:</span><span class="mi">0</span><span class="p">;}</span>
+<span class="c">/* 设定了主字体，又添加了左、右外边距，还为对齐文本临时添加了网格 */</span>
+<span class="nt">body</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">font-family</span><span class="p">:</span><span class="s2">"CrimsonRoman"</span><span class="p">,</span><span class="w"> </span><span class="n">georgia</span><span class="p">,</span><span class="w"> </span><span class="n">times</span><span class="p">,</span><span class="w"> </span><span class="kc">serif</span><span class="p">;</span>
+<span class="w"> </span><span class="k">background-color</span><span class="p">:</span><span class="mh">#fff</span><span class="p">;</span>
+<span class="w"> </span><span class="k">margin</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="mi">10</span><span class="kt">%</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w"> </span><span class="k">background-image</span><span class="p">:</span><span class="nb">url</span><span class="p">(</span><span class="sx">images/grid_24px.png</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>第二步：设计标题</strong></p>
+<p>从上到下，对齐页面中的每一个元素。
+第一行的副标题应该与第二行的主标题形成对比，因为主标题要使用手写字体，
+所以副标题就设定成间距较宽的小型大写字母。</p>
+<div class="highlight"><pre><span></span><code><span class="c">/* 上边距调整为19px */</span>
+<span class="nt">body</span><span class="p">{</span><span class="k">margin</span><span class="p">:</span><span class="mi">19</span><span class="kt">px</span><span class="w"> </span><span class="mi">10</span><span class="kt">%</span><span class="w"> </span><span class="mi">0</span><span class="p">;}</span>
+<span class="c">/* 调整栏高，粗细，对齐方式，大小写，字间隔，单词间隔 */</span>
+<span class="nt">h2</span><span class="w"> </span><span class="p">{</span><span class="k">font-size</span><span class="p">:</span><span class="mi">18</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">   </span><span class="k">line-height</span><span class="p">:</span><span class="mi">24</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">   </span><span class="k">font-weight</span><span class="p">:</span><span class="kc">bold</span><span class="p">;</span>
+<span class="w">   </span><span class="k">text-align</span><span class="p">:</span><span class="kc">center</span><span class="p">;</span>
+<span class="w">   </span><span class="k">font-variant</span><span class="p">:</span><span class="kc">small-caps</span><span class="p">;</span>
+<span class="w">   </span><span class="k">word-spacing</span><span class="p">:</span><span class="mf">.5</span><span class="kt">em</span><span class="p">;</span>
+<span class="w">   </span><span class="k">letter-spacing</span><span class="p">:</span><span class="mf">.6</span><span class="kt">em</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>排版资源：</p>
+<ul>
+<li><a href="http://ilovetypography.com/">ilovetypography</a> 可以跟着设计师 John Boardley 一起深思，欣赏每一页中别具一格的排版。</li>
+<li><a href="http://www.thinkingwithtype.com/">Thinking with Type</a> 是 Thinking with Type 一书的网站，作者 Ellen Lupton。网站中展示了很多漂亮又经典的版式，还包含一些字体及字体族的信息。</li>
+<li><a href="http://webtypography.net/">webtypography</a>这个站点自称为 The Elements of Typographic Style Applied to the Web—A practical guide to web typography。跟随网站的目录，可以找到各种常用的排版知识和技巧。</li>
+</ul>
+<p>接下来，找到一种名为 Pinyon 的手写体，这种字体与主标题挺配的.</p>
+<p><code>&lt;link href='http://fonts.googleapis.com/css?family=Pinyon+Script' rel='stylesheet' type='text/css'&gt;</code></p>
+<div class="highlight"><pre><span></span><code><span class="nt">h1</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">font-size</span><span class="p">:</span><span class="mi">60</span><span class="kt">px</span><span class="p">;</span>
+<span class="w"> </span><span class="k">line-height</span><span class="p">:</span><span class="mi">96</span><span class="kt">px</span><span class="p">;</span>
+<span class="w"> </span><span class="k">font-family</span><span class="p">:</span><span class="s2">"Pinyon Script"</span><span class="p">,</span><span class="w"> </span><span class="kc">cursive</span><span class="p">;</span>
+<span class="w"> </span><span class="k">margin</span><span class="p">:</span><span class="mi">4</span><span class="kt">px</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">-4</span><span class="kt">px</span><span class="p">;</span>
+<span class="w"> </span><span class="k">text-align</span><span class="p">:</span><span class="kc">center</span><span class="p">;</span>
+<span class="w"> </span><span class="k">font-weight</span><span class="p">:</span><span class="kc">normal</span><span class="p">;</span>
+<span class="w"> </span><span class="k">position</span><span class="p">:</span><span class="kc">relative</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>第三步：设计段落和引用</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c">/* 设定它的字体大小,以及行高 */</span>
+<span class="nt">p</span><span class="w"> </span><span class="p">{</span><span class="k">font-size</span><span class="p">:</span><span class="mi">18</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="k">line-height</span><span class="p">:</span><span class="mi">24</span><span class="kt">px</span><span class="p">;}</span>
+</code></pre></div>
+<p>blockquote 中的文本包含在一个行内元素 q（quote）中，这个元素的默认样式是在文本开头和末尾加上引号。</p>
+<p>在此，缩进 blockquote，但在其 q子元素上设定字体大小和行高，因为它才是包含文本的元素：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">blockquote</span><span class="w"> </span><span class="p">{</span><span class="k">margin</span><span class="p">:</span><span class="mi">0</span><span class="kt">px</span><span class="w"> </span><span class="mi">20</span><span class="kt">%</span><span class="p">;}</span>
+<span class="nt">q</span><span class="w"> </span><span class="p">{</span><span class="k">font-size</span><span class="p">:</span><span class="mi">18</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="k">font-style</span><span class="p">:</span><span class="kc">italic</span><span class="p">;</span><span class="w"> </span><span class="k">line-height</span><span class="p">:</span><span class="mi">24</span><span class="kt">px</span><span class="p">;}</span>
+</code></pre></div>
+<p>缩进引用并将文本变成斜体为页面增加了变化。另外，在 blockquote就位后，它后面的段落自然也就与网格对齐了。</p>
+<p><strong>第四步：首字下沉效果</strong></p>
+<p>第一段添加一个独特的首字下沉效果。
+所谓首字下沉，就是将段落开头的第一个字母变大，
+然后根据该字母与段落首行的位置关系，又可以分几种不同的风格。</p>
+<p>让字母的顶部与段落首行顶部对齐，让字母的底部与段落第三行的基线对齐。</p>
+<p>选择 h1 标题后面第一个段落的第一个字母，
+而组合使用紧邻同胞选择符+和::first-letter 伪元素可以做到。</p>
+<p>选择了第一个字母后，再增大字体并浮动它：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">h1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nt">p</span><span class="p">::</span><span class="nd">first-letter</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">font-family</span><span class="p">:</span><span class="n">times</span><span class="p">,</span><span class="w"> </span><span class="kc">serif</span><span class="p">;</span>
+<span class="w"> </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mi">90</span><span class="kt">px</span><span class="p">;</span>
+<span class="w"> </span><span class="k">float</span><span class="p">:</span><span class="kc">left</span><span class="p">;</span>
+<span class="w"> </span><span class="k">border</span><span class="p">:</span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>首字母增大了，但位置不对。设定这个伪元素的line-height，让它的盒子能包含首字母。并添加一点内边距，包括3px的右边距。</p>
+<p><em>把 line-height 设定为小于 1 的值，以便元素盒子紧紧包住首字母，而不会强迫段落第四行也绕排。</em></p>
+<div class="highlight"><pre><span></span><code><span class="nt">h1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nt">p</span><span class="p">::</span><span class="nd">first-letter</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">font-family</span><span class="p">:</span><span class="n">times</span><span class="p">,</span><span class="w"> </span><span class="kc">serif</span><span class="p">;</span>
+<span class="w"> </span><span class="k">font-size</span><span class="p">:</span><span class="mi">90</span><span class="kt">px</span><span class="p">;</span>
+<span class="w"> </span><span class="k">float</span><span class="p">:</span><span class="kc">left</span><span class="p">;</span>
+<span class="w"> </span><span class="k">line-height</span><span class="p">:</span><span class="mf">.65</span><span class="p">;</span>
+<span class="w"> </span><span class="k">border</span><span class="p">:</span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="p">;</span>
+<span class="w"> </span><span class="k">padding</span><span class="p">:</span><span class="mf">.085</span><span class="kt">em</span><span class="w"> </span><span class="mi">3</span><span class="kt">px</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>第五步：设计第一行</strong></p>
+<p>首字母下沉效果做完了。可是希望大号首字母到小号正文之间有一个过渡，所以需要把段落第一行的文本变成小型大写字母。</p>
+<div class="highlight"><pre><span></span><code><span class="c">/* 紧邻同胞选择符，组合::first-line 伪元素，实现了第一行字形的转换 */</span>
+<span class="nt">h1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nt">p</span><span class="p">::</span><span class="nd">first-line</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">font-variant</span><span class="p">:</span><span class="kc">small-caps</span><span class="p">;</span>
+<span class="w"> </span><span class="k">letter-spacing</span><span class="p">:</span><span class="mf">.15</span><span class="kt">em</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>使用伪元素而不是额外加标签的好处在于，当行的长度改变时，大写字母的效果会随之扩展。</p>
+<p><strong>第六步：最后的修饰</strong></p>
+<p>段落之间没有足够的间距，让人很难看出它们的开头在哪里。</p>
+<p>为了与这本书的版式保持一致，我们不给段落之间加空白，而是缩进跟在其他段落后面的每一段，作为一组段落起头的一段不缩进。</p>
+<p>此外，引用内容两端的引号也太难看，所以要在<q>标签上应用::before 和::after 伪元素，插入 Crimson 字体的引号。
+最后，再从 body元素中去掉网格背景</q></p>
+<div class="highlight"><pre><span></span><code><span class="c">/*只缩进跟在段落后面的段落*/</span>
+<span class="nt">p</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nt">p</span><span class="w"> </span><span class="p">{</span><span class="k">text-indent</span><span class="p">:</span><span class="mi">14</span><span class="kt">px</span><span class="p">;}</span>
+<span class="c">/*引用内容前面的引号*/</span>
+<span class="nt">q</span><span class="p">::</span><span class="nd">before</span><span class="w"> </span><span class="p">{</span><span class="k">content</span><span class="p">:</span><span class="s2">"\201C"</span><span class="p">}</span>
+<span class="c">/*引用内容后面的引号*/</span>
+<span class="nt">q</span><span class="p">::</span><span class="nd">after</span><span class="w"> </span><span class="p">{</span><span class="k">content</span><span class="p">:</span><span class="s2">"\201D"</span><span class="p">}</span>
+</code></pre></div>
+<p>使用::before 和::after 伪元素给引用内容添加引号时使用的是十六进制值。
+不能给 content 属性设定常规的 HTML 实体，只能使用十六进制实体值，而且只能是改写后的形式。</p>
+<p>最终样式:</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../imgs/fontgraph.png"><img alt="fontgraph" src="../imgs/fontgraph.png"/></a></p>
+<hr/>
+<div class="md-source-file">
+<small>
+    
+      最后更新:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2023年2月27日</span>
+<br/>
+        创建日期:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2023年2月27日</span>
+</small>
+</div>
+</article>
+</div>
+</div>
+<a class="md-top md-icon" data-md-component="top" hidden="" href="#">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
+            回到页面顶部
+          </a>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "..", "features": ["navigation.top", "toc.follow"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+<script src="../assets/javascripts/bundle.2a6f1dda.min.js"></script>
+<script src="../javascripts/mathjax.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>

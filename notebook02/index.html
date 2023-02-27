@@ -1,0 +1,982 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="zh">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="../notebook01/" rel="prev"/>
+<link href="../notebook03/" rel="next"/>
+<link href="../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.4.2, mkdocs-material-9.0.13" name="generator"/>
+<title>CSS工作原理 - CSS设计指南</title>
+<link href="../assets/stylesheets/main.ffa9267a.min.css" rel="stylesheet"/>
+<link href="../assets/stylesheets/palette.a0c5b2b5.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            
+                .gscrollbar-fixer { padding-right: 15px; }
+                .gdesc-inner { font-size: 0.75rem; }
+                body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+                body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+                body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+                </style><script src="../assets/javascripts/glightbox.min.js"></script></head>
+<body data-md-color-accent="red" data-md-color-primary="default" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#css">
+          跳转至
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="页眉" class="md-header__inner md-grid">
+<a aria-label="CSS设计指南" class="md-header__button md-logo" data-md-component="logo" href=".." title="CSS设计指南">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            CSS设计指南
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              CSS工作原理
+            
+          </span>
+</div>
+</div>
+</div>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="搜索" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="搜索" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</label>
+<nav aria-label="查找" class="md-search__options">
+<button aria-label="清空当前内容" class="md-search__icon md-icon" tabindex="-1" title="清空当前内容" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="导航栏" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="CSS设计指南" class="md-nav__button md-logo" data-md-component="logo" href=".." title="CSS设计指南">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+    CSS设计指南
+  </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../notebook01/">
+        HTML基础
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          CSS工作原理
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        CSS工作原理
+      </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#css_1">
+    剖析css规则
+  </a>
+<nav aria-label="剖析css规则" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_1">
+    添加样式的三种方法
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#css_2">
+    CSS规则命名惯例
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+    上下文选择符
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_3">
+    特殊的上下文选择符
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#id">
+    ID 和类选择符
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#id_1">
+    什么时候用ID，什么时候用类
+  </a>
+<nav aria-label="什么时候用ID，什么时候用类" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_4">
+    属性选择符
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_5">
+    伪类
+  </a>
+<nav aria-label="伪类" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ui">
+    UI伪类
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_6">
+    结构化伪类
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_7">
+    伪元素
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_8">
+    继承
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_9">
+    层叠
+  </a>
+<nav aria-label="层叠" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_10">
+    样式来源
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_11">
+    层叠规则
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_12">
+    计算特指度
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_13">
+    规则声明
+  </a>
+<nav aria-label="规则声明" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_14">
+    文本值
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_15">
+    数字值
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_16">
+    颜色值
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../notebook03/">
+        定位元素
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../notebook04/">
+        字体和文本
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../notebook05/">
+        页面布局
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../notebook06/">
+        界面组建
+      </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#css_1">
+    剖析css规则
+  </a>
+<nav aria-label="剖析css规则" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_1">
+    添加样式的三种方法
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#css_2">
+    CSS规则命名惯例
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+    上下文选择符
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_3">
+    特殊的上下文选择符
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#id">
+    ID 和类选择符
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#id_1">
+    什么时候用ID，什么时候用类
+  </a>
+<nav aria-label="什么时候用ID，什么时候用类" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_4">
+    属性选择符
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_5">
+    伪类
+  </a>
+<nav aria-label="伪类" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ui">
+    UI伪类
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_6">
+    结构化伪类
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_7">
+    伪元素
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_8">
+    继承
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_9">
+    层叠
+  </a>
+<nav aria-label="层叠" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_10">
+    样式来源
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_11">
+    层叠规则
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_12">
+    计算特指度
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_13">
+    规则声明
+  </a>
+<nav aria-label="规则声明" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_14">
+    文本值
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_15">
+    数字值
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_16">
+    颜色值
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="css">CSS工作原理</h1>
+<p>每个 HTML 元素都有一组样式属性，可以通过 CSS 来设定。</p>
+<p>这些属性涉及元素在屏幕上显示时的不同方面，比如在屏幕上位置、边框的宽度，文本内容的字体、字号和颜色，等等。</p>
+<p>CSS 就是一种先选择 HTML 元素，然后设定选中元素 CSS 属性的机制。</p>
+<p>CSS 选择符和要应用的样式构成了一条 CSS 规则。</p>
+<h2 id="css_1">剖析css规则</h2>
+<p>规则实际上就是一条完整的 CSS 指令。</p>
+<p>规则声明了要修改的元素和要应用给该元素的样式。</p>
+<div class="highlight"><pre><span></span><code><span class="c">/* 把段落的文本设置为红色 */</span>
+<span class="nt">p</span><span class="w"> </span><span class="p">{</span><span class="k">color</span><span class="p">:</span><span class="kc">red</span><span class="p">;}</span>
+</code></pre></div>
+<h3 id="_1">添加样式的三种方法</h3>
+<ol>
+<li>行内样式 [写在特定 HTML 标签的 style 属性里]</li>
+<li>嵌入样式 [是放在 HTML 文档的 head 元素中的]</li>
+<li>链接样式 [把样式集中在一个单独的文件里，这个文件就叫样式表,是一个扩展名为.css 的文本文件.可以在任意多个 HTML 页面中链接同一个样式表文件]</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="cm">&lt;!--行内样式--&gt;</span>
+<span class="cm">&lt;!--</span>
+<span class="cm">行内样式的作用范围非常有限。行内样式只能影响它所在的标签，而且总会覆盖嵌入样式和链</span>
+<span class="cm">接样式。</span>
+<span class="cm">--&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span> <span class="na">style</span><span class="o">=</span><span class="s">"font-size: 12px; font-weight:bold; font-style:italic; color:red;"</span><span class="p">&gt;</span>By
+adding inline CSS styling to this paragraph, you override the default styles.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+
+<span class="cm">&lt;!--嵌入样式--&gt;</span>
+<span class="cm">&lt;!--</span>
+<span class="cm">嵌入样式的应用范围仅限于当前页面。</span>
+<span class="cm">页面样式会覆盖外部样式表中的样式，但会被行内样式覆盖。</span>
+<span class="cm">--&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+ <span class="cm">&lt;!-- 其他 head 元素（如 meta、title）放在这里 --&gt;</span>
+ <span class="p">&lt;</span><span class="nt">style</span> <span class="na">type</span><span class="o">=</span><span class="s">"text/css"</span><span class="p">&gt;</span>
+<span class="w">   </span><span class="nt">h1</span><span class="w"> </span><span class="p">{</span><span class="k">font-size</span><span class="p">:</span><span class="mi">16</span><span class="kt">px</span><span class="p">;}</span>
+<span class="w">   </span><span class="nt">p</span><span class="w"> </span><span class="p">{</span><span class="k">color</span><span class="p">:</span><span class="kc">blue</span><span class="p">;}</span>
+<span class="w"> </span><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+
+<span class="cm">&lt;!--链接样式--&gt;</span>
+<span class="cm">&lt;!--</span>
+<span class="cm">链接样式的作用范围可以是整个网站。只要使用&lt;link&gt;标签把样式表链接到每个页面，相应的页面就可以使用其中的样式。</span>
+<span class="cm">随后，只要修改了样式表中的样式，改动就会在所有被选中的元素上体现出来，无论这个元素在哪个页面里。</span>
+<span class="cm">这样，既可以做到全站页面外观统一，又便于整站样式更新。</span>
+<span class="cm">--&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">"styles.css"</span> <span class="na">rel</span><span class="o">=</span><span class="s">"stylesheet"</span> <span class="na">type</span><span class="o">=</span><span class="s">"text/css"</span> <span class="p">/&gt;</span>
+<span class="cm">&lt;!--还有一种在样式表中链接其他样式表的方法:@import 指令--&gt;</span>
+<span class="cm">&lt;!-- @import 指令必须出现在样式表中其他样式之前，否则@import 引用的样式表不会被加载。--&gt;</span>
+@import url(css/styles2.css)
+</code></pre></div>
+<p>当浏览器遇到开标签<code>&lt;style&gt;</code>时，就会由解释 HTML 代码切换为解释 CSS 代码。
+等遇到闭标签<code>&lt;/style&gt;</code>时，它会再切换回解释 HTML 代码</p>
+<h2 id="css_2">CSS规则命名惯例</h2>
+<p>CSS 规则由选择符和声明两部分组成. 即选择符和声明.</p>
+<p>声明又由两部分组成，即属性和值。声明包含在一对花括号内 .</p>
+<p><strong>3种扩展方法</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c">/* 1.多个声明包含在一条规则里。 */</span>
+<span class="nt">p</span><span class="w"> </span><span class="p">{</span><span class="k">color</span><span class="p">:</span><span class="kc">red</span><span class="p">;</span><span class="w"> </span><span class="k">font-size</span><span class="p">:</span><span class="mi">12</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="k">font-weight</span><span class="p">:</span><span class="kc">bold</span><span class="p">;}</span>
+
+<span class="c">/* 2.多个选择符组合在一起,每个选择符之间要用逗号分隔 */</span>
+<span class="nt">h1</span><span class="o">,</span><span class="w"> </span><span class="nt">h2</span><span class="o">,</span><span class="w"> </span><span class="nt">h3</span><span class="w"> </span><span class="p">{</span><span class="k">color</span><span class="p">:</span><span class="kc">blue</span><span class="p">;</span><span class="w"> </span><span class="k">font-weight</span><span class="p">:</span><span class="kc">bold</span><span class="p">;}</span>
+
+<span class="c">/* 3.多条规则应用给一个选择符 */</span>
+<span class="nt">h1</span><span class="o">,</span><span class="w"> </span><span class="nt">h2</span><span class="o">,</span><span class="w"> </span><span class="nt">h3</span><span class="w"> </span><span class="p">{</span><span class="k">color</span><span class="p">:</span><span class="kc">blue</span><span class="p">;</span><span class="w"> </span><span class="k">font-weight</span><span class="p">:</span><span class="kc">bold</span><span class="p">;}</span>
+<span class="nt">h3</span><span class="w"> </span><span class="p">{</span><span class="k">font-style</span><span class="p">:</span><span class="kc">italic</span><span class="p">;}</span><span class="w">      </span><span class="c">/* 再为 h3 写一条规则,只把 h3 变成斜体 */</span>
+</code></pre></div>
+<p><strong>用于选择特定元素的选择符又分三种</strong></p>
+<ol>
+<li><strong>上下文选择符</strong>: 基于祖先或同胞元素选择一个元素。</li>
+<li><strong>ID 和类选择符</strong>: 基于 id 和 class 属性的值（你自己设定）选择元素。</li>
+<li><strong>属性选择符</strong>: 基于属性的有无和特征选择元素。</li>
+</ol>
+<h2 id="_2">上下文选择符</h2>
+<p>格式: 标签 1 标签 2 {声明}</p>
+<p>标签 2 就是我们想要选择目标，而且只有在标签 1 是其祖先元素（不一定是
+父元素）的情况下才会被选中。</p>
+<p>也叫: <code>后代组合式选择符</code>（descendant combinator selector），就是一组以空格分隔的标签名。用于选择作为指定祖先元素后代的标签。</p>
+<p>如 : <code>article p {font-weight:bold;}</code>  只有是article后代的p元素才会应用后面的样式.</p>
+<p><strong>上下文选择符以空格作为分隔符，而分组选择符则以逗号作为分隔符，不要弄混。</strong></p>
+<h2 id="_3">特殊的上下文选择符</h2>
+<p><strong>子选择符<code>&gt;</code></strong></p>
+<p>标签 1 &gt; 标签 2 , 标签 2 必须是标签 1 的子元素.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">section</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">h2</span><span class="w"> </span><span class="p">{</span><span class="k">font-style</span><span class="p">:</span><span class="kc">italic</span><span class="p">;}</span>
+</code></pre></div>
+<p><strong>紧邻同胞选择符<code>+</code></strong></p>
+<p>标签 1 + 标签 2 , 标签 2 必须紧跟在其同胞标签 1 的后面</p>
+<div class="highlight"><pre><span></span><code><span class="nt">h2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nt">p</span><span class="w"> </span><span class="p">{</span><span class="k">font-variant</span><span class="p">:</span><span class="kc">small-caps</span><span class="p">;}</span>
+</code></pre></div>
+<p><strong>一般同胞选择符<code>~</code></strong></p>
+<p>标签 1 ~ 标签 2 , 标签 2 必须跟（不一定紧跟）在其同胞标签 1 后面。</p>
+<div class="highlight"><pre><span></span><code><span class="nt">h2</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nt">a</span><span class="w"> </span><span class="p">{</span><span class="k">color</span><span class="p">:</span><span class="kc">red</span><span class="p">;}</span>
+</code></pre></div>
+<p><strong>通用选择符<code>*</code></strong></p>
+<p>* （按 Shift+8）, 通用选择符*（常被称为星号选择符）是一个通配符，它匹配任何元素.</p>
+<div class="highlight"><pre><span></span><code><span class="c">/* 导致所有元素（的文本和边框）都变成绿色 */</span>
+<span class="o">*</span><span class="w"> </span><span class="p">{</span><span class="k">color</span><span class="p">:</span><span class="kc">green</span><span class="p">;}</span>
+<span class="c">/* color 属性设定的是前景色。前景色既影响文本也影响边框，但人们通常只用它设定文本颜色 */</span>
+
+<span class="c">/* 只会把 p 包含的所有元素的文本变成红色 */</span>
+<span class="nt">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">{</span><span class="k">color</span><span class="p">:</span><span class="kc">red</span><span class="p">;}</span>
+
+<span class="c">/* 构成非子选择符 */</span>
+<span class="nt">section</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nt">a</span><span class="w"> </span><span class="p">{</span><span class="k">font-size</span><span class="p">:</span><span class="mf">1.3</span><span class="kt">em</span><span class="p">;}</span>
+<span class="c">/* 任何是 section 孙子元素，而非子元素的 a 标签都会被选中. */</span>
+</code></pre></div>
+<p><strong>总之，只有一个标签名的选择符会选中页面中所有相同标签的实例。而通过上下文选择符，则可以指定标签必须具备相应的祖先或同胞。</strong></p>
+<h2 id="id">ID 和类选择符</h2>
+<p>在 HTML 标记中为元素添加了 id 和 class 属性，就可以在 CSS 选择符中使用ID 和类名，直接选中文档中特定的区域</p>
+<p><strong>类属性</strong></p>
+<p>类属性就是 HTML 元素的 class 属性，body 标签中包含的任何 HTML 元素都可以添加这个属性.</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">h1</span> <span class="na">class</span><span class="o">=</span><span class="s">"specialtext"</span><span class="p">&gt;</span>This is a heading with the <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>same class<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+    as the second paragraph.<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>This tag has no class.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">"specialtext"</span><span class="p">&gt;</span> When a tag has a class attribute, you can target it
+    <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>regardless<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span> of its position in the hierarchy.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</code></pre></div>
+<p><strong>类选择符</strong></p>
+<p>.类名 , 类选择符前面是点（.），紧跟着类名，两者之间没有空格</p>
+<div class="highlight"><pre><span></span><code><span class="p">.</span><span class="nc">specialtext</span><span class="w"> </span><span class="p">{</span><span class="k">font-style</span><span class="p">:</span><span class="kc">italic</span><span class="p">;}</span>
+</code></pre></div>
+<p><strong>标签带类选择符</strong></p>
+<p>标签名.类名 ，</p>
+<div class="highlight"><pre><span></span><code><span class="nt">p</span><span class="p">.</span><span class="nc">specialtext</span><span class="w"> </span><span class="p">{</span><span class="k">color</span><span class="p">:</span><span class="kc">red</span><span class="p">;}</span>
+<span class="nt">p</span><span class="p">.</span><span class="nc">specialtext</span><span class="w"> </span><span class="nt">span</span><span class="w"> </span><span class="p">{</span><span class="k">font-weight</span><span class="p">:</span><span class="kc">bold</span><span class="p">;}</span>
+</code></pre></div>
+<p><strong>多类选择符</strong></p>
+<p>.类名.类名(等等) ，同时选择存在多个类名的选择</p>
+<div class="highlight"><pre><span></span><code><span class="p">.</span><span class="nc">specialtext</span><span class="p">.</span><span class="nc">featured</span><span class="w"> </span><span class="p">{</span><span class="k">font-size</span><span class="p">:</span><span class="mi">120</span><span class="kt">%</span><span class="p">;}</span>
+</code></pre></div>
+<p><strong>ID属性</strong></p>
+<p>ID 与类的写法相似，而且表示 ID 选择符的#（井号）的用法，也跟表示类选择符的.（句号）类似</p>
+<p>ID选择符号用“#”号. 其他的用法与类选择符类似（基本上一致）.</p>
+<p>两者区别:</p>
+<ul>
+<li>ID 也可以用在页内导航链接中. (锚点)</li>
+<li>暂时不知道某个 href 应该放什么 URL，也可以用#作为占位符，但不能把该属性留空。</li>
+</ul>
+<h2 id="id_1">什么时候用ID，什么时候用类</h2>
+<p>ID 的用途是在页面中唯一地标识一个元素。【同一个页面中的每一个 ID属性，都必须有独一无二的值（名字）。（每个 ID 名在页面中都只能用一次。）】</p>
+<p><strong>ID 值的唯一性对 JavaScript 尤其重要，否则就会导致 JavaScript 行为异常。</strong></p>
+<p>类的目的是为了标识一组具有相同特征的元素。</p>
+<p>比如：</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">nav</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">li</span> <span class="na">class</span><span class="o">=</span><span class="s">"boy"</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">"#"</span><span class="p">&gt;</span>Alan<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">li</span> <span class="na">class</span><span class="o">=</span><span class="s">"boy"</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">"#"</span><span class="p">&gt;</span>Andrew<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">li</span> <span class="na">class</span><span class="o">=</span><span class="s">"girl"</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">"#"</span><span class="p">&gt;</span>Angela<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">li</span> <span class="na">class</span><span class="o">=</span><span class="s">"boy"</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">"#"</span><span class="p">&gt;</span>Angus<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">li</span> <span class="na">class</span><span class="o">=</span><span class="s">"girl"</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">"#"</span><span class="p">&gt;</span>Anne<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">li</span> <span class="na">class</span><span class="o">=</span><span class="s">"girl"</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">"#"</span><span class="p">&gt;</span>Annette<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+ <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="p">.</span><span class="nc">boy</span><span class="w"> </span><span class="nt">a</span><span class="w"> </span><span class="p">{</span><span class="k">color</span><span class="p">:</span><span class="mh">#6CF</span><span class="p">;}</span><span class="c">/*蓝色*/</span>
+<span class="p">.</span><span class="nc">girl</span><span class="w"> </span><span class="nt">a</span><span class="w"> </span><span class="p">{</span><span class="k">color</span><span class="p">:</span><span class="mh">#F9C</span><span class="p">;}</span><span class="c">/*粉红色*/</span>
+</code></pre></div>
+<p><strong>不要乱用类</strong></p>
+<ul>
+<li>要避免 Web 开发专家 Jeffrey Zeldman 说的“类泛滥——标记中的麻疹”出现。</li>
+<li>什么意思呢？就是说你不要像使用 ID 一样，每个类都指定一个不同的类名，然后再为每个类编写规则。</li>
+<li>如果你确实有这种随意使用类的习惯，那说明你可能像大多数对 CSS 充满激情的初学者一样，还不了解继承和上下文选择符的作用。</li>
+<li>于是，你可能会给每个标签都重复写同样的样式（比如为页面中很多标签分别指定相同的字体）。</li>
+<li>实际上，继承和上下文选择符能让不同的标签共享样式，从而降低你需要编写和维护的 CSS 量。</li>
+</ul>
+<p><strong>小结</strong></p>
+<ol>
+<li>ID 的用途是在页面标记中唯一地标识一个特定的元素。它能够为我们编写 CSS 规则提供必要的上下文，排除无关的标记，而只选择该上下文中的标签.</li>
+<li>类是可以应用给任意多个页面中的任意多个 HTML 元素的公共标识符，以便我们为这些元素应用相同的 CSS 样式。而且，使用类也让为不同标签名的元素应用相同的样式成为可能。</li>
+</ol>
+<h3 id="_4">属性选择符</h3>
+<p>基于 HTML 标签的属性选择元素。</p>
+<p><strong>属性名选择符</strong></p>
+<p>标签名[属性名] ， 选择任何带有属性名的标签名。</p>
+<div class="highlight"><pre><span></span><code><span class="c">/* 带有 title 属性的 img 元素显示 2 像素宽的蓝色边框 */</span>
+<span class="nt">img</span><span class="o">[</span><span class="nt">title</span><span class="o">]</span><span class="w"> </span><span class="p">{</span><span class="k">border</span><span class="p">:</span><span class="mi">2</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="kc">blue</span><span class="p">;}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">"images/yellow_flower.jpg"</span> <span class="na">title</span><span class="o">=</span><span class="s">"yellow flower"</span> <span class="na">alt</span><span class="o">=</span><span class="s">"yellow flower"</span> <span class="p">/&gt;</span>
+<span class="cm">&lt;!--</span>
+<span class="cm">alt 属性中的文本会在图片因故未能加载时显示，或者由屏幕阅读器朗读出来.</span>
+<span class="cm">title 属性会在用户鼠标移动到图片上时，显示一个包含相应文本的提示.</span>
+<span class="cm">--&gt;</span>
+</code></pre></div>
+<p><strong>属性值选择符</strong></p>
+<p>标签名[属性名="属性值"] , 选择任何带有值为属性值的属性名的标签名。 [在 HTML5 中，属性值的引号可加可不加]</p>
+<div class="highlight"><pre><span></span><code><span class="c">/* 在图片的 title 属性值为 red flower 的情况下，才会为图片添加边框 */</span>
+<span class="nt">img</span><span class="o">[</span><span class="nt">title</span><span class="o">=</span><span class="s2">"red flower"</span><span class="o">]</span><span class="w"> </span><span class="p">{</span><span class="k">border</span><span class="p">:</span><span class="mi">4</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="kc">green</span><span class="p">;}</span>
+</code></pre></div>
+<p>更多属性选择符<a href="http://www.stylinwithcss.com/resources_css_selectors.php">resources_css_selectors</a>:</p>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Meaning</th>
+<th>Described in Section</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E[foo]</td>
+<td>An E element with a “foo” attribute</td>
+<td><a href="http://www.w3.org/TR/selectors/#attribute-selectors">Attribute selectors</a></td>
+</tr>
+<tr>
+<td>E[foo="bar"]</td>
+<td>An E element whose “foo” attribute value is exactly equal to “bar”</td>
+<td><a href="http://www.w3.org/TR/selectors/#attribute-selectors">Attribute selectors</a></td>
+</tr>
+<tr>
+<td>E[foo~="bar"]</td>
+<td>An E element whose “foo” attribute value is a list of whitespace-separated values, one of which is exactly equal to “bar”</td>
+<td><a href="http://www.w3.org/TR/selectors/#attribute-selectors">Attribute selectors</a></td>
+</tr>
+<tr>
+<td>E[foo^="bar"]</td>
+<td>An E element whose “foo” attribute value begins exactly with the string “bar”</td>
+<td><a href="http://www.w3.org/TR/selectors/#attribute-selectors">Attribute selectors</a></td>
+</tr>
+<tr>
+<td>E[foo$="bar"]</td>
+<td>An E element whose “foo” attribute value ends exactly with the string “bar”</td>
+<td><a href="http://www.w3.org/TR/selectors/#attribute-selectors">Attribute selectors</a></td>
+</tr>
+<tr>
+<td>E[foo*="bar"]</td>
+<td>An E element whose “foo” attribute value contains the substring “bar”</td>
+<td><a href="http://www.w3.org/TR/selectors/#attribute-selectors">Attribute selectors</a></td>
+</tr>
+<tr>
+<td>E[foo|="en"]</td>
+<td>An E element whose “foo” attribute has a hyphen-separated list of values beginning (from the left) with “en”</td>
+<td><a href="http://www.w3.org/TR/selectors/#attribute-selectors">Attribute selectors</a></td>
+</tr>
+</tbody>
+</table>
+<p>基于属性名和属性的其他特征选择元素，为我们提供了另一种区别对待相同标签的机会。只要事先规划好，就可以编写出适合属性选择符的标记来.</p>
+<h2 id="_5">伪类</h2>
+<p>伪类这个叫法源自它们与类相似，但实际上并没有类会附加到标记中的标签上。</p>
+<p>伪类分两种:</p>
+<ul>
+<li>UI（User Interface，用户界面）伪类 会在 HTML 元素处于某个状态时（比如鼠标指针位于链接上），为该元素应用 CSS 样式。</li>
+<li>结构化伪类 会在标记中存在某种结构上的关系时（如某个元素是一组元素中的第一个或最后一个），为相应元素应用 CSS 样式。</li>
+</ul>
+<h3 id="ui">UI伪类</h3>
+<p><strong>链接伪类</strong></p>
+<p>4种状态:</p>
+<ul>
+<li>Link。此时，链接就在那儿等着用户点击。</li>
+<li>Visited。用户此前点击过这个链接。</li>
+<li>Hover。鼠标指针正悬停在链接上。</li>
+<li>Active。链接正在被点击（鼠标在元素上按下，还没有释放）。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nt">a</span><span class="p">:</span><span class="nd">link</span><span class="w"> </span><span class="p">{</span><span class="k">color</span><span class="p">:</span><span class="kc">black</span><span class="p">;}</span>
+<span class="nt">a</span><span class="p">:</span><span class="nd">visited</span><span class="w"> </span><span class="p">{</span><span class="k">color</span><span class="p">:</span><span class="kc">gray</span><span class="p">;}</span>
+<span class="nt">a</span><span class="p">:</span><span class="nd">hover</span><span class="w"> </span><span class="p">{</span><span class="k">text-decoration</span><span class="p">:</span><span class="kc">none</span><span class="p">;}</span>
+<span class="nt">a</span><span class="p">:</span><span class="nd">active</span><span class="w"> </span><span class="p">{</span><span class="k">color</span><span class="p">:</span><span class="kc">red</span><span class="p">;}</span>
+</code></pre></div>
+<p>这 4 个伪类的特指度（本章后面再讨论特指度）相同，如果不按照这里列出的顺序使用它们，浏览器可能不会显示预期结果.</p>
+<p>为了好记,建议可以这么想：“LoVe? HA!” 大写字母就是每个伪类的头一个字母。</p>
+<p>通过在上下文选择符中使用链接伪类，可以轻易地为 nav、footer、aside 和 article 元素中的链接应用不同的外观和行为。</p>
+<p><strong>一个冒号（:）表示伪类，两个冒号（::）表示 CSS3 新增的伪元素。</strong>
+<strong>这些单冒号的伪元素最终可能都会被淘汰掉，参考<a href="https://www.w3.org/TR/2005/WD-css3-selectors-20051215/#pseudo-elements">pseudo-elements</a></strong></p>
+<p>有些伪类可以用于任何元素，而不仅仅是 a 元素。</p>
+<p>比如:</p>
+<div class="highlight"><pre><span></span><code><span class="c">/* 段落背景在鼠标悬停时变成灰色 */</span>
+<span class="nt">p</span><span class="p">:</span><span class="nd">hover</span><span class="w"> </span><span class="p">{</span><span class="k">background-color</span><span class="p">:</span><span class="kc">gray</span><span class="p">;}</span>
+</code></pre></div>
+<p><strong>:focus 伪类</strong></p>
+<p>获得焦点时应用的伪类。</p>
+<div class="highlight"><pre><span></span><code><span class="c">/* 光标位于 input 字段中时，为该字段添加一个蓝色边框 */</span>
+<span class="nt">input</span><span class="p">:</span><span class="nd">focus</span><span class="w"> </span><span class="p">{</span><span class="k">border</span><span class="p">:</span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="kc">blue</span><span class="p">;}</span>
+</code></pre></div>
+<p><strong>:target 伪类</strong></p>
+<p>如果用户点击一个指向页面中其他元素的链接，则那个元素就是目标（target），可以用:target 伪类选中它。</p>
+<p>比如：</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">"#more_info"</span><span class="p">&gt;</span>More Information<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h2</span> <span class="na">id</span><span class="o">=</span><span class="s">"more_info"</span><span class="p">&gt;</span>This is the information you are looking for.<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="c">/* 在用户单击链接转向 ID 为 more_info 的元素时，为该元素添加浅灰色背景 */</span>
+<span class="p">#</span><span class="nn">more_info</span><span class="p">:</span><span class="nd">target</span><span class="w"> </span><span class="p">{</span><span class="k">background</span><span class="p">:</span><span class="mh">#eee</span><span class="p">;}</span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</code></pre></div>
+<h3 id="_6">结构化伪类</h3>
+<p>e:first-child, 代表一组同胞元素中的第一个元素</p>
+<p>e:last-child,  代表一组同胞元素中的最后一个元素.</p>
+<p>e:nth-child(n), n 表示一个数值（也可以使用 odd 或 even）</p>
+<div class="highlight"><pre><span></span><code><span class="nt">li</span><span class="p">:</span><span class="nd">nth-child</span><span class="o">(</span><span class="nt">3</span><span class="o">)</span><span class="w">  </span><span class="c">/* 选择一组列表项中的每个第三项 */</span>
+</code></pre></div>
+<p>更多选择器信息参考<a href="http://www.stylinwithcss.com/resources_css_selectors.php">css_selectors</a></p>
+<h3 id="_7">伪元素</h3>
+<p>e::first-letter , 选择e标签的首个字符</p>
+<div class="highlight"><pre><span></span><code><span class="nt">p</span><span class="p">::</span><span class="nd">first-letter</span><span class="w"> </span><span class="p">{</span><span class="k">font-size</span><span class="p">:</span><span class="mi">300</span><span class="kt">%</span><span class="p">;}</span><span class="w">   </span><span class="c">/* 首字符放大效果 */</span>
+</code></pre></div>
+<p>e::first-line , 选择e标签下的第一行</p>
+<div class="highlight"><pre><span></span><code><span class="nt">p</span><span class="p">::</span><span class="nd">first-line</span><span class="w"> </span><span class="p">{</span><span class="k">font-variant</span><span class="p">:</span><span class="kc">small-caps</span><span class="p">;}</span><span class="w">  </span><span class="c">/* 第一行以小型大写字母显示 */</span>
+</code></pre></div>
+<p>e::before , 在特定元素前面添加特殊内容
+e::after  , 在特定元素后面添加特殊内容</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">"age"</span><span class="p">&gt;</span>25<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="nt">p</span><span class="p">.</span><span class="nc">age</span><span class="p">::</span><span class="nd">before</span><span class="w"> </span><span class="p">{</span><span class="k">content</span><span class="p">:</span><span class="s2">"Age: "</span><span class="p">;}</span>
+<span class="nt">p</span><span class="p">.</span><span class="nc">age</span><span class="p">::</span><span class="nd">after</span><span class="w"> </span><span class="p">{</span><span class="k">content</span><span class="p">:</span><span class="s2">" years."</span><span class="p">;}</span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+
+<span class="cm">&lt;!-- Age: 25 years. --&gt;</span>
+</code></pre></div>
+<h2 id="_8">继承</h2>
+<p>CSS 中的祖先元素会向后代传递一样东西：CSS 属性的值.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">body</span><span class="w"> </span><span class="p">{</span><span class="k">font-family</span><span class="p">:</span><span class="n">helvetica</span><span class="p">,</span><span class="w"> </span><span class="n">arial</span><span class="p">,</span><span class="w"> </span><span class="kc">sans-serif</span><span class="p">;}</span>
+</code></pre></div>
+<p>文档中的所有元素，无论它在层次结构中多么靠下，都将继承这些样式</p>
+<p>也有很多 CSS 属性不能继承，因为继承这些属性没有意义,比如：边框、外边距、内边距。</p>
+<h2 id="_9">层叠</h2>
+<p>层叠，就是层叠样式表中的层叠，是一种样式在文档层次中逐层叠加的过程，目的是让浏览器面对某个标签特定属性值的多个来源，确定最终使用哪个值。</p>
+<h3 id="_10">样式来源</h3>
+<p>浏览器层叠各个来源样式的顺序：</p>
+<ol>
+<li>浏览器默认样式表</li>
+<li>用户样式表</li>
+<li>作者链接样式表（按照它们链接到页面的先后顺序）</li>
+<li>作者嵌入样式</li>
+<li>作者行内样式</li>
+</ol>
+<p>浏览器会按照上述顺序依次检查每个来源的样式，并在有定义的情况下，更新对每个标签属性值的设定。</p>
+<p>整个检查更新过程结束后，再将每个标签以最终设定的样式显示出来。</p>
+<h3 id="_11">层叠规则</h3>
+<p>层叠规则文档:<a href="https://www.w3.org/TR/CSS2/cascade.html">cascade</a></p>
+<ul>
+<li><strong>层叠规则一</strong>：找到应用给每个元素和属性的所有声明。</li>
+<li>浏览器在加载每个页面时，都会据此查到每一条 CSS 规则，标识出所有受到影响的 HTML 元素。</li>
+<li><strong>层叠规则二</strong>：按照顺序和权重排序。</li>
+<li>浏览器依次检查 5 个来源，并设定匹配的属性。</li>
+<li>如果匹配的属性在下一个来源也有定义，则更新该属性的值，如此循环，直到检查完页面中所有标签受影响属性的全部 5 个来源为止。</li>
+<li>最终某个属性被设定成什么值，就用什么值来显示。</li>
+<li><strong>层叠规则三</strong>：按特指度排序。</li>
+<li>除了有点拗口之外，特指度（specificity）其实表示一条规则有多明确。</li>
+<li>如果没有特指度的考量，那为了让恰当的样式起作用，恐怕就免不了要频繁变换样式表中规则的顺序了。</li>
+<li><strong>层叠规则四</strong>：顺序决定权重。</li>
+<li>如果两条规则都影响某元素的同一个属性，而且它们的特指度也相同，则位置最靠下（或后声明）的规则胜出。</li>
+</ul>
+<p><strong>类名选择符比普通的标签选择符具有更高的特指度。一条规则的特指度，由它的选择符中包含多少个标签、类名和 ID 决定。</strong></p>
+<h3 id="_12">计算特指度</h3>
+<p>公式: I-C-E , 短横线是分隔符，并非减号</p>
+<p>ICE 并非真正的三位数，只不过大多情况下把结果看成一个三位数没有问题，三位数最大的胜出。
+但是，千万得知道 0-1-12 与 0-2-0 相比，仍然是 0-2-0 的特指度更高。</p>
+<p>计分办法:</p>
+<ol>
+<li>选择符中有一个 ID，就在 I 的位置上加 1；</li>
+<li>选择符中有一个类，就在 C 的位置上加 1；</li>
+<li>选择符中有一个元素（标签）名，就在 E 的位置上加 1；</li>
+<li>得到一个三位数。</li>
+</ol>
+<p>例子:</p>
+<div class="highlight"><pre><span></span><code>P                               0-0-1 特指度=1
+p.largetext                     0-1-1 特指度=11
+p#largetext                     1-0-1 特指度=101
+body p#largetext                1-0-2 特指度=102
+body p#largetext ul.mylist      1-1-3 特指度=113
+body p#largetext ul.mylist li   1-1-4 特指度=114
+</code></pre></div>
+<p><strong>简单层叠要点:</strong></p>
+<ul>
+<li><strong>规则一</strong>：包含 ID 的选择符胜过包含类的选择符，包含类的选择符胜过包含标签名的选择符。</li>
+<li><strong>规则二</strong>：如果几个不同来源都为同一个标签的同一个属性定义了样式，行内样式胜过嵌入样式，嵌入样式胜过链接样式。在链接的样式表中，具有相同特指度的样式，后声明的胜过先声明的。</li>
+<li><strong>规则三</strong>：设定的样式胜过继承的样式，此时不用考虑特指度（即显式设定优先）。</li>
+</ul>
+<h2 id="_13">规则声明</h2>
+<p>每个元素都有很多属性，可以通过 CSS 来设定。但每个元素具体有哪些属性，也会因元素而异。</p>
+<p>CSS 属性值主要分三类。</p>
+<ul>
+<li>文本值。</li>
+<li>例如，font-weight:bold 声明中的 bold 就一个文本值。文本值也叫做关键字。</li>
+<li>数字值。数字值后面都有一个单位，比如英寸或点。</li>
+<li>例如。在声明 font-size:12px 中，12是数字值，而 px 是单位（像素）。如果数字值为 0，那么就不用带单位了。</li>
+<li>颜色值。颜色值可以用几种不同的格式来写，</li>
+<li>RGB（Red, Green, Blue，红绿蓝）</li>
+<li>HSL（Hue, Saturation, Luminance，色相，饱和度，亮度）</li>
+<li>十六进制值（例如color:#336699）</li>
+</ul>
+<h3 id="_14">文本值</h3>
+<p>所有 CSS 属性都有文本值</p>
+<ul>
+<li>visibility 属性有 visible 和 hidden 值</li>
+<li>border-style 属性有 solid、 dashed 以及 inset 值</li>
+</ul>
+<p>等等.</p>
+<h3 id="_15">数字值</h3>
+<p>数字值用于描述元素的各种长度（高度、宽度、粗细，等等）。数字值主要分两类：绝对值和相对值。</p>
+<p>绝对值及示例:</p>
+<table>
+<thead>
+<tr>
+<th>绝对值</th>
+<th>单位缩写</th>
+<th>示 例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>英寸</td>
+<td>in</td>
+<td>height:6in</td>
+</tr>
+<tr>
+<td>厘米</td>
+<td>cm</td>
+<td>height:40cm</td>
+</tr>
+<tr>
+<td>毫米</td>
+<td>mm</td>
+<td>height:500mm</td>
+</tr>
+<tr>
+<td>点</td>
+<td>pt</td>
+<td>height:60pt</td>
+</tr>
+<tr>
+<td>皮卡</td>
+<td>pc</td>
+<td>height:90pc</td>
+</tr>
+<tr>
+<td>像素</td>
+<td>px</td>
+<td>height:72px</td>
+</tr>
+</tbody>
+</table>
+<p>相对值及示例:</p>
+<table>
+<thead>
+<tr>
+<th>相对值</th>
+<th>单位缩写</th>
+<th>示 例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Em</td>
+<td>em</td>
+<td>height:1.2em</td>
+</tr>
+<tr>
+<td>Ex</td>
+<td>ex</td>
+<td>height:6ex</td>
+</tr>
+<tr>
+<td>百分比</td>
+<td>%</td>
+<td>height:120%</td>
+</tr>
+</tbody>
+</table>
+<p>em 和 ex 都是字体大小的单位，但在 CSS 中，它们作为长度单位适用于任何元素。</p>
+<p>em ，它表示一种字体中字母 M 的宽度，它具体大小取决于使用的字体。</p>
+<p>ex ，等于给定字体中字母 x 的高度（小写字母 x 代表一种字体的字母中间部分的高度，不包括字母上、下突出的部分——如 d 和 p 上下都出头儿).</p>
+<p>百分比非常适合设定被包含元素的宽度，此时的百分比就是相对于宽度而言的</p>
+<h3 id="_16">颜色值</h3>
+<p><strong>颜色名</strong></p>
+<p>如 red</p>
+<p>W3C 定义了 16 个颜色关键字:</p>
+<p>aqua（浅绿色）、black（黑色）、blue（蓝色）、 fuchsia（紫红色）、
+gray（灰色）、green（绿色）、lime（黄绿色）、 maroon（褐红色）、
+navy（深蓝色）、olive（茶青色 ）、purple（紫色）、red（红色）、
+silver（银色）、teal（青色）、white（白色）和 yellow（黄色）</p>
+<p>参考官网<a href="https://www.w3.org/TR/css3-color/#html4">RGB颜色值</a></p>
+<p>更多杂颜色名:<a href="https://en.wikipedia.org/wiki/X11_color_names">X11 color names</a></p>
+<p><strong>十六进制颜色</strong></p>
+<p>#RRGGBB 或 #RGB ,以 # 开头. 前两位定义红色，中间两位定义绿色，后两位定义蓝色</p>
+<p>由于每种颜色用两位十六进制值表示，因此该颜色就有 256（16×16）种可能的值，
+结果就是 16 777 216（256×256×256）种组合，也就是可以表示那么多种颜色。</p>
+<p>比如：橙色（#ff8800）、纯红色（#ff0000），纯绿色（#00ff00），纯蓝色（#0000ff）。</p>
+<p>如果三对值中的每一对是两个相同的数字，也可以使用简写形式：#rgb</p>
+<p>比如：纯红色（#f00），纯绿色（#0f0），纯蓝色（#00f）。</p>
+<div class="admonition info">
+<p>大多数十六进制颜色值不仔细分析可不容易猜，比如#7ca9be 是深蓝绿色，我怎么知道的？ 首先我们来看每一对 rgb 值中的第一个值，也就是 7、a、b。蓝色和绿色值相差无几，而红色值也没有那么深。有了这些信息，就可以大致猜出这个颜色了，对，是蓝绿色。</p>
+</div>
+<p><strong>RGB 颜色值</strong></p>
+<p>rgb(R,G,B),每种颜色都可以用一个 0 到 255（包含）之间的值指定.</p>
+<p>比如，rgb(0,255,0)表示纯绿色。与十六进制 RGB 值一样，只不过使用的是十进制的数值。</p>
+<p><strong>RGB 百分比值</strong></p>
+<p>r%, g%, b% , 用百分比来表示每种颜色值的一种方法,可以接受的值是 0%到 100%,这种方法只能表示区区一百万（100 × 100 ×100）种颜色</p>
+<p>比如：100%, 0%, 0%是纯红色，0%, 100%, 0%是纯绿色，而 46%, 76%, 80%接近
+前面用十六进制值作例子分析的深蓝绿色</p>
+<p><strong>HSL</strong></p>
+<p>HSL 格式：HSL(0,0%,0%) ，色相, 饱和度%, 亮度%</p>
+<p>红色是 0 或 360，青色是与之相对的 180。</p>
+<ul>
+<li>红：0</li>
+<li>橙：35</li>
+<li>黄：60</li>
+<li>绿：125</li>
+<li>蓝：230</li>
+<li>靛：280</li>
+<li>紫：305</li>
+</ul>
+<p>饱和度设定有多少颜色，灰色的饱和度低，而强烈的色彩饱和度高。</p>
+<p>亮度设定颜色的明暗，0%就是黑色，100%就是白色，</p>
+<p>中间的值是实际能看到的色相。</p>
+<p><strong>Alpha 通道</strong></p>
+<p>RGB 和 HSL 都支持 Alpha 通道，用于设置颜色的不透明度（能够透过多少背景）</p>
+<p>相应的格式分别叫 RGBA 和 HSLA。
+其中，两种格式中的 A（alpha）值可以是 1（完全不透明）也可以是 0（完全透明），
+或者介于 1 和 0 之间的小数值</p>
+<p>颜色资料:</p>
+<ul>
+<li><a href="http://colrd.com/">Colrd</a>,一个 Pinterest 风格的站点，其中有很多能启发人创造力的图片和照片，以及相应的调色板。</li>
+<li><a href="http://kuler.com">Adobe Kuler</a>,Adobe Kuler 的官方站点提供了数千种色样、调色板创建工具，以及其他人正在选用的时尚颜色。</li>
+</ul>
+<hr/>
+<div class="md-source-file">
+<small>
+    
+      最后更新:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2023年2月27日</span>
+<br/>
+        创建日期:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2023年2月27日</span>
+</small>
+</div>
+</article>
+</div>
+</div>
+<a class="md-top md-icon" data-md-component="top" hidden="" href="#">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
+            回到页面顶部
+          </a>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "..", "features": ["navigation.top", "toc.follow"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+<script src="../assets/javascripts/bundle.2a6f1dda.min.js"></script>
+<script src="../javascripts/mathjax.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>
