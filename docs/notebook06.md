@@ -1,30 +1,16 @@
 
-## 界面组建
-
-- [导航菜单](#导航菜单)
-  - [纵向菜单](#纵向菜单)
-  - [横向菜单](#横向菜单)
-  - [下拉菜单](#下拉菜单)
-- [表单](#表单)
-  - [HTML表单元素](#HTML表单元素)
-  - [表单标记策略](#表单标记策略)
-  - [设定表单样式](#设定表单样式)
-  - [设计搜索表单](#设计搜索表单)
-- [弹出层](#弹出层)
-  - [堆叠上下文和z-index](#堆叠上下文和zindex)
-  - [用CSS创造三角形](#堆叠上下文和)
-
+# 界面组建
 
 <span id="导航菜单"></span>
 
-### 导航菜单
+## 导航菜单
 
 菜单由一组链接组成。
 用 HTML 中的列表元素（ul 或 ol）来分组链接不仅符合逻辑，而且即使没有额外的 CSS 也能适当显示链接的层次。默认列表项（li）是块级元素，因此它们会上下堆叠。
 
 <span id="纵向菜单"></span>
 
-#### 纵向菜单
+### 纵向菜单
 
 **标签**：
 
@@ -87,7 +73,7 @@ nav {
 }
 ```
 
-![菜单1](img/菜单1.png)
+![菜单1](./imgs/菜单1.png)
 
 **“非首位子元素”选择符** ： 如：`li+li` ， 对于连续的元素，这样，就可以给除第一个 元素 之外的所有元素设定相同的样式。
 
@@ -123,11 +109,11 @@ li:first-child {
           font-weight:400; color:#000; background:#ffed53;}
 ```
 
-![菜单2](img/菜单2.png) ![菜单3](img/菜单3.png)
+![菜单2](./imgs/菜单2.png) ![菜单3](./imgs/菜单3.png)
 
 <span id="横向菜单"></span>
 
-#### 横向菜单
+### 横向菜单
 
 默认情况下，列表项是垂直堆叠在一起的。不过，要把它们变成水平排列的横向菜单。方法是浮动列表项。
 
@@ -174,7 +160,7 @@ li:first-child {
 }
 ```
 
-![菜单4](img/菜单4.png)
+![菜单4](./imgs/菜单4.png)
 
 这个水平菜单很常见,很多时尚的零售网店都有它们的身影。
 
@@ -183,40 +169,40 @@ li:first-child {
 
 <span id="下拉菜单"></span>
 
-#### 下拉菜单
+### 下拉菜单
 
 下拉菜单是以一组嵌套列表为基础，综合运用刚刚学到的纵向和横向菜单的CSS 技术创建的。
 
-![菜单5](img/菜单5.png)
+![菜单5](./imgs/菜单5.png)
 
 ```html
 <nav class="multi_drop_menu">
-	<!-- 一级开始 -->
-	<ul>
-		<li><a href="#">Power</a></li>
-		<li><a href="#">Money</a></li>
-		<li><a href="#">Love</a></li>
-		<li><a href="#">Fame</a>
-			<!-- 二级开始 -->
-			<ul>
-				<li><a href="#">Sports Star</a></li>
-				<li><a href="#">Movie Star</a></li>
-				<li><a href="#">Rock Star</a>
-					<!-- 三级开始 -->
-					<ul>
-						<li><a href="#">Bruce Springsteen</a></li>
-						<li><a href="#">Bono</a></li>
-						<li><a href="#">Mick Jagger</a></li>
-						<li><a href="#">Bob Dylan</a></li>
-					</ul>
-					<!-- 三级结束 -->
-				</li>
-				<li><a href="#">Web Designer</a></li>
-			</ul>
-			<!-- 二级结束 -->
-		</li>
-	</ul>
-	<!-- 一级结束 -->
+ <!-- 一级开始 -->
+ <ul>
+  <li><a href="#">Power</a></li>
+  <li><a href="#">Money</a></li>
+  <li><a href="#">Love</a></li>
+  <li><a href="#">Fame</a>
+   <!-- 二级开始 -->
+   <ul>
+    <li><a href="#">Sports Star</a></li>
+    <li><a href="#">Movie Star</a></li>
+    <li><a href="#">Rock Star</a>
+     <!-- 三级开始 -->
+     <ul>
+      <li><a href="#">Bruce Springsteen</a></li>
+      <li><a href="#">Bono</a></li>
+      <li><a href="#">Mick Jagger</a></li>
+      <li><a href="#">Bob Dylan</a></li>
+     </ul>
+     <!-- 三级结束 -->
+    </li>
+    <li><a href="#">Web Designer</a></li>
+   </ul>
+   <!-- 二级结束 -->
+  </li>
+ </ul>
+ <!-- 一级结束 -->
 </nav>
 ```
 
@@ -305,7 +291,7 @@ li:first-child {
 /*添加功能样式 结束 */
 ```
 
-![菜单6](img/菜单6.png)
+![菜单6](./imgs/菜单6.png)
 
 对于CSS的样式，首先要注意把菜单的`视觉样式`与`功能样式`分开来写。
 
@@ -392,7 +378,7 @@ background-clip 和透明边框的更多用法 ： [css-tricks](https://css-tric
 }
 ```
 
-![菜单7](img/菜单7.png)
+![菜单7](./imgs/菜单7.png)
 
 二级下拉菜单显示在其父菜单项下方
 
@@ -422,7 +408,7 @@ background-clip 和透明边框的更多用法 ： [css-tricks](https://css-tric
 }
 ```
 
-![菜单8](img/菜单8.png)
+![菜单8](./imgs/菜单8.png)
 
 让菜单起作用的关键在于先把它藏起来：
 
@@ -450,7 +436,7 @@ li:hover > ul {display:block;}
 
 这时候三级菜单已经算是能用了。只不过位置不对。
 
-![菜单9](img/菜单9.png)
+![菜单9](./imgs/菜单9.png)
 
 由于前面包含:hover 的 CSS 规则会像应用给二级菜单一样，应用给三级菜单，所以在父元素处于鼠标之下时，三级菜单自然也会显示出来。
 
@@ -515,7 +501,7 @@ li:hover > ul {display:block;}
 }
 ```
 
-![菜单10](img/菜单10.png)
+![菜单10](./imgs/菜单10.png)
 
 为了让菜单恢复默认的堆叠状态，这里重置了顶级 li 元素及其父元素 ul 的浮动属性，后者原来浮动是为了包围浮动的 li 元素。
 
@@ -523,7 +509,7 @@ li:hover > ul {display:block;}
 
 **突出显示选择路径**
 
-![菜单11](img/菜单11.png)
+![菜单11](./imgs/菜单11.png)
 
 只有位于鼠标下方的元素才会突出显示。为了让用户明确地知道自己是怎么一路选择下来的，还需要让每一级菜单中被选择的元素突出显示。
 实际上只要把 `.multi_drop_menu a:hover` 替换成以下 CSS 即可。
@@ -545,7 +531,7 @@ li:hover > ul {display:block;}
 
 <span id="表单"></span>
 
-### 表单
+## 表单
 
 表单与其他页面元素的作用不同。
 
@@ -560,7 +546,7 @@ li:hover > ul {display:block;}
 
 <span id="HTML表单元素"></span>
 
-#### HTML表单元素
+### HTML表单元素
 
 **HTML5表单**
 
@@ -574,93 +560,93 @@ HTML5 为 input 元素新增了 13 种新类型（type 属性），也对表单�
 ```html
 <!-- 必要的 form 标签 -->
 <form class="stylin_form1" action="process_form.php" method="post">
-	<h3>A Stylin' Form</h3>
-	<!-- 控件组，即各种控件的容器 -->
-	<fieldset>
-		<!-- 控件组的文字说明，或标题 -->
-		<legend><span>Part 1 &#8226; Basic Controls</span></legend>
-		<!-- 开始单行文本输入控件 -->
-		<section>
-			<p class="note">* indicates required field</p>
-			<!-- for 属性把标注与控件关联起来，它的值必须与控件 ID 值相同 -->
-			<label for="user_name">User Name<span> *</span></label>
-			<!-- text 属性让这个控件可以输入文本 -->
-			<input type="text" id="user_name" name="user_name" />
-			<p>Please select a user name</p>
-		</section>
-		<!-- 开始密码控件 -->
-		<section>
-			<label for="password">Password<span> *</span></label>
-			<!-- 密码文本显示为掩码 -->
-			<input type="password" id="password" name="password" maxlength="20" />
-			<p>Password must be 8 or more characters</p>
-		</section>
-		<!-- 开始多行文本输入控件 -->
-		<section>
-			<label for="description">Description</label>
-			<textarea id="description" name="description" placeholder="Enter the description here."></textarea>
-		</section>
-		<!-- 开始 HTML5 日期控件 -->
-		<section>
-			<label for="description">Date</label>
-			<input type="date" id="special_date" name="event_date" min="2012-09-05" />
-		</section>
-	</fieldset>
-	<fieldset>
-		<legend><span>Part 2 &#8226; Multiple-Choice Controls</span></legend>
-		<!-- 开始复选框 -->
-		<section>
-			<h4>Select Any Number</h4>
-			<section>
-				<input type="checkbox" id="check1" name="checkset" value="1" tabindex="4" />
-				<label for="check1">Choice 1</label>
-			</section>
-			<section>
-				<input type="checkbox" checked="checked" id="check2" name="checkset" value="2" />
-				<label for="check2">Choice 2 is pre-checked</label>
-			</section>
-			<section>
-				<input type="checkbox" id="check3" name="checkset" value="3" />
-				<label for="check3">Choice 3&mdash;add as many as you need!</label>
-			</section>
-			<p>You must choose one or more</p>
-		</section>
-		<!-- 开始单选按钮 -->
-		<section>
-			<h4>Select Only One</h4>
-			<section>
-				<input checked="checked" id="radio1" name="radioset" type="radio" value="Choice_1" />
-				<label for="radio1">Choice 1 is pre-selected and shows the text wraps nicely if it goes to multiple lines.</label>
-			</section>
-			<section>
-				<input id="radio2" name="radioset" type="radio" value="Choice_2" />
-				<label for="radio2">Choice 2</label>
-			</section>
-			<section>
-				<input id="radio3" name="radioset" type="radio" value="Choice_3" />
-				<label for="radio3">Choice 3</label>
-			</section>
-		</section>
-		<!-- 开始选项列表（下拉列表） -->
-		<section>
-			<label for="select_choice">Select Your Choice</label>
-			<select id="select_choice" name="select_choice">
-			 <option value="0">None</option>
-			 <option value="1">Choice 1</option>
-			 <option value="2">Choice 2</option>
-			 <option value="3">Choice 3</option>
-			 <option value="4">Choice 4</option>
-			</select>
-		</section>
-	</fieldset>
-	<!-- 开始提交按钮 -->
-	<section>
-		<input type="submit" value="Submit This Form" />
-	</section>
+ <h3>A Stylin' Form</h3>
+ <!-- 控件组，即各种控件的容器 -->
+ <fieldset>
+  <!-- 控件组的文字说明，或标题 -->
+  <legend><span>Part 1 &#8226; Basic Controls</span></legend>
+  <!-- 开始单行文本输入控件 -->
+  <section>
+   <p class="note">* indicates required field</p>
+   <!-- for 属性把标注与控件关联起来，它的值必须与控件 ID 值相同 -->
+   <label for="user_name">User Name<span> *</span></label>
+   <!-- text 属性让这个控件可以输入文本 -->
+   <input type="text" id="user_name" name="user_name" />
+   <p>Please select a user name</p>
+  </section>
+  <!-- 开始密码控件 -->
+  <section>
+   <label for="password">Password<span> *</span></label>
+   <!-- 密码文本显示为掩码 -->
+   <input type="password" id="password" name="password" maxlength="20" />
+   <p>Password must be 8 or more characters</p>
+  </section>
+  <!-- 开始多行文本输入控件 -->
+  <section>
+   <label for="description">Description</label>
+   <textarea id="description" name="description" placeholder="Enter the description here."></textarea>
+  </section>
+  <!-- 开始 HTML5 日期控件 -->
+  <section>
+   <label for="description">Date</label>
+   <input type="date" id="special_date" name="event_date" min="2012-09-05" />
+  </section>
+ </fieldset>
+ <fieldset>
+  <legend><span>Part 2 &#8226; Multiple-Choice Controls</span></legend>
+  <!-- 开始复选框 -->
+  <section>
+   <h4>Select Any Number</h4>
+   <section>
+    <input type="checkbox" id="check1" name="checkset" value="1" tabindex="4" />
+    <label for="check1">Choice 1</label>
+   </section>
+   <section>
+    <input type="checkbox" checked="checked" id="check2" name="checkset" value="2" />
+    <label for="check2">Choice 2 is pre-checked</label>
+   </section>
+   <section>
+    <input type="checkbox" id="check3" name="checkset" value="3" />
+    <label for="check3">Choice 3&mdash;add as many as you need!</label>
+   </section>
+   <p>You must choose one or more</p>
+  </section>
+  <!-- 开始单选按钮 -->
+  <section>
+   <h4>Select Only One</h4>
+   <section>
+    <input checked="checked" id="radio1" name="radioset" type="radio" value="Choice_1" />
+    <label for="radio1">Choice 1 is pre-selected and shows the text wraps nicely if it goes to multiple lines.</label>
+   </section>
+   <section>
+    <input id="radio2" name="radioset" type="radio" value="Choice_2" />
+    <label for="radio2">Choice 2</label>
+   </section>
+   <section>
+    <input id="radio3" name="radioset" type="radio" value="Choice_3" />
+    <label for="radio3">Choice 3</label>
+   </section>
+  </section>
+  <!-- 开始选项列表（下拉列表） -->
+  <section>
+   <label for="select_choice">Select Your Choice</label>
+   <select id="select_choice" name="select_choice">
+    <option value="0">None</option>
+    <option value="1">Choice 1</option>
+    <option value="2">Choice 2</option>
+    <option value="3">Choice 3</option>
+    <option value="4">Choice 4</option>
+   </select>
+  </section>
+ </fieldset>
+ <!-- 开始提交按钮 -->
+ <section>
+  <input type="submit" value="Submit This Form" />
+ </section>
 </form>
 ```
 
-![表单1](img/表单1.png)
+![表单1](./imgs/表单1.png)
 
 基于常用表单元素创建的表单
 
@@ -781,7 +767,7 @@ HTML 中的所有表单元素，可以参考这里：[form-elements](https://www
 
 <span id="表单标记策略"></span>
 
-#### 表单标记策略
+### 表单标记策略
 
 因为 HTML 标准没有规定专门包含控件及其标注的元素，所以可以用块级 section元素来充当这个角色。
 这样既方便组织控件，又方便为行内表单控件及其标注设定样式。
@@ -832,7 +818,7 @@ HTML 未来的版本中或许会专门规定这些特定用途的标签。
 
 <span id="设定表单样式"></span>
 
-#### 设定表单样式
+### 设定表单样式
 
 首先，从表单的整体布局开始。【就是先设定 form 和两个 fieldset 元素的样式。】
 
@@ -974,7 +960,7 @@ legend 元素默认的位置是由浏览器内部的一种未加说明的机制�
 }
 ```
 
-![表单2](img/表单2.png)
+![表单2](./imgs/表单2.png)
 
 把所有控件的可见盒子（类型为 text、date、textarea 和 select）都设定为相同宽度，为说明文字应用了样式，并给每个 section 元素添加了较宽的边框，让它们从视觉上保持适当距离。
 
@@ -1046,7 +1032,7 @@ legend 元素默认的位置是由浏览器内部的一种未加说明的机制�
 }
 ```
 
-![表单3](img/表单3.png)
+![表单3](./imgs/表单3.png)
 
 复选框、单选按钮和提交按钮已经各就各位
 
@@ -1120,7 +1106,7 @@ form.stylin_form1.labels_left section section input {
 }
 ```
 
-![表单4](img/表单4.png)
+![表单4](./imgs/表单4.png)
 
 <span id="设计搜索表单"></span>
 
@@ -1132,7 +1118,7 @@ form.stylin_form1.labels_left section section input {
 
 作者自己就是这样做的，这样每次都能节省好几个钟头的时间。
 
-#### 设计搜索表单
+### 设计搜索表单
 
 几乎每个站点都会提供一种搜索机制。恐怕很难把一个搜索框当成一个表单，但它的确是一个字段的表单。
 搜索表单提供了简单的搜索功能，它随时恭候在标题栏的右侧，那儿几乎是它的专属位置。
@@ -1204,7 +1190,7 @@ form.stylin_form_search1 label {
 }
 ```
 
-![搜索1](img/搜索1.png)
+![搜索1](./imgs/搜索1.png)
 
 这里的 form 元素是“有宽度的”，而且是向右浮动的。
 表单内部的 input 也是向右浮动。
@@ -1252,7 +1238,7 @@ input:focus {border-color:green;}
 
 <span id="弹出层"></span>
 
-### 弹出层
+## 弹出层
 
 弹出层（也叫提示条）指的是在鼠标悬停于某个元素之上时显示的一个界面组件。
 在页面空间有限的情况下，弹出层是为用户提供更多信息的一种有效手段。
@@ -1309,7 +1295,7 @@ img {
 }
 ```
 
-![弹出层1](img/弹出层1.png)
+![弹出层1](./imgs/弹出层1.png)
 
 figure 元素的边框之内恰好能容纳图片，而且浮动也让它们并排显示在一行。
 figcaption 元素目前就显示在它默认的位置，但下一步它就会变成弹出层。
@@ -1351,13 +1337,13 @@ figcaption a {
 这里又用到了实现下拉菜单时的技术，即先隐藏弹出层，然后在鼠标悬停时再显示它。
 为了把弹出层定位在图片盒子的右侧，把它的 left 属性设定为 74%。或许有人认为在这里应该使用 right 属性，但那样就是设定图片盒子右边与弹出层右边的相对位置了。
 
-![弹出层2](img/弹出层2.png)
-![弹出层3](img/弹出层3.png)
+![弹出层2](./imgs/弹出层2.png)
+![弹出层3](./imgs/弹出层3.png)
 鼠标移动图片上时，会在弹出层中显示图题。可是，前两个截图的弹出层被右边的图片给挡住了
 
 <span id="堆叠上下文和zindex"></span>
 
-#### 堆叠上下文和z-index
+### 堆叠上下文和z-index
 
 从图中的截图来看，其中一张图片的弹出层被右边的图片给挡住了一部分。
 
@@ -1388,7 +1374,7 @@ figure:hover figcaption {
 }
 ```
 
-![弹出层4](img/弹出层4.png)
+![弹出层4](./imgs/弹出层4.png)
 
 在给弹出层设定了较大的 z-index 属性后，它们就能显示在所有图片之前了
 
@@ -1417,7 +1403,7 @@ div {
 
 通过加宽盒子的边框，将盒子的宽和高都设定为 0，同时将其他三个边框设定为 transparent，就可以用 CSS 造出一个三角形。
 
-![三角形01](img/三角形01.png)
+![三角形01](./imgs/三角形01.png)
 
 其他类型的如：
 
@@ -1429,38 +1415,38 @@ div {
 <style>
 div {margin:20px 30px; float:left;}
 div.step1 {
-	border:12px solid;
-	border-color:red;
-	height:30px; width:30px;
-	bottom:100%; left:140px;
-	color:#000;
-	}
+ border:12px solid;
+ border-color:red;
+ height:30px; width:30px;
+ bottom:100%; left:140px;
+ color:#000;
+ }
 div.step2 {
-	border:12px solid;
-	border-color:orange red green gray;
-	height:30px; width:30px;
-	bottom:100%; left:140px;
-	color:#000;
-	}
+ border:12px solid;
+ border-color:orange red green gray;
+ height:30px; width:30px;
+ bottom:100%; left:140px;
+ color:#000;
+ }
 div.step3 {
-	border:12px solid;
-	border-color:orange red green gray;
-	height:0px; width:0px;
-	bottom:100%; left:140px;
-	color:#000;
-	}
+ border:12px solid;
+ border-color:orange red green gray;
+ height:0px; width:0px;
+ bottom:100%; left:140px;
+ color:#000;
+ }
 div.step4 {
-	border:12px solid;
-	border-color:transparent red transparent transparent;
-	height:0px; width:0px;
-	bottom:100%; left:140px;
-	color:#000;
-	}
+ border:12px solid;
+ border-color:transparent red transparent transparent;
+ height:0px; width:0px;
+ bottom:100%; left:140px;
+ color:#000;
+ }
 </style>
 </head>
 
 <body>
-	<div class="step1"></div>
+ <div class="step1"></div>
     <div class="step2"></div>
     <div class="step3"></div>
     <div class="step4"></div>
@@ -1470,7 +1456,7 @@ div.step4 {
 
 ```
 
-![三角形02](img/三角形02.png)
+![三角形02](./imgs/三角形02.png)
 
 把这个技术与::before 伪元素结合起来。【::before 和::after 这两个伪元素是用于添加文本或图标等少量内容的。】
 可以为它们生成的内容设定任何样式，就像给标记中其他元素设定样式一样。
@@ -1489,28 +1475,4 @@ figcaption::after { /*红色三角形的盒子*/
 
 如图：
 
-![弹出层5](img/弹出层5.png)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-a
+![弹出层5](./imgs/弹出层5.png)

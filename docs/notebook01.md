@@ -1,7 +1,7 @@
 
-## HTML基础
+# HTML基础
 
-### 标签
+## 标签
 
 - **闭合标签**: <标签名>文本内容</标签名>
 - **自闭合标签**: <标签名 属性_1="属性值" 属性_n="属性值" />
@@ -10,7 +10,7 @@
 
 HTML5中的新标准参考[syntactic](http://dev.w3.org/html5/html-author/#syntactic-overview),当然，HTML5也兼容以前的语法.
 
-### 属性
+## 属性
 
 src属性(source)：来源
 
@@ -41,11 +41,11 @@ alt属性(alternative)：替代内容
 
 了解所有HTML标签和属性参考[HTML Dog](http://htmldog.com/references/html/tags/)
 
-### 标题与段落
+## 标题与段落
 
 h1-h6标签，当搜索引擎进行搜索时，h1标签是仅次于title标签的
 
-### 复合元素
+## 复合元素
 
 由多个标签共同构成。
 
@@ -59,7 +59,7 @@ h1-h6标签，当搜索引擎进行搜索时，h1标签是仅次于title标签�
 </ol>
 ```
 
-### 嵌套标签
+## 嵌套标签
 
 基于li标签与ol标签的嵌套关系，我们还可以说li标签是 ol 标签的子标签（或子元素），或者说ol标签是li标签的父标签（父元素）
 
@@ -69,6 +69,7 @@ h1-h6标签，当搜索引擎进行搜索时，h1标签是仅次于title标签�
 <p>That car is <em>fast</p>.</em>  #错误的方式
 <p>That car is <em>fast</em>.</p>  #争取的方式
 ```
+
 要在一个标签里嵌套另一个标签，必须要先关闭后一个标签再关闭前面那个标签
 
 ## HTML文档剖析
@@ -175,6 +176,7 @@ h1-h6标签，当搜索引擎进行搜索时，h1标签是仅次于title标签�
  <cite>Jimi Hendrix</cite> //使用 cite 元素包含作者姓名
 </blockquote>
 ```
+
 **blockqoute元素包含引用内容，而且在页面上看起来是独立的元素。**
 
 **blockquote 元素默认会缩进**

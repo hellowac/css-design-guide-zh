@@ -1,5 +1,5 @@
 
-## CSS工作原理
+# CSS工作原理
 
 每个 HTML 元素都有一组样式属性，可以通过 CSS 来设定。
 
@@ -9,7 +9,7 @@ CSS 就是一种先选择 HTML 元素，然后设定选中元素 CSS 属性的�
 
 CSS 选择符和要应用的样式构成了一条 CSS 规则。
 
-### 剖析css规则
+## 剖析css规则
 
 规则实际上就是一条完整的 CSS 指令。
 
@@ -20,7 +20,7 @@ CSS 选择符和要应用的样式构成了一条 CSS 规则。
 p {color:red;}
 ```
 
-#### 添加样式的三种方法
+### 添加样式的三种方法
 
 1. 行内样式 [写在特定 HTML 标签的 style 属性里]
 2. 嵌入样式 [是放在 HTML 文档的 head 元素中的]
@@ -63,7 +63,7 @@ adding inline CSS styling to this paragraph, you override the default styles.</p
 当浏览器遇到开标签`<style>`时，就会由解释 HTML 代码切换为解释 CSS 代码。
 等遇到闭标签`</style>`时，它会再切换回解释 HTML 代码
 
-### CSS规则命名惯例
+## CSS规则命名惯例
 
 CSS 规则由选择符和声明两部分组成. 即选择符和声明.
 
@@ -89,8 +89,7 @@ h3 {font-style:italic;}      /* 再为 h3 写一条规则,只把 h3 变成斜体
 2. **ID 和类选择符**: 基于 id 和 class 属性的值（你自己设定）选择元素。
 3. **属性选择符**: 基于属性的有无和特征选择元素。
 
-
-### 上下文选择符
+## 上下文选择符
 
 格式: 标签 1 标签 2 {声明}
 
@@ -99,11 +98,11 @@ h3 {font-style:italic;}      /* 再为 h3 写一条规则,只把 h3 变成斜体
 
 也叫: `后代组合式选择符`（descendant combinator selector），就是一组以空格分隔的标签名。用于选择作为指定祖先元素后代的标签。
 
-如 : `article p {font-weight:bold;} `  只有是article后代的p元素才会应用后面的样式.
+如 : `article p {font-weight:bold;}`  只有是article后代的p元素才会应用后面的样式.
 
 **上下文选择符以空格作为分隔符，而分组选择符则以逗号作为分隔符，不要弄混。**
 
-### 特殊的上下文选择符
+## 特殊的上下文选择符
 
 **子选择符`>`**
 
@@ -148,7 +147,7 @@ section * a {font-size:1.3em;}
 
 **总之，只有一个标签名的选择符会选中页面中所有相同标签的实例。而通过上下文选择符，则可以指定标签必须具备相应的祖先或同胞。**
 
-### ID 和类选择符
+## ID 和类选择符
 
 在 HTML 标记中为元素添加了 id 和 class 属性，就可以在 CSS 选择符中使用ID 和类名，直接选中文档中特定的区域
 
@@ -200,7 +199,7 @@ ID选择符号用“#”号. 其他的用法与类选择符类似（基本上一
 - ID 也可以用在页内导航链接中. (锚点)
 - 暂时不知道某个 href 应该放什么 URL，也可以用#作为占位符，但不能把该属性留空。
 
-### 什么时候用ID，什么时候用类
+## 什么时候用ID，什么时候用类
 
 ID 的用途是在页面中唯一地标识一个元素。【同一个页面中的每一个 ID属性，都必须有独一无二的值（名字）。（每个 ID 名在页面中都只能用一次。）】
 
@@ -237,6 +236,7 @@ ID 的用途是在页面中唯一地标识一个元素。【同一个页面中�
 - 实际上，继承和上下文选择符能让不同的标签共享样式，从而降低你需要编写和维护的 CSS 量。
 
 **小结**
+
 1. ID 的用途是在页面标记中唯一地标识一个特定的元素。它能够为我们编写 CSS 规则提供必要的上下文，排除无关的标记，而只选择该上下文中的标签.
 2. 类是可以应用给任意多个页面中的任意多个 HTML 元素的公共标识符，以便我们为这些元素应用相同的 CSS 样式。而且，使用类也让为不同标签名的元素应用相同的样式成为可能。
 
@@ -272,19 +272,19 @@ img[title="red flower"] {border:4px solid green;}
 
 更多属性选择符[resources_css_selectors](http://www.stylinwithcss.com/resources_css_selectors.php):
 
-Pattern | Meaning |	Described in Section
----------|----------|----------------------
-E[foo]	| An E element with a “foo” attribute	| [Attribute selectors](http://www.w3.org/TR/selectors/#attribute-selectors)
-E[foo="bar"]	| An E element whose “foo” attribute value is exactly equal to “bar”	| [Attribute selectors](http://www.w3.org/TR/selectors/#attribute-selectors)
-E[foo~="bar"]	| An E element whose “foo” attribute value is a list of whitespace-separated values, one of which is exactly equal to “bar”	| [Attribute selectors](http://www.w3.org/TR/selectors/#attribute-selectors)
-E[foo^="bar"]	| An E element whose “foo” attribute value begins exactly with the string “bar”	| [Attribute selectors](http://www.w3.org/TR/selectors/#attribute-selectors)
-E[foo$="bar"]	| An E element whose “foo” attribute value ends exactly with the string “bar”	| [Attribute selectors](http://www.w3.org/TR/selectors/#attribute-selectors)
-E[foo*="bar"]	| An E element whose “foo” attribute value contains the substring “bar”	| [Attribute selectors](http://www.w3.org/TR/selectors/#attribute-selectors)
-E[foo\|="en"]	| An E element whose “foo” attribute has a hyphen-separated list of values beginning (from the left) with “en”	| [Attribute selectors](http://www.w3.org/TR/selectors/#attribute-selectors)
+| Pattern       | Meaning                                                                                                                   | Described in Section                                                       |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| E[foo]        | An E element with a “foo” attribute                                                                                       | [Attribute selectors](http://www.w3.org/TR/selectors/#attribute-selectors) |
+| E[foo="bar"]  | An E element whose “foo” attribute value is exactly equal to “bar”                                                        | [Attribute selectors](http://www.w3.org/TR/selectors/#attribute-selectors) |
+| E[foo~="bar"] | An E element whose “foo” attribute value is a list of whitespace-separated values, one of which is exactly equal to “bar” | [Attribute selectors](http://www.w3.org/TR/selectors/#attribute-selectors) |
+| E[foo^="bar"] | An E element whose “foo” attribute value begins exactly with the string “bar”                                             | [Attribute selectors](http://www.w3.org/TR/selectors/#attribute-selectors) |
+| E[foo$="bar"] | An E element whose “foo” attribute value ends exactly with the string “bar”                                               | [Attribute selectors](http://www.w3.org/TR/selectors/#attribute-selectors) |
+| E[foo*="bar"] | An E element whose “foo” attribute value contains the substring “bar”                                                     | [Attribute selectors](http://www.w3.org/TR/selectors/#attribute-selectors) |
+| E[foo\|="en"] | An E element whose “foo” attribute has a hyphen-separated list of values beginning (from the left) with “en”              | [Attribute selectors](http://www.w3.org/TR/selectors/#attribute-selectors) |
 
 基于属性名和属性的其他特征选择元素，为我们提供了另一种区别对待相同标签的机会。只要事先规划好，就可以编写出适合属性选择符的标记来.
 
-### 伪类
+## 伪类
 
 伪类这个叫法源自它们与类相似，但实际上并没有类会附加到标记中的标签上。
 
@@ -293,7 +293,7 @@ E[foo\|="en"]	| An E element whose “foo” attribute has a hyphen-separated li
 - UI（User Interface，用户界面）伪类 会在 HTML 元素处于某个状态时（比如鼠标指针位于链接上），为该元素应用 CSS 样式。
 - 结构化伪类 会在标记中存在某种结构上的关系时（如某个元素是一组元素中的第一个或最后一个），为相应元素应用 CSS 样式。
 
-#### UI伪类
+### UI伪类
 
 **链接伪类**
 
@@ -353,8 +353,7 @@ input:focus {border:1px solid blue;}
 </style>
 ```
 
-#### 结构化伪类
-
+### 结构化伪类
 
 e:first-child, 代表一组同胞元素中的第一个元素
 
@@ -368,7 +367,7 @@ li:nth-child(3)  /* 选择一组列表项中的每个第三项 */
 
 更多选择器信息参考[css_selectors](http://www.stylinwithcss.com/resources_css_selectors.php)
 
-#### 伪元素
+### 伪元素
 
 e::first-letter , 选择e标签的首个字符
 
@@ -396,7 +395,7 @@ p.age::after {content:" years.";}
 <!-- Age: 25 years. -->
 ```
 
-### 继承
+## 继承
 
 CSS 中的祖先元素会向后代传递一样东西：CSS 属性的值.
 
@@ -408,11 +407,11 @@ body {font-family:helvetica, arial, sans-serif;}
 
 也有很多 CSS 属性不能继承，因为继承这些属性没有意义,比如：边框、外边距、内边距。
 
-### 层叠
+## 层叠
 
 层叠，就是层叠样式表中的层叠，是一种样式在文档层次中逐层叠加的过程，目的是让浏览器面对某个标签特定属性值的多个来源，确定最终使用哪个值。
 
-#### 样式来源
+### 样式来源
 
 浏览器层叠各个来源样式的顺序：
 
@@ -426,7 +425,7 @@ body {font-family:helvetica, arial, sans-serif;}
 
 整个检查更新过程结束后，再将每个标签以最终设定的样式显示出来。
 
-#### 层叠规则
+### 层叠规则
 
 层叠规则文档:[cascade](https://www.w3.org/TR/CSS2/cascade.html)
 
@@ -444,7 +443,7 @@ body {font-family:helvetica, arial, sans-serif;}
 
 **类名选择符比普通的标签选择符具有更高的特指度。一条规则的特指度，由它的选择符中包含多少个标签、类名和 ID 决定。**
 
-#### 计算特指度
+### 计算特指度
 
 公式: I-C-E , 短横线是分隔符，并非减号
 
@@ -475,7 +474,7 @@ body p#largetext ul.mylist li   1-1-4 特指度=114
 - **规则二**：如果几个不同来源都为同一个标签的同一个属性定义了样式，行内样式胜过嵌入样式，嵌入样式胜过链接样式。在链接的样式表中，具有相同特指度的样式，后声明的胜过先声明的。
 - **规则三**：设定的样式胜过继承的样式，此时不用考虑特指度（即显式设定优先）。
 
-### 规则声明
+## 规则声明
 
 每个元素都有很多属性，可以通过 CSS 来设定。但每个元素具体有哪些属性，也会因元素而异。
 
@@ -490,7 +489,7 @@ CSS 属性值主要分三类。
   - HSL（Hue, Saturation, Luminance，色相，饱和度，亮度）
   - 十六进制值（例如color:#336699）
 
-#### 文本值
+### 文本值
 
 所有 CSS 属性都有文本值
 
@@ -499,28 +498,28 @@ CSS 属性值主要分三类。
 
 等等.
 
-#### 数字值
+### 数字值
 
 数字值用于描述元素的各种长度（高度、宽度、粗细，等等）。数字值主要分两类：绝对值和相对值。
 
 绝对值及示例:
 
-绝对值 | 单位缩写 | 示 例
-------|----------|-------
-英寸 | in | height:6in
-厘米 | cm | height:40cm
-毫米 | mm | height:500mm
-点 | pt | height:60pt
-皮卡 | pc | height:90pc
-像素 | px | height:72px
+| 绝对值 | 单位缩写 | 示 例        |
+| ------ | -------- | ------------ |
+| 英寸   | in       | height:6in   |
+| 厘米   | cm       | height:40cm  |
+| 毫米   | mm       | height:500mm |
+| 点     | pt       | height:60pt  |
+| 皮卡   | pc       | height:90pc  |
+| 像素   | px       | height:72px  |
 
 相对值及示例:
 
-相对值 | 单位缩写 | 示 例
-------|----------|-------
-Em | em | height:1.2em
-Ex | ex | height:6ex
-百分比 | % |height:120%
+| 相对值 | 单位缩写 | 示 例        |
+| ------ | -------- | ------------ |
+| Em     | em       | height:1.2em |
+| Ex     | ex       | height:6ex   |
+| 百分比 | %        | height:120%  |
 
 em 和 ex 都是字体大小的单位，但在 CSS 中，它们作为长度单位适用于任何元素。
 
@@ -530,7 +529,7 @@ ex ，等于给定字体中字母 x 的高度（小写字母 x 代表一种字�
 
 百分比非常适合设定被包含元素的宽度，此时的百分比就是相对于宽度而言的
 
-#### 颜色值
+### 颜色值
 
 **颜色名**
 
@@ -560,12 +559,9 @@ silver（银色）、teal（青色）、white（白色）和 yellow（黄色）
 
 比如：纯红色（#f00），纯绿色（#0f0），纯蓝色（#00f）。
 
-```
-大多数十六进制颜色值不仔细分析可不容易猜，比如#7ca9be 是深蓝绿色，我怎么知
-道的？ 首先我们来看每一对 rgb 值中的第一个值，也就是 7、a、b。蓝色和绿色值相
-差无几，而红色值也没有那么深。有了这些信息，就可以大致猜出这个颜色了，对，
-是蓝绿色。
-```
+!!! info ""
+
+    大多数十六进制颜色值不仔细分析可不容易猜，比如#7ca9be 是深蓝绿色，我怎么知道的？ 首先我们来看每一对 rgb 值中的第一个值，也就是 7、a、b。蓝色和绿色值相差无几，而红色值也没有那么深。有了这些信息，就可以大致猜出这个颜色了，对，是蓝绿色。
 
 **RGB 颜色值**
 

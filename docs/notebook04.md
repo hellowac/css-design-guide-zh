@@ -1,7 +1,7 @@
 
-## 字体和文本
+# 字体和文本
 
-### 字体
+## 字体
 
 网页中的字体有三个来源:
 
@@ -9,7 +9,7 @@
 - 保存在第三方网站上的字体。最常见的是 Typekit 和 Google，可以使用 link 标签把它们链接到你的页面上。
 - 保存在你的 Web 服务器上的字体。这些字体可以使用@font-face 规则随网页一起发送给浏览器。
 
-#### 字体相关属性
+### 字体相关属性
 
 - font-family
 - font-size
@@ -18,7 +18,7 @@
 - font-variant
 - font（简写属性）
 
-#### 字体和文本的区别
+### 字体和文本的区别
 
 ```
 字体是“文字的不同体式”或者“字的形体结构”。
@@ -39,7 +39,7 @@ CSS 为字体和文本分别定义了属性。字体属性主要描述一类字�
 而行高和缩进这种只有对文本块（比如标题和段落）才有意义的样式，则要使用文本属性设定。
 ```
 
-### 字体族
+## 字体族
 
 font-family 用于设定元素中的文本使用什么字体。
 
@@ -52,7 +52,7 @@ font-family 是可以继承的属性，因此它的值会遗传给所有后代�
 **用字体栈指定本地字体**
 
 在指定文本的字体时，需要多列出几种后备字体，以防第一种字体无效。这个字体的列表就叫叫字体栈。
-比如：`body {font-family:"trebuchet ms", tahoma, sans-serif;} `
+比如：`body {font-family:"trebuchet ms", tahoma, sans-serif;}`
 如果字体名多于一个单词（有空格），应该加上引号。该设定会依次尝试使用字体，直到最后的通用字体。
 
 通用的字体类：
@@ -65,7 +65,7 @@ font-family 是可以继承的属性，因此它的值会遗传给所有后代�
 
 这些通用字体类的目的，就是确保在最坏的情况下，文档可以通过正确的字形来显示。
 
-#### 字体大小
+### 字体大小
 
 浏览器样式表默认为每个标签都设定了 font-size，在设定 font-size的时候，其实是在修改默认值。
 
@@ -104,15 +104,17 @@ strong 的大小应该是 16 像素×.75×.75＝9 像素。
 -->
 ```
 
-```
-如果想使用 em，但又需要设定具体的像素大小，可以把 body 的 font-size 设定为62.5%。
-这样，就等于把基准大小从 16 像素改为 10 像素（16×62.5%=10）。
-然后，em 与像素的对应关系就十分明确了，
-比如:
-1em = 10 像素，
-1.5em = 15 像素，
-2em = 20 像素，等等。
-```
+!!! info ""
+
+  如果想使用 em，但又需要设定具体的像素大小，可以把 body 的 font-size 设定为62.5%。
+  这样，就等于把基准大小从 16 像素改为 10 像素（16×62.5%=10）。
+  然后，em 与像素的对应关系就十分明确了，
+
+  比如:
+  
+  1em = 10 像素，  
+  1.5em = 15 像素，  
+  2em = 20 像素，等等。  
 
 好处：使用相对字体大小，自动调整各层元素。反复修改布局设计的时候，这样显然能节省时间。
 
@@ -134,7 +136,7 @@ CSS3 新增了一个相对单位 rem（root em，根 em）
 /*IE8 及之前版本的 IE 浏览器使用 14 像素*/
 p {font-size:14px; font-size:.875rem;}
 
-### 字体样式
+## 字体样式
 
 值：italic、oblique、normal。
 
@@ -145,19 +147,19 @@ normal:正体
 
 **所谓“常规”值**
 
-```
-font-style 有一个 normal 值，中文就是“常规”的意思。
-这个值其实不仅 font-style 有，很多其他属性也有，它的作用就是取消所有的特殊样式。
-什么情况下才会用它呢？
+!!! info ""
 
-这个值是用来有选择地覆盖某个默认或你设定的全局属性的。
-比如，h1 到 h6 默认为粗体，如果你想让 h3 以常规字体显示，就需要设定 h3 {font-weight:normal;}。
-如果你的样式表里声明了 a {font-variant:small-caps;}，那网页中的英文链接都会变成小型大写字母。
-要是你想让某一组链接仍然以常规的大小写形式显示，
-可能得另写一个类似这样的声明：a.speciallink {font-variant:normal;}。
-```
+    font-style 有一个 normal 值，中文就是“常规”的意思。
+    这个值其实不仅 font-style 有，很多其他属性也有，它的作用就是取消所有的特殊样式。
+    什么情况下才会用它呢？
 
-## 字体粗细
+    这个值是用来有选择地覆盖某个默认或你设定的全局属性的。
+    比如，h1 到 h6 默认为粗体，如果你想让 h3 以常规字体显示，就需要设定 h3 {font-weight:normal;}。
+    如果你的样式表里声明了 a {font-variant:small-caps;}，那网页中的英文链接都会变成小型大写字母。
+    要是你想让某一组链接仍然以常规的大小写形式显示，
+    可能得另写一个类似这样的声明：a.speciallink {font-variant:normal;}。
+
+### 字体粗细
 
 可能的值：100、200……900，或者 lighter、normal、bold 和 bolder。
 
@@ -165,7 +167,7 @@ font-style 有一个 normal 值，中文就是“常规”的意思。
 
 粗体的主要作用是表示重要。strong 也表示重要，而它的默认样式就是粗体。
 
-## 字体变化
+### 字体变化
 
 值：small-caps、normal。
 
@@ -208,7 +210,7 @@ font 属性是一个简写形式，通过它只要一条 CSS 声明就可以设�
 - text-transform
 - vertical-align
 
-#### 文本缩进
+### 文本缩进
 
 值：长度值（正、负均可）。
 
@@ -218,44 +220,40 @@ text-indent 属性设定行内盒子相对于包含元素的起点。默认情�
 
 text-indent 设定正值，文本向右移，设定负值，文本向左移。
 
-**继承的值与计算的值**
+!!! info "继承的值与计算的值"
 
-```
-text-indent 是可以被子元素继承的。
-如果你在一个 div 上设定了 text-indent 属性，
-那么 div 中的所有段落都会继承该缩进值。
-然而，与所有继承的 CSS 值一样，这个缩进值并不是祖先元素中设定的值，而是计算的值。
+    text-indent 是可以被子元素继承的。
+    如果你在一个 div 上设定了 text-indent 属性，
+    那么 div 中的所有段落都会继承该缩进值。
+    然而，与所有继承的 CSS 值一样，这个缩进值并不是祖先元素中设定的值，而是计算的值。
 
-假设有一个 400 像素宽的 div，包含的文本缩进 5%，则缩进的距离是 20 像素（400 的 5%）。
-在这个 div 中有一个 200 像素宽的段落。
-作为子元素，它继承父元素的 text-indent 值，所以它包含的文本也缩进。
-但继承的缩进值是多少呢？不是 5%，而是 20 像素。
-也就是说，子元素继承的是根据父元素宽度计算得到的缩进值。
-结果，虽然段落只有父元素一半宽，但其中的文本也会缩进 20 像素。
-这样可以确保无论段落多宽，它们的缩进距离都一样。
-当然，在子元素上重新设定 text-indent 属性，可以覆盖继承的值。
-```
+    假设有一个 400 像素宽的 div，包含的文本缩进 5%，则缩进的距离是 20 像素（400 的 5%）。
+    在这个 div 中有一个 200 像素宽的段落。
+    作为子元素，它继承父元素的 text-indent 值，所以它包含的文本也缩进。
+    但继承的缩进值是多少呢？不是 5%，而是 20 像素。
+    也就是说，子元素继承的是根据父元素宽度计算得到的缩进值。
+    结果，虽然段落只有父元素一半宽，但其中的文本也会缩进 20 像素。
+    这样可以确保无论段落多宽，它们的缩进距离都一样。
+    当然，在子元素上重新设定 text-indent 属性，可以覆盖继承的值。
 
-**文本之“蛇”**
+!!! info "文本之“蛇”"
 
-```
-在 CSS 中控制文本要理解一个重要概念。
-CSS 会把元素中的文本放在一个不可见的盒子里，(文本被包含在一个细长的盒子中，这个盒子往往因为折行而断开，分布在多行中)
-比如对 p 元素中的一段文本，CSS 将其视为很长的一行，只不过在遇到容器边界时会折行。
-所有文本属性都会应用给这个细边框的文本盒子。
+    在 CSS 中控制文本要理解一个重要概念。
+    CSS 会把元素中的文本放在一个不可见的盒子里，(文本被包含在一个细长的盒子中，这个盒子往往因为折行而断开，分布在多行中)
+    比如对 p 元素中的一段文本，CSS 将其视为很长的一行，只不过在遇到容器边界时会折行。
+    所有文本属性都会应用给这个细边框的文本盒子。
 
-使用文本属性 text-indent,实际上你缩进的是这个文本盒子的起点位置。
-后续的行是不会缩进的，因为在 CSS 看来，它们就是一个整体。
+    使用文本属性 text-indent,实际上你缩进的是这个文本盒子的起点位置。
+    后续的行是不会缩进的，因为在 CSS 看来，它们就是一个整体。
 
-如果想缩进整个段落，可以使用段落的 margin-left 属性。(你得把整个包含盒子向右移动才行.)
-而永远要记住，文本属性只应用于这个长长的、细细的、内部的文本盒子，而不是包含元素的盒子。
-```
+    如果想缩进整个段落，可以使用段落的 margin-left 属性。(你得把整个包含盒子向右移动才行.)
+    而永远要记住，文本属性只应用于这个长长的、细细的、内部的文本盒子，而不是包含元素的盒子。
 
 缩进给人一种专业版式的感觉，也能提示读者每段文本在哪儿开头。
 注意，在设定缩进和外边距时要像这里一样使用 em，
 以便在用户（或你自己）改变字体大小时，它们的长度能够按比例变化。
 
-#### 字符间距
+### 字符间距
 
 值：任何长度值（正、负值均可）。
 
@@ -271,7 +269,7 @@ letter-spacing 控制字距（tracking），也就是文本块中所有字符之
 
 letter-spacing 对英文字母、汉字及其他字符都起作用，另，letter-spacing 的值是在浏览器默认值基础上增加或减少的值。
 
-#### 单词间距
+### 单词间距
 
 值：任何长度值（正、负值均可）
 
@@ -283,7 +281,7 @@ CSS 把任何两边有空白的字符和字符串都视作“单词”。
 
 _纯汉字文本一段之中没有空格，因此 word-spacing 对中文网页几乎没有用，但对中英混排段落可能有用。_
 
-#### 文本装饰
+### 文本装饰
 
 值：underline、overline、line-through、blink、none
 
@@ -298,7 +296,7 @@ nav a {text-decoration:none;}
 a:hover {text-decoration:underline;}
 ```
 
-#### 文本对齐
+### 文本对齐
 
 值：left、right、center、justify （左对齐、右对齐、居中对齐和两端对齐）
 
@@ -306,7 +304,7 @@ a:hover {text-decoration:underline;}
 
 这些值控制着文本在水平方向对齐的方式。
 
-#### 行高
+### 行高
 
 值：任何数字值（不用指定单位）。
 
@@ -318,11 +316,11 @@ line-height 增加的空白就像外边距一样，较大的标题（如 h1 和 
 
 如果想把标题较大的空白去掉，那就只能把文本的行高设定为比字体高度（就是字体大小）还要小，比如设定为小于 1 的值。
 
-以复合值的形式把 font-size 和 line-height 值写在一块，比如：`div#intro {font:1.2em/1.4 helvetica, arial, sans-serif;} ` [行高就是字体大小 1.2em 的 1.4 倍]
+以复合值的形式把 font-size 和 line-height 值写在一块，比如：`div#intro {font:1.2em/1.4 helvetica, arial, sans-serif;}` [行高就是字体大小 1.2em 的 1.4 倍]
 
 在设定行高时如果使用了绝对单位（如像素），那将来增大字体有可能导致行与行之间重叠。
 
-#### 文本转换
+### 文本转换
 
 值：none、uppercase、lowercase、capitalize。(默认,大写，小写，首字母大写)
 
@@ -332,7 +330,7 @@ text-transform 属性用于转换元素中文本的大小写，它可以设定�
 
 实现小型大写字母的首字母放大效果，可以再加上 `font-variant:small-caps`
 
-#### 垂直对齐
+### 垂直对齐
 
 值：任意长度值以及 sub、super、top、middle、bottom 等。
 
@@ -361,7 +359,7 @@ p.customsmall {font-size:.8em; vertical-align:1em;}
   through a municipal distribution system</em></p>
 ```
 
-### Web 字体大揭秘
+## Web 字体大揭秘
 
 使用@font-face 规则在网页中可嵌入下载字体。
 
@@ -373,14 +371,14 @@ p.customsmall {font-size:.8em; vertical-align:1em;}
 - 使用事先打好包的@font-face 包。
 - 使用 Font Squirrel 用你自己的字体生成@font-face 包
 
-#### 公共字体库
+### 公共字体库
 
 - Google [Web Fonts](https://fonts.google.com/)
-  - 引用方式,如：`<link href='http://fonts.googleapis.com/css?family=Anton|Niconne|Prata' rel='stylesheet' type='text/css'> `
+  - 引用方式,如：`<link href='http://fonts.googleapis.com/css?family=Anton|Niconne|Prata' rel='stylesheet' type='text/css'>`
   - 应用方式:如：`h3 {font: 20px "Prata", serif;}`
 - Adobe [Typekit](https://typekit.com/)
 
-#### 打包的@font-face包
+### 打包的@font-face包
 
 可以自己的网站或第三方 Web 服务器下载到相应的字体。
 
@@ -409,7 +407,7 @@ p.customsmall {font-size:.8em; vertical-align:1em;}
 Web 专家 Paul Irish 写过一个跨浏览器@font-face 的“笑脸版”，
 可以保证用户机器中万一安装了同名字体时也不会混淆，详细内容参考这篇文章：[font-face](http://paulirish.com/2009/bulletproof-font-face-implementation-syntax/)
 
-#### 生成@font-face包
+### 生成@font-face包
 
 希望在自己的网页中使用一种特殊字体，比如客户自己公司指定了一种字体，必须用在网站和设计中。
 今天，只要你获得了把该字体转换为 Web 字体使用的授权（请查看许可协议或联系字体设计商），
@@ -418,12 +416,12 @@ Web 专家 Paul Irish 写过一个跨浏览器@font-face 的“笑脸版”，
 如果想深入理解@font-face 规则，参考 Tim Brown 的博客文章“[How to use
 @font-face](http://nicewebtype.com/notes/2009/10/30/how-to-use-css-font-face/)”。
 
-### 文字版式
+## 文字版式
 
 文字排版讲求匀称，一般是由看不见的网格，框定页面文字的走向和布局。
 匀称的版式可以增强页面的可读性。
 
-#### 简单的文本布局
+### 简单的文本布局
 
 比如：
 
@@ -475,6 +473,7 @@ p, ul, blockquote {line-height:1.15em; margin-bottom:.75em;}
 /*缩进列表*/
 ul {margin-left:32px;}
 ```
+
 以上样式把所有元素的行高都缩小,
 因为 line-height 会平均分布在文本上下，并且只想通过下外边距在每个元素下方添加空白。
 同时，还留出少量行高，以防段落（和跨行的标题）中相邻的行紧挨上。
@@ -497,7 +496,7 @@ code {font-size:1.3em;}
 
 标题和代码都加大了，而且页面也更有层次感
 
-#### 基于网格排版
+### 基于网格排版
 
 借助网格可以保证布局匀称，同时让页面看起来也很流畅
 
@@ -597,6 +596,7 @@ h1 {
  margin-bottom:13px;
 }
 ```
+
 再加几个不同字体大小的标题、一个无序列表和一个blockquote 元素。看一看把网格去掉之后页面是什么样子。
 
 ```HTML
@@ -631,7 +631,7 @@ blockquote {font-size: 12px;line-height: 18px;padding-top: 2px;margin-bottom: 16
 基于网格为一个网站设计了版式，而后将其交给了其他人维护，那这个网站的版式
 就能始终保持一致，无论页面中包含什么元素，以及以什么顺序包含这些元素。
 
-#### 经典的排版练习
+### 经典的排版练习
 
 节选 The Hound of the Baskervilles（《巴斯克维尔庄园的猎犬 》）
 中的部分文本（为了示例需要进行了删减）来做一个排版练习.
@@ -664,6 +664,7 @@ blockquote {font-size: 12px;line-height: 18px;padding-top: 2px;margin-bottom: 16
 HTML实体
 
 以下网站中列出了 HTML 实体：
+
 - [htmlhelp](http://htmlhelp.com/reference/html40/entities/special.html)
   - 既包含 HTML 实体值，也包含实体需要作为::before 和::after 伪元素内容时的十六进制值。
   - 举个例子，如果你想在伪元素中添加十六进制值`&#x201C;`（左双引号），
@@ -724,7 +725,7 @@ h2 {font-size:18px;
 
 接下来，找到一种名为 Pinyon 的手写体，这种字体与主标题挺配的.
 
-`<link href='http://fonts.googleapis.com/css?family=Pinyon+Script' rel='stylesheet' type='text/css'> `
+`<link href='http://fonts.googleapis.com/css?family=Pinyon+Script' rel='stylesheet' type='text/css'>`
 
 ```css
 h1 {
@@ -830,4 +831,4 @@ q::after {content:"\201D"}
 
 最终样式:
 
-![fontgraph](img/fontgraph.png)
+![fontgraph](./imgs/fontgraph.png)
